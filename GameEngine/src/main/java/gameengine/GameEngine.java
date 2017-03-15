@@ -147,7 +147,6 @@ public class GameEngine implements ApplicationListener {
         mapLayers.get(1).setVisible(false);
         for(int i = 0; i< groundLayers.getCount(); i++){
             if(layerCount == i+1 && i != 4){
-                System.out.println("if = " + i);
                 groundLayers.get(i).setVisible(true);
             } else{
                 groundLayers.get(i).setVisible(false);
