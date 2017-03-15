@@ -10,6 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
@@ -37,38 +38,49 @@ public class GameEngine implements ApplicationListener {
     private Lookup.Result<IEntityProcessingService> processorResult;
     private List<IEntityProcessingService> processors;
     private TiledMap map;
+    private MapLayers mapLayers;
+    private MapLayers groundLayers;
+    private float mapTimer;
+    private float mapTime;
     private IsometricTiledMapRenderer renderer;
     private OrthographicCamera camera;
     private SpriteBatch batch;
+    private int layerCount = 0;
 
     @Override
     public void create()
     {
         world = new World();
         gameData = new GameData();
-        map = new TmxMapLoader().load("assets/warlockmap.tmx");
+        map = new TmxMapLoader().load("assets/shrinkingmap.tmx");
+        mapLayers = map.getLayers();
+        groundLayers = new MapLayers();
+        
+        for(int i = 2; i < mapLayers.getCount(); i++ ){
+            mapLayers.get(i).setVisible(false);
+            groundLayers.add(mapLayers.get(i));
+        }
+        
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
-        renderer = new IsometricTiledMapRenderer(map, 2f);
+        renderer = new IsometricTiledMapRenderer(map);
         camera = new OrthographicCamera();
-        camera.translate(1875, 50);
         processors = new CopyOnWriteArrayList<>();
         entityPlugins = new CopyOnWriteArrayList<>();
         batch = new SpriteBatch();
-        
+
         pluginResult = lookup.lookupResult(IGamePluginService.class);
         processorResult = lookup.lookupResult(IEntityProcessingService.class);
 
         for (IGamePluginService plugin : pluginResult.allInstances()) {
             plugin.start(gameData, world);
             entityPlugins.add(plugin);
-            System.out.println(plugin.getClass().getName());
         }
-        
-        for(IEntityProcessingService processor : processorResult.allInstances()){
+
+        for (IEntityProcessingService processor : processorResult.allInstances()) {
             processors.add(processor);
-            System.out.println(processor.getClass().getName());
         }
-        
+
+        mapTime = 2;
     }
 
     @Override
@@ -82,51 +94,77 @@ public class GameEngine implements ApplicationListener {
     @Override
     public void render()
     {
+        gameData.setDelta(Gdx.graphics.getDeltaTime());
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.setView(camera);
         renderer.render();
+        camera.update();
         update();
         draw();
     }
-    
+
     private void draw()
     {
-       
-        
+
     }
-    
-    private void update(){
-        for(IEntityProcessingService processor : processors){
+
+    private void update()
+    {
+
+        mapTimer += gameData.getDelta();
+        if (mapTimer >= mapTime) {
+            layerCount++;
+            if(layerCount >= groundLayers.getCount()){
+                layerCount = groundLayers.getCount() -1;
+            }
+            loadNewLayer(layerCount);
+            mapTimer = 0;
+        }
+        
+        for (IEntityProcessingService processor : processors) {
             processor.process(gameData, world);
         }
-        
-        if(gameData.getKeys().isDown(LEFT)){
-            camera.translate(10, 0);
-        } 
-        if (gameData.getKeys().isDown(RIGHT)){
+
+        if (gameData.getKeys().isDown(LEFT)) {
             camera.translate(-10, 0);
         }
-        
-        if (gameData.getKeys().isDown(UP)){
+        if (gameData.getKeys().isDown(RIGHT)) {
+            camera.translate(10, 0);
+        }
+
+        if (gameData.getKeys().isDown(UP)) {
+            camera.translate(0, 10);
+        }
+
+        if (gameData.getKeys().isDown(DOWN)) {
             camera.translate(0, -10);
         }
+    }
+    
+    private void loadNewLayer(int layerCount){
         
-        if(gameData.getKeys().isDown(DOWN)){
-            camera.translate(0, 10);
+        mapLayers.get(1).setVisible(false);
+        for(int i = 0; i< groundLayers.getCount(); i++){
+            if(layerCount == i+1 && i != 4){
+                System.out.println("if = " + i);
+                groundLayers.get(i).setVisible(true);
+            } else{
+                groundLayers.get(i).setVisible(false);
+            }
         }
     }
 
     @Override
     public void pause()
     {
-        
+
     }
 
     @Override
     public void resume()
     {
-        
+
     }
 
     @Override
@@ -135,7 +173,5 @@ public class GameEngine implements ApplicationListener {
         map.dispose();
         renderer.dispose();
     }
-
-    
 
 }
