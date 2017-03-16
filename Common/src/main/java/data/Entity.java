@@ -2,6 +2,7 @@ package data;
 
 import com.badlogic.gdx.graphics.Texture;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public final class Entity implements Serializable {
@@ -20,7 +21,7 @@ public final class Entity implements Serializable {
     private float[] dists;
     private int rotationSpeed;
     private float speed;
-    private int life;
+    private int health;
     private float radius;
     private boolean isHit = false;
     private float expiration;
@@ -29,6 +30,7 @@ public final class Entity implements Serializable {
     private float width;
     private boolean isShooting = false;
     private Texture texture;
+    private ArrayList<Integer> damageTaken = new ArrayList<>();
     
     
     
@@ -105,12 +107,12 @@ public final class Entity implements Serializable {
         return radius;
     }
     
-    public int getLife(){
-        return life;
+    public int getHealth(){
+        return health;
     }
     
-    public void setLife(int life){
-        this.life = life;
+    public void setHealth(int health){
+        this.health = health;
     }
 
     public String getID() {
@@ -236,4 +238,13 @@ public final class Entity implements Serializable {
         }
         return b;
     }
+    public ArrayList getDamageTaken() {
+        return damageTaken;
+    }
+
+    public void addDamageTaken(int damage)
+    {
+        damageTaken.add(damage);
+    }
+
 }
