@@ -8,12 +8,34 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GameData {
 
+    private int layerCount;
+    private int shrinkTime;
     private float delta;
     private int displayWidth;
     private int displayHeight;
     private final GameKeys keys = new GameKeys();
     private final List<Event> events = new CopyOnWriteArrayList<>();
 
+    public int getLayerCount()
+    {
+        return layerCount;
+    }
+
+    public void setLayerCount(int layerCount)
+    {
+        this.layerCount = layerCount;
+    }
+    
+    public int getShrinkTime()
+    {
+        return shrinkTime;
+    }
+
+    public void setShrinkTime(int shrinkTime)
+    {
+        this.shrinkTime = shrinkTime;
+    }
+    
     public void addEvent(Event e) {
         events.add(e);
     }

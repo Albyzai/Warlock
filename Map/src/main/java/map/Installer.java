@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.mmmi.cbse.map;
+package map;
 
 import org.openide.modules.ModuleInstall;
 

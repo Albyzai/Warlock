@@ -23,6 +23,7 @@ import managers.GameInputProcessor;
 import org.openide.util.Lookup;
 import services.IEntityProcessingService;
 import services.IGamePluginService;
+import services.MapSPI;
 
 /**
  *
@@ -37,39 +38,35 @@ public class GameEngine implements ApplicationListener {
     private List<IGamePluginService> entityPlugins;
     private Lookup.Result<IEntityProcessingService> processorResult;
     private List<IEntityProcessingService> processors;
+    private Lookup.Result<MapSPI> mapResult;
+    private List<MapSPI> maps;
     private TiledMap map;
-    private MapLayers mapLayers;
-    private MapLayers groundLayers;
-    private float mapTimer;
-    private float mapTime;
     private IsometricTiledMapRenderer renderer;
     private OrthographicCamera camera;
-    private SpriteBatch batch;
-    private int layerCount = 0;
 
     @Override
     public void create()
     {
         world = new World();
         gameData = new GameData();
-        map = new TmxMapLoader().load("assets/shrinkingmap.tmx");
-        mapLayers = map.getLayers();
-        groundLayers = new MapLayers();
+        maps = new CopyOnWriteArrayList<>();
         
-        for(int i = 2; i < mapLayers.getCount(); i++ ){
-            mapLayers.get(i).setVisible(false);
-            groundLayers.add(mapLayers.get(i));
+        pluginResult = lookup.lookupResult(IGamePluginService.class);
+        processorResult = lookup.lookupResult(IEntityProcessingService.class);
+        mapResult = lookup.lookupResult(MapSPI.class);
+        
+        for (MapSPI mapSPI : mapResult.allInstances()){
+            maps.add(mapSPI);
         }
+        map = maps.get(0).generateMap(world, gameData, 0);
         
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
-        renderer = new IsometricTiledMapRenderer(map);
+        renderer = new IsometricTiledMapRenderer(this.map);
         camera = new OrthographicCamera();
         processors = new CopyOnWriteArrayList<>();
         entityPlugins = new CopyOnWriteArrayList<>();
-        batch = new SpriteBatch();
 
-        pluginResult = lookup.lookupResult(IGamePluginService.class);
-        processorResult = lookup.lookupResult(IEntityProcessingService.class);
+        
 
         for (IGamePluginService plugin : pluginResult.allInstances()) {
             plugin.start(gameData, world);
@@ -79,8 +76,6 @@ public class GameEngine implements ApplicationListener {
         for (IEntityProcessingService processor : processorResult.allInstances()) {
             processors.add(processor);
         }
-
-        mapTime = 2;
     }
 
     @Override
@@ -112,14 +107,8 @@ public class GameEngine implements ApplicationListener {
     private void update()
     {
 
-        mapTimer += gameData.getDelta();
-        if (mapTimer >= mapTime) {
-            layerCount++;
-            if(layerCount >= groundLayers.getCount()){
-                layerCount = groundLayers.getCount() -1;
-            }
-            loadNewLayer(layerCount);
-            mapTimer = 0;
+        for (MapSPI map : lookup.lookupAll(MapSPI.class)){
+            map.processMap(world, gameData);
         }
         
         for (IEntityProcessingService processor : processors) {
@@ -139,18 +128,6 @@ public class GameEngine implements ApplicationListener {
 
         if (gameData.getKeys().isDown(DOWN)) {
             camera.translate(0, -10);
-        }
-    }
-    
-    private void loadNewLayer(int layerCount){
-        
-        mapLayers.get(1).setVisible(false);
-        for(int i = 0; i< groundLayers.getCount(); i++){
-            if(layerCount == i+1 && i != 4){
-                groundLayers.get(i).setVisible(true);
-            } else{
-                groundLayers.get(i).setVisible(false);
-            }
         }
     }
 
