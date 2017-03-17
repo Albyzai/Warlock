@@ -21,9 +21,7 @@ public class HealthProcessor implements IEntityProcessingService {
             if (health > 0) {
                 for (int dmg : damageTaken) {
                     e.setHealth(e.getHealth() - dmg);
-
                 }
-
             }
             if (e.getHealth() <= 0) {
                 world.removeEntity(e);

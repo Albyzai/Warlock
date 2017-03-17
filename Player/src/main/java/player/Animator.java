@@ -8,7 +8,6 @@ package player;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -17,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
+import States.MovementState;
 
 /**
  *
@@ -31,10 +31,7 @@ public class Animator extends ApplicationAdapter{
     private String characterName;
     private float stateTime;
 
-    private enum State {
-        STANDINGRIGHT, STANDINGLEFT, STANDINGUP, STANDINGDOWN, RUNNINGRIGHT, RUNNINGLEFT, RUNNINGUP, RUNNINGDOWN
-    };
-    private State currentState, previousState;
+    private MovementState currentState, previousState;
 
     private TextureRegion chStandingRight, chStandingLeft, chStandingUp, chStandingDown;
 
@@ -53,7 +50,7 @@ public class Animator extends ApplicationAdapter{
         stateTime = 0;
         Texture texture = atlas.findRegion("FireCharacter").getTexture();
         sprite = new Sprite();
-        currentState = State.STANDINGRIGHT;
+        currentState = MovementState.STANDINGRIGHT;
 
         chStandingRight = new TextureRegion(texture, 0, 0, 16, 16);
         chStandingLeft = new TextureRegion(texture, 0, 16, 16, 16);
@@ -100,7 +97,7 @@ public class Animator extends ApplicationAdapter{
         sprite.setTexture(getFrame().getTexture());
 
         batch.begin();
-        sprite.draw(batch);
+        batch.draw(getFrame(), 500, 500);
         batch.end();
     }
 
@@ -146,14 +143,6 @@ public class Animator extends ApplicationAdapter{
                 break;
         }
         return region;
-    }
-    
-    public State getCurrentState() {
-        return currentState;
-    }
-
-    public void setCurrentState(State currentState) {
-        this.currentState = currentState;
     }
 
 }

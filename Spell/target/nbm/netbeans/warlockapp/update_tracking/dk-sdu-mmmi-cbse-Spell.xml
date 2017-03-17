@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.Spell">
+    <module_version install_time="1489744641854" last="true" origin="installer" specification_version="1.0.0">
+        <file crc="2289440828" name="config/Modules/dk-sdu-mmmi-cbse-Spell.xml"/>
+        <file crc="4168617632" name="modules/dk-sdu-mmmi-cbse-Spell.jar"/>
+    </module_version>
+</module>

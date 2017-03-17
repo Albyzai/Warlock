@@ -28,19 +28,10 @@ public final class Entity implements Serializable {
     private int size;
     private int numPoints;
     private float width;
-    private boolean isShooting = false;
     private Texture texture;
     private ArrayList<Integer> damageTaken = new ArrayList<>();
     
     
-    
-    public void setIsShooting(boolean b){
-        this.isShooting = b;
-    }
-    
-    public boolean getIsShooting(){
-        return this.isShooting;
-    }
     public void setSpeed(float speed){
         this.speed = speed;
     }

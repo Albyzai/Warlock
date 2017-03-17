@@ -14,6 +14,7 @@ import org.openide.util.lookup.ServiceProvider;
 import services.IGamePluginService;
 
 @ServiceProvider(service = IGamePluginService.class)
+
 public class HealthEntity implements IGamePluginService {
 
     @Override

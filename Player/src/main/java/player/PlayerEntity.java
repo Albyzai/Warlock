@@ -32,7 +32,6 @@ public class PlayerEntity implements IGamePluginService, IEntityProcessingServic
     public void start(GameData gameData, World world) {
         player = new Entity();
         world.addEntity(player);
-        player.setLife(10);
         player.setPosition(0, 0);
 
     }
@@ -51,9 +50,6 @@ public class PlayerEntity implements IGamePluginService, IEntityProcessingServic
 //
 //        setX(getX() + velocity.x * dt);
 //        setY(getY() + velocity.y * dt);
-        if (player.getLife() <= 0) {
-            world.removeEntity(player);
-        }
         //animator.getSprite().setPosition(player.getX(), player.getY());
         animator.render();
     }
