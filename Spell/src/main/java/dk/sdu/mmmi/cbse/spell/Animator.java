@@ -125,4 +125,22 @@ public class Animator extends ApplicationAdapter{
         return region;
     }
 
+    public Animation<TextureRegion> getSpell1() {
+        return spell1;
+    }
+
+    public Animation<TextureRegion> getSpell2() {
+        return spell2;
+    }
+
+    public Animation<TextureRegion> getSpell3() {
+        return spell3;
+    }
+
+    public Animation<TextureRegion> getSpell4() {
+        return spell4;
+    }
+    
+    
+
 }

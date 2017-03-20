@@ -7,25 +7,22 @@ package dk.sdu.mmmi.cbse.spell;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import data.Entity;
+import data.SpellType;
 
 public class Spell {
 
+    private SpellType spellType;
     private float damage;
     private Animation animation;
-    private Entity caster;
 
-    public Spell(float damage, Animation animation, Entity caster) {
+    public Spell(SpellType spelltype, float damage, Animation animation) {
+        this.spellType = spellType;
         this.damage = damage;
         this.animation = animation;
-        this.caster = caster;
     }
 
     public float getDamage() {
         return damage;
-    }
-
-    public Entity getCaster() {
-        return caster;
     }
 
     public Animation getAnimation() {

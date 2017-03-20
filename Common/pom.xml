@@ -16,6 +16,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <publicPackages>
+                        <publicPackage>States</publicPackage>
                         <publicPackage>data</publicPackage>
                         <publicPackage>events</publicPackage>
                         <publicPackage>services</publicPackage>

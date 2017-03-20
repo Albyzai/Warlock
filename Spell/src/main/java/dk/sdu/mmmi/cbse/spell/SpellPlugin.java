@@ -7,7 +7,6 @@ package dk.sdu.mmmi.cbse.spell;
 
 import com.badlogic.gdx.math.Vector2;
 import data.Entity;
-import data.EntityType;
 import data.GameData;
 import data.World;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 import services.IEntityProcessingService;
 import services.IGamePluginService;
+import data.EntityType;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IGamePluginService.class)
@@ -26,25 +26,26 @@ import services.IGamePluginService;
 public class SpellPlugin implements IGamePluginService, IEntityProcessingService {
 
     Entity spell;
-    Animator animator;
+    SpellBook spellBook;
     
 
     @Override
     public void start(GameData gameData, World world) {
-        spell = new Entity();
-        spell.setType(EntityType.SPELL);
-        world.addEntity(spell);
-        
-        animator = new Animator();
+        for(Entity entity : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)){
+            spellBook = new SpellBook(entity);         
+        }
 
     }
 
     @Override
     public void process(GameData gameData, World world) {
-        float dt = gameData.getDelta();
+        for(Entity entity : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)){
+            float dt = gameData.getDelta();
+        }
+            
+        
     }
-    
-    
+      
 
     @Override
     public void stop(GameData gameData, World world) {
