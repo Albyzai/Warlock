@@ -6,17 +6,14 @@
 package dk.sdu.mmmi.cbse.spell;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-import data.Entity;
-import data.SpellType;
 
 public class Spell {
 
-    private SpellType spellType;
-    private float damage;
-    private Animation animation;
+    private final float damage;
+    private final Animation animation;
+    
 
-    public Spell(SpellType spelltype, float damage, Animation animation) {
-        this.spellType = spellType;
+    public Spell(float damage, Animation animation) {
         this.damage = damage;
         this.animation = animation;
     }

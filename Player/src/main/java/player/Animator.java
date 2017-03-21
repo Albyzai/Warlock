@@ -35,7 +35,7 @@ public class Animator extends ApplicationAdapter{
 
     private TextureRegion chStandingRight, chStandingLeft, chStandingUp, chStandingDown;
 
-    private Animation<TextureRegion> chRunningRight, chRunningLeft, chRunningUp, chRunningDown;
+    private Animation chRunningRight, chRunningLeft, chRunningUp, chRunningDown;
     
 
     @Override
@@ -93,11 +93,11 @@ public class Animator extends ApplicationAdapter{
     @Override
     public void render() {
         stateTime += Gdx.graphics.getDeltaTime();
-        sprite.setPosition(1700, 100);
-        sprite.setTexture(getFrame().getTexture());
+        //sprite.setPosition(1700, 100);
+        //sprite.setTexture(getFrame().getTexture());
 
         batch.begin();
-        batch.draw(getFrame(), 500, 500);
+        batch.draw(getFrame(), 1700, 100);
         batch.end();
     }
 
@@ -144,5 +144,10 @@ public class Animator extends ApplicationAdapter{
         }
         return region;
     }
+
+    public float getStateTime() {
+        return stateTime;
+    }
+    
 
 }

@@ -5,17 +5,15 @@
  */
 package dk.sdu.mmmi.cbse.spell;
 
-import com.badlogic.gdx.math.Vector2;
 import data.Entity;
 import data.GameData;
 import data.World;
-import java.util.ArrayList;
-import java.util.List;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 import services.IEntityProcessingService;
 import services.IGamePluginService;
 import data.EntityType;
+import data.SpellType;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IGamePluginService.class)
@@ -25,8 +23,9 @@ import data.EntityType;
 
 public class SpellPlugin implements IGamePluginService, IEntityProcessingService {
 
-    Entity spell;
-    SpellBook spellBook;
+    private Entity spell;
+    private SpellBook spellBook;
+    
     
 
     @Override
@@ -39,11 +38,13 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
 
     @Override
     public void process(GameData gameData, World world) {
-        for(Entity entity : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)){
-            float dt = gameData.getDelta();
-        }
-            
         
+            float dt = gameData.getDelta();
+          
+    }
+    
+    public void unlockSpell(SpellType spellType){
+        spellBook.addToSpellBook(spellType);
     }
       
 

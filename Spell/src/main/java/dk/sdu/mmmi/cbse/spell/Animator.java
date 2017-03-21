@@ -29,7 +29,6 @@ public class Animator extends ApplicationAdapter{
     private TextureAtlas atlas;
     private AssetManager assets;
     private float stateTime;
-    
     private SpellType spell;
     private String spellName;
 
