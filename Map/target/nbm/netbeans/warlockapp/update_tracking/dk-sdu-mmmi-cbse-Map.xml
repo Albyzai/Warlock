@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.Map">
-    <module_version install_time="1490013150303" last="true" origin="installer" specification_version="1.0.0">
+    <module_version install_time="1490096374416" last="true" origin="installer" specification_version="1.0.0">
         <file crc="1946012951" name="config/Modules/dk-sdu-mmmi-cbse-Map.xml"/>
-        <file crc="3587136777" name="modules/dk-sdu-mmmi-cbse-Map.jar"/>
+        <file crc="1828975629" name="modules/dk-sdu-mmmi-cbse-Map.jar"/>
         <file crc="288087022" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-backend-lwjgl.jar"/>
         <file crc="995103014" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-box2d-platform.jar"/>
         <file crc="1676888048" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-box2d.jar"/>
