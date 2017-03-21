@@ -7,6 +7,8 @@ package gameengine;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,6 +21,7 @@ import static data.GameKeys.*;
 import data.World;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import managers.AssetsJarFileResolver;
 import managers.GameInputProcessor;
 import org.openide.util.Lookup;
 import services.IEntityProcessingService;
@@ -43,30 +46,43 @@ public class GameEngine implements ApplicationListener {
     private TiledMap map;
     private IsometricTiledMapRenderer renderer;
     private OrthographicCamera camera;
+    private AssetManager assetManager;
+    private MapLayers mapLayers, groundLayers;
+    private float shrinkTimer, shrinkTime;
+    private int layerCount;
 
     @Override
-    public void create()
-    {
+    public void create() {
         world = new World();
         gameData = new GameData();
         maps = new CopyOnWriteArrayList<>();
+        shrinkTime = 15;
+        AssetsJarFileResolver jfhr = new AssetsJarFileResolver();
+        assetManager = new AssetManager(jfhr);
+        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         
         pluginResult = lookup.lookupResult(IGamePluginService.class);
         processorResult = lookup.lookupResult(IEntityProcessingService.class);
         mapResult = lookup.lookupResult(MapSPI.class);
-        
-        for (MapSPI mapSPI : mapResult.allInstances()){
-            maps.add(mapSPI);
-        }
-        map = maps.get(0).generateMap(world, gameData, 0);
-        
+
+        assetManager.load("assets/shrinkingmap.tmx", TiledMap.class);
+        assetManager.finishLoading();
+        map = assetManager.get("assets/shrinkingmap.tmx");
+
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
-        renderer = new IsometricTiledMapRenderer(this.map);
+        renderer = new IsometricTiledMapRenderer(map);
         camera = new OrthographicCamera();
         processors = new CopyOnWriteArrayList<>();
         entityPlugins = new CopyOnWriteArrayList<>();
-
         
+        mapLayers = map.getLayers();
+        groundLayers = new MapLayers();
+        
+
+        for (int i = 2; i < mapLayers.getCount(); i++) {
+            mapLayers.get(i).setVisible(false);
+            groundLayers.add(mapLayers.get(i));
+        }
 
         for (IGamePluginService plugin : pluginResult.allInstances()) {
             plugin.start(gameData, world);
@@ -76,19 +92,18 @@ public class GameEngine implements ApplicationListener {
         for (IEntityProcessingService processor : processorResult.allInstances()) {
             processors.add(processor);
         }
+
     }
 
     @Override
-    public void resize(int width, int height)
-    {
+    public void resize(int width, int height) {
         camera.viewportWidth = width;
         camera.viewportHeight = height;
         camera.update();
     }
 
     @Override
-    public void render()
-    {
+    public void render() {
         gameData.setDelta(Gdx.graphics.getDeltaTime());
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -99,22 +114,41 @@ public class GameEngine implements ApplicationListener {
         draw();
     }
 
-    private void draw()
-    {
+    private void draw() {
 
     }
 
-    private void update()
+    private void mapShrink(int layerCount)
     {
 
-        for (MapSPI map : lookup.lookupAll(MapSPI.class)){
-            map.processMap(world, gameData);
-        }
-        
-        for (IEntityProcessingService processor : processors) {
-            processor.process(gameData, world);
-        }
+        mapLayers.get(1).setVisible(false);
+        for (int i = 0; i < groundLayers.getCount(); i++) {
+            if (layerCount == i + 1 && i != 4) {
+                groundLayers.get(i).setVisible(true);
+            } else {
+                groundLayers.get(i).setVisible(false);
+            }
 
+        }
+    }
+    private void update() {
+
+        
+        shrinkTimer += gameData.getDelta();
+        if (shrinkTimer >= shrinkTime) {
+            layerCount ++;
+            if(layerCount >= groundLayers.getCount()){
+                layerCount--;
+            }
+            mapShrink(layerCount);
+            shrinkTimer = 0;
+        }
+//        for (MapSPI map : lookup.lookupAll(MapSPI.class)) {
+//            map.processMap(world, gameData);
+//        }
+//        for (IEntityProcessingService processor : processors) {
+//            processor.process(gameData, world);
+//        }
         if (gameData.getKeys().isDown(LEFT)) {
             camera.translate(-10, 0);
         }
@@ -132,20 +166,17 @@ public class GameEngine implements ApplicationListener {
     }
 
     @Override
-    public void pause()
-    {
+    public void pause() {
 
     }
 
     @Override
-    public void resume()
-    {
+    public void resume() {
 
     }
 
     @Override
-    public void dispose()
-    {
+    public void dispose() {
         map.dispose();
         renderer.dispose();
     }
