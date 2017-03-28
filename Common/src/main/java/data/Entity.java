@@ -3,6 +3,7 @@ package data;
 import com.badlogic.gdx.graphics.Texture;
 import java.io.Serializable;
 import java.util.ArrayList;
+import States.CharacterState;
 import java.util.UUID;
 
 public final class Entity implements Serializable {
@@ -28,12 +29,34 @@ public final class Entity implements Serializable {
     private int size;
     private int numPoints;
     private float width;
-    private boolean usingSpell;
+    private CharacterState charState;
     private SpellType chosenSpell;
+    private SpellType usedSpell;
+    private Entity hitBy;
     private int level;
     private int expPoints;
-    private ArrayList<Integer> damageTaken = new ArrayList<>();
 
+    public SpellType hitByWhichSpell(){
+            return getHitBy().usedSpell;
+    }
+
+    public Entity getHitBy() {
+        return hitBy;
+    }
+
+    public void setHitBy(Entity hitBy) {
+        this.hitBy = hitBy;
+    }
+
+    public SpellType getUsedSpell() {
+        return usedSpell;
+    }
+
+    public void setUsedSpell(SpellType usedSpell) {
+        this.usedSpell = usedSpell;
+    }
+    
+    
     public SpellType getChosenSpell() {
         return chosenSpell;
     }
@@ -42,14 +65,14 @@ public final class Entity implements Serializable {
         this.chosenSpell = chosenSpell;
     }
 
-    
-    public boolean isUsingSpell() {
-        return usingSpell;
+    public CharacterState getCharState() {
+        return charState;
     }
 
-    public void setUsingSpell(boolean usesSpell) {
-        this.usingSpell = usesSpell;
+    public void setCharState(CharacterState charState) {
+        this.charState = charState;
     }
+
     
     
     public void setSpeed(float speed){
@@ -248,14 +271,6 @@ public final class Entity implements Serializable {
             }
         }
         return b;
-    }
-    public ArrayList getDamageTaken() {
-        return damageTaken;
-    }
-
-    public void addDamageTaken(int damage)
-    {
-        damageTaken.add(damage);
     }
 
     public int getLevel() {

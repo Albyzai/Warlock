@@ -5,8 +5,8 @@
  */
 package dk.sdu.mmmi.cbse.levelsystem;
 
-import com.badlogic.gdx.math.Vector2;
 import data.Entity;
+import data.EntityType;
 import data.GameData;
 import data.World;
 import org.openide.util.lookup.ServiceProvider;
@@ -15,26 +15,34 @@ import services.IEntityProcessingService;
 import services.IGamePluginService;
 
 @ServiceProviders(value = {
-    @ServiceProvider(service = IGamePluginService.class)
-    ,
+    @ServiceProvider(service = IGamePluginService.class),
     @ServiceProvider(service = IEntityProcessingService.class)
 })
 
 public class LevelPlugin implements IGamePluginService, IEntityProcessingService {
 
-
+    private LevelSystem levelSystem;
 
     @Override
     public void start(GameData gameData, World world) {
-        LevelSystem levelSystem = new LevelSystem(world);
-
+        levelSystem = new LevelSystem(world);
     }
 
     @Override
     public void process(GameData gameData, World world) {
         float dt = gameData.getDelta();
+        
+        for (Entity caster : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)) {
+            for (Entity reciever : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)) {
+            if (reciever.getHitBy().equals(caster) && !(reciever.equals(caster))) {
+                levelSystem.gainExp(caster, levelSystem.HIT);
+            }
+            if (reciever.getHealth() <= 0 && !(reciever.equals(caster))) {
+                levelSystem.gainExp(caster, levelSystem.KILL);
+            }
+        }
+        }
     }
-    
 
     @Override
     public void stop(GameData gameData, World world) {

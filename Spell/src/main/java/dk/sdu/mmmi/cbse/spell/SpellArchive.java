@@ -3,6 +3,7 @@ package dk.sdu.mmmi.cbse.spell;
 import data.SpellType;
 import data.World;
 import java.util.TreeMap;
+import data.SpellInfo;
 
 /**
  *
@@ -14,11 +15,7 @@ public class SpellArchive {
     private Animator animator = new Animator();
 
     public SpellArchive(World world) {
-        addSpellsToArchive(world);
-    }
-
-    private void addSpellsToArchive(World world) {
-        spellArchive.put(SpellType.FIREBALL, new Spell(world, SpellType.FIREBALL, 10, animator.getSpell1(), false, 5f, 200f, 50f, 2));
+        spellArchive.put(SpellType.FIREBALL, new Spell(world, SpellType.FIREBALL, SpellInfo.FIREBALL_DMG, animator.getSpell1(), SpellInfo.FIREBALL_STATIC, SpellInfo.FIREBALL_EXPIRATION, SpellInfo.FIREBALL_SPEED, SpellInfo.FIREBALL_ACCELERATION, SpellInfo.FIREBALL_COOLDOWN, SpellInfo.FIREBALL_BOUNCE));
     }
 
     public static TreeMap getSpellArchive() {

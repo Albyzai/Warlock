@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dk.sdu.mmmi.cbse.spell;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -15,6 +10,7 @@ import services.IEntityProcessingService;
 import services.IGamePluginService;
 import data.EntityType;
 import data.SpellType;
+import States.CharacterState;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IGamePluginService.class),
@@ -37,9 +33,10 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
 
     @Override
     public void process(GameData gameData, World world) {
-        for (Entity entity : world.getEntities(EntityType.PLAYER)) {
-            if (entity.isUsingSpell()) {
+        for (Entity entity : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)) {
+            if (entity.getCharState() == CharacterState.CASTING) {
                 useSpell(world, entity.getChosenSpell(), entity.getX(), entity.getY(), entity);
+                entity.setCharState(CharacterState.IDLE);
             }
         }
         for (Entity spell : world.getEntities(EntityType.SPELL)) {
@@ -62,6 +59,7 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
         for (Spell spell : spellBook.getSpellBook(world, caster)) {
             if (spell.getSpellType().equals(spellType)) {
                 archive.getAnimator().getBatch().draw((TextureRegion) spellBook.getSpell(spellType).getAnimation().getKeyFrame(archive.getAnimator().getStateTime()), x, y);
+                spell.getSpellEntity().setType(EntityType.SPELL);
                 spell.getSpellEntity().setPosition(caster.getX(), caster.getY());
                 spell.getSpellEntity().setRadians(caster.getRadians());
                 spell.getSpellEntity().setMaxSpeed(spellBook.getSpell(spellType).getSpeed());
@@ -73,6 +71,9 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
 
     @Override
     public void stop(GameData gameData, World world) {
+        for (Entity spell : world.getEntities(EntityType.SPELL)) {
+            world.removeEntity(spell);
+        }
     }
 
 }

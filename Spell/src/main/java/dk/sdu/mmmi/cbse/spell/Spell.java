@@ -20,8 +20,9 @@ public class Spell {
     private float speed;
     private float acceleration; 
     private int cooldown;
+    private int bouncePoints;
 
-    public Spell(World world, SpellType spellType, float damage, Animation animation, boolean isStatic, float expiration, float speed, float acceleration, int cooldown) {
+    public Spell(World world, SpellType spellType, float damage, Animation animation, boolean isStatic, float expiration, float speed, float acceleration, int cooldown, int bouncePoints) {
         spellEntity = new Entity();
         world.addEntity(spellEntity);
         spellEntity.setExpiration(expiration);
@@ -32,6 +33,11 @@ public class Spell {
         this.speed = speed;
         this.acceleration = acceleration;
         this.cooldown = cooldown;
+        this.bouncePoints = bouncePoints;
+    }
+
+    public int getBouncePoints() {
+        return bouncePoints;
     }
 
     public SpellType getSpellType() {
