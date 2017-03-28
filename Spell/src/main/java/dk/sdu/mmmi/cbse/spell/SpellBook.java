@@ -30,7 +30,7 @@ public class SpellBook {
 
     public Spell getSpell(SpellType spellType) {
         for (Spell spell : spellBook) {
-            if (spellType.equals(spell.getSpelltype())) {
+            if (spellType.equals(spell.getSpellType())) {
                 return spell;
             }
         }

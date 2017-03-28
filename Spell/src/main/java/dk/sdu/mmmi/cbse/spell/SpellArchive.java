@@ -18,10 +18,7 @@ public class SpellArchive {
     }
 
     private void addSpellsToArchive(World world) {
-        spellArchive.put(SpellType.FIREBALL, new Spell(world, SpellType.FIREBALL, 10, animator.getSpell1(), false, 5f));
-        spellArchive.put(SpellType.SPELL2, new Spell(world, SpellType.SPELL2, 10, animator.getSpell2(), false, 5f));
-        spellArchive.put(SpellType.SPELL3, new Spell(world, SpellType.SPELL3, 10, animator.getSpell3(), false, 5f));
-        spellArchive.put(SpellType.SPELL4, new Spell(world, SpellType.SPELL4, 10, animator.getSpell4(), false, 5f));
+        spellArchive.put(SpellType.FIREBALL, new Spell(world, SpellType.FIREBALL, 10, animator.getSpell1(), false, 5f, 200f, 50f, 2));
     }
 
     public static TreeMap getSpellArchive() {
