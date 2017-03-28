@@ -12,5 +12,5 @@ import java.io.Serializable;
  * @author Mads
  */
 public enum SpellType implements Serializable {
-    SPELL1, SPELL2, SPELL3, SPELL4;
+    FIREBALL, SPELL2, SPELL3, SPELL4;
 }

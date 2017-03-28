@@ -26,11 +26,11 @@ public class PlayerEntity implements IGamePluginService, IEntityProcessingServic
     private float speed = 2 * 60;
     private Entity player;
 
-    private Animator animator;
 
     @Override
     public void start(GameData gameData, World world) {
         player = new Entity();
+        Animator animator = new Animator();
         world.addEntity(player);
         player.setPosition(0, 0);
 
@@ -39,19 +39,18 @@ public class PlayerEntity implements IGamePluginService, IEntityProcessingServic
     @Override
     public void process(GameData gameData, World world) {
         float dt = gameData.getDelta();
-
-        if (velocity.y > speed) {
-            velocity.y = speed;
-        }
-
-        if (velocity.x > speed) {
-            velocity.x = speed;
-        }
+//
+//        if (velocity.y > speed) {
+//            velocity.y = speed;
+//        }
+//
+//        if (velocity.x > speed) {
+//            velocity.x = speed;
+//        }
 //
 //        setX(getX() + velocity.x * dt);
 //        setY(getY() + velocity.y * dt);
         //animator.getSprite().setPosition(player.getX(), player.getY());
-        animator.render();
     }
 
     @Override

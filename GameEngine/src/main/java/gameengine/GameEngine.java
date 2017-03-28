@@ -146,9 +146,9 @@ public class GameEngine implements ApplicationListener {
 //        for (MapSPI map : lookup.lookupAll(MapSPI.class)) {
 //            map.processMap(world, gameData);
 //        }
-//        for (IEntityProcessingService processor : processors) {
-//            processor.process(gameData, world);
-//        }
+        for (IEntityProcessingService processor : processors) {
+            processor.process(gameData, world);
+        }
         if (gameData.getKeys().isDown(LEFT)) {
             camera.translate(-10, 0);
         }

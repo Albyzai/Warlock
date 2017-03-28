@@ -28,7 +28,6 @@ public final class Entity implements Serializable {
     private int size;
     private int numPoints;
     private float width;
-    private Texture texture;
     private ArrayList<Integer> damageTaken = new ArrayList<>();
     
     

@@ -1,7 +1,5 @@
-
 package dk.sdu.mmmi.cbse.spell;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import java.util.ArrayList;
 import java.util.List;
 import data.Entity;
@@ -13,9 +11,8 @@ import data.SpellType;
  */
 public class SpellBook {
 
-    private List spellBook;
-    private final Entity owner; 
-    private SpellArchive archieve = new SpellArchive();
+    private List<Spell> spellBook;
+    private final Entity owner;
 
     public SpellBook(Entity owner) {
         spellBook = new ArrayList();
@@ -24,16 +21,23 @@ public class SpellBook {
     }
 
     public void addToSpellBook(SpellType spellType) {
-        spellBook.add(archieve.getSpellArchive().get(spellType));
+        spellBook.add((Spell) SpellArchive.getSpellArchive().get(spellType));
     }
 
     public List<Spell> getSpellBook() {
         return spellBook;
     }
-    
-    
-    private void addDefaultSpells(){
-        spellBook.add(archieve.getSpellArchive().get(SpellType.SPELL1));
+
+    public Spell getSpell(SpellType spellType) {
+        for (Spell spell : spellBook) {
+            if (spellType.equals(spell.getSpelltype())) {
+                return spell;
+            }
+        }
+        return null;
     }
 
+    private void addDefaultSpells() {
+        spellBook.add((Spell) SpellArchive.getSpellArchive().get(SpellType.FIREBALL));
+    }
 }

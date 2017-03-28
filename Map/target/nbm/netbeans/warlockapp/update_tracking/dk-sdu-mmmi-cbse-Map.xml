@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.Map">
-    <module_version install_time="1490093425084" last="true" origin="installer" specification_version="1.0.0">
+    <module_version install_time="1490184825060" last="true" origin="installer" specification_version="1.0.0">
         <file crc="1946012951" name="config/Modules/dk-sdu-mmmi-cbse-Map.xml"/>
-        <file crc="3858562433" name="modules/dk-sdu-mmmi-cbse-Map.jar"/>
+        <file crc="2181360783" name="modules/dk-sdu-mmmi-cbse-Map.jar"/>
         <file crc="288087022" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-backend-lwjgl.jar"/>
         <file crc="995103014" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-box2d-platform.jar"/>
         <file crc="1676888048" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-box2d.jar"/>
@@ -21,27 +20,3 @@
         <file crc="2012419266" name="modules/ext/dk.sdu.mmmi.cbse.Map/org-lwjgl-lwjgl/lwjgl_util.jar"/>
     </module_version>
 </module>
-=======
-<?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.Map">
-    <module_version install_time="1490096374416" last="true" origin="installer" specification_version="1.0.0">
-        <file crc="1946012951" name="config/Modules/dk-sdu-mmmi-cbse-Map.xml"/>
-        <file crc="1828975629" name="modules/dk-sdu-mmmi-cbse-Map.jar"/>
-        <file crc="288087022" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-backend-lwjgl.jar"/>
-        <file crc="995103014" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-box2d-platform.jar"/>
-        <file crc="1676888048" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-box2d.jar"/>
-        <file crc="1638802915" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-freetype-platform.jar"/>
-        <file crc="3779185293" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-freetype.jar"/>
-        <file crc="3578637472" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-platform.jar"/>
-        <file crc="1390441787" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx.jar"/>
-        <file crc="1146210713" name="modules/ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-jlayer/jlayer.jar"/>
-        <file crc="426864957" name="modules/ext/dk.sdu.mmmi.cbse.Map/net-java-jinput/jinput.jar"/>
-        <file crc="1529865491" name="modules/ext/dk.sdu.mmmi.cbse.Map/net-java-jutils/jutils.jar"/>
-        <file crc="2846045197" name="modules/ext/dk.sdu.mmmi.cbse.Map/org-jcraft/jorbis.jar"/>
-        <file crc="3651848685" name="modules/ext/dk.sdu.mmmi.cbse.Map/org-lwjgl-lwjgl/lwjgl-platform-natives-linux.jar"/>
-        <file crc="892697031" name="modules/ext/dk.sdu.mmmi.cbse.Map/org-lwjgl-lwjgl/lwjgl-platform-natives-osx.jar"/>
-        <file crc="2303095678" name="modules/ext/dk.sdu.mmmi.cbse.Map/org-lwjgl-lwjgl/lwjgl-platform-natives-windows.jar"/>
-        <file crc="2615574348" name="modules/ext/dk.sdu.mmmi.cbse.Map/org-lwjgl-lwjgl/lwjgl.jar"/>
-        <file crc="2012419266" name="modules/ext/dk.sdu.mmmi.cbse.Map/org-lwjgl-lwjgl/lwjgl_util.jar"/>
-    </module_version>
-</module>
->>>>>>> 67d7ecb539355887e6422794f4570b6a5f8ed8e9

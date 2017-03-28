@@ -49,7 +49,7 @@ public class Animator extends ApplicationAdapter{
 
         stateTime = 0;
         Texture texture = atlas.findRegion("FireCharacter").getTexture();
-        sprite = new Sprite();
+        //sprite = new Sprite();
         currentState = MovementState.STANDINGRIGHT;
 
         chStandingRight = new TextureRegion(texture, 0, 0, 16, 16);
@@ -87,17 +87,19 @@ public class Animator extends ApplicationAdapter{
         chRunningDown = new Animation(0.1f, frames);
         frames.clear();
         
-        sprite.setSize(500, 500);
+        //sprite.setSize(500, 500);
     }
 
     @Override
     public void render() {
         stateTime += Gdx.graphics.getDeltaTime();
-        //sprite.setPosition(1700, 100);
-        //sprite.setTexture(getFrame().getTexture());
+//        sprite.setPosition(1700, 100);
+//        sprite.setTexture(getFrame().getTexture());
 
         batch.begin();
-        batch.draw(getFrame(), 1700, 100);
+        System.out.println("tegner");
+        batch.draw(getFrame(), 500, 500);
+        //sprite.draw(batch);
         batch.end();
     }
 

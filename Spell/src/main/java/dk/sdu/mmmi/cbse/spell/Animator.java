@@ -22,7 +22,7 @@ import data.SpellType;
  *
  * @author mads1
  */
-public class Animator extends ApplicationAdapter{
+public class Animator extends ApplicationAdapter {
 
     private Sprite sprite;
     private Batch batch;
@@ -32,11 +32,10 @@ public class Animator extends ApplicationAdapter{
     private SpellType spell;
     private String spellName;
 
-    private Animation<TextureRegion> spell1, spell2, spell3, spell4;
-    
+    private Animation<TextureRegion> fireball, spell2, spell3, spell4;
 
     @Override
-    public void create(){
+    public void create() {
         batch = new SpriteBatch();
 
         assets = new AssetManager();
@@ -54,7 +53,7 @@ public class Animator extends ApplicationAdapter{
         for (int i = 1; i < 7; i++) {
             frames.add(new TextureRegion(texture, i * 16, 0, 16, 16));
         }
-        spell1 = new Animation(0.1f, frames);
+        fireball = new Animation(0.1f, frames);
         frames.clear();
 
         //run left
@@ -77,7 +76,7 @@ public class Animator extends ApplicationAdapter{
         }
         spell4 = new Animation(0.1f, frames);
         frames.clear();
-        
+
         sprite.setSize(500, 500);
     }
 
@@ -93,10 +92,11 @@ public class Animator extends ApplicationAdapter{
     }
 
     @Override
-    public void dispose(){
+    public void dispose() {
         batch.dispose();
         atlas.dispose();
     }
+
     public TextureAtlas getAtlas() {
         return atlas;
     }
@@ -108,8 +108,8 @@ public class Animator extends ApplicationAdapter{
     public TextureRegion getFrame() {
         TextureRegion region = null;
         switch (spell) {
-            case SPELL1:
-                region = (TextureRegion) spell1.getKeyFrame(stateTime, true);
+            case FIREBALL:
+                region = (TextureRegion) fireball.getKeyFrame(stateTime, true);
                 break;
             case SPELL2:
                 region = (TextureRegion) spell2.getKeyFrame(stateTime, true);
@@ -125,7 +125,7 @@ public class Animator extends ApplicationAdapter{
     }
 
     public Animation<TextureRegion> getSpell1() {
-        return spell1;
+        return fireball;
     }
 
     public Animation<TextureRegion> getSpell2() {
@@ -139,7 +139,13 @@ public class Animator extends ApplicationAdapter{
     public Animation<TextureRegion> getSpell4() {
         return spell4;
     }
-    
-    
+
+    public Batch getBatch() {
+        return batch;
+    }
+
+    public float getStateTime() {
+        return stateTime;
+    }
 
 }
