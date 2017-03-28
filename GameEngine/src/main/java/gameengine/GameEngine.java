@@ -69,6 +69,7 @@ public class GameEngine implements ApplicationListener {
         assetManager.finishLoading();
         map = assetManager.get("assets/shrinkingmap.tmx");
 
+        System.out.println("hej");
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
         renderer = new IsometricTiledMapRenderer(map);
         camera = new OrthographicCamera();
