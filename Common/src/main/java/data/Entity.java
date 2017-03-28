@@ -28,7 +28,26 @@ public final class Entity implements Serializable {
     private int size;
     private int numPoints;
     private float width;
+    private boolean usingSpell;
+    private SpellType chosenSpell;
     private ArrayList<Integer> damageTaken = new ArrayList<>();
+
+    public SpellType getChosenSpell() {
+        return chosenSpell;
+    }
+
+    public void setChosenSpell(SpellType chosenSpell) {
+        this.chosenSpell = chosenSpell;
+    }
+
+    
+    public boolean isUsingSpell() {
+        return usingSpell;
+    }
+
+    public void setUsingSpell(boolean usesSpell) {
+        this.usingSpell = usesSpell;
+    }
     
     
     public void setSpeed(float speed){

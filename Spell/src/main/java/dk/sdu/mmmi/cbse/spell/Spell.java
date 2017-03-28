@@ -12,7 +12,7 @@ import data.World;
 
 public class Spell {
 
-    private SpellType spelltype;
+    private SpellType spellType;
     private final float damage;
     private final Animation animation;
     private boolean isStatic;
@@ -21,14 +21,14 @@ public class Spell {
         Entity spell = new Entity();
         world.addEntity(spell);
         spell.setExpiration(expiration);
-        this.spelltype = spelltype;
+        this.spellType = spellType;
         this.damage = damage;
         this.animation = animation;
         this.isStatic = isStatic;
     }
 
     public SpellType getSpelltype() {
-        return spelltype;
+        return spellType;
     }
 
     public float getDamage() {

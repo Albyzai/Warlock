@@ -11,7 +11,7 @@ import java.util.TreeMap;
 public class SpellArchive {
 
     private static final TreeMap spellArchive = new TreeMap<SpellType, Spell>();
-    private Animator animator;
+    private Animator animator = new Animator();
 
     public SpellArchive(World world) {
         addSpellsToArchive(world);

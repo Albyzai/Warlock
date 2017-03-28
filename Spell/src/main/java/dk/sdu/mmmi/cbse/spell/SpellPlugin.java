@@ -38,7 +38,9 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
     @Override
     public void process(GameData gameData, World world) {
         for(Entity entity : world.getEntities(EntityType.PLAYER)){
-            
+            if(entity.isUsingSpell()){
+                useSpell(entity.getChosenSpell(), entity.getX(), entity.getY());
+            }
         }
         for (Entity spell : world.getEntities(EntityType.SPELL)) {
             float dt = gameData.getDelta();
@@ -55,7 +57,7 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
         spellBook.addToSpellBook(spellType);
     }
 
-    public void useSpell(SpellType spellType, int x, int y) {
+    public void useSpell(SpellType spellType, float x, float y) {
         archive.getAnimator().getBatch().draw((TextureRegion) spellBook.getSpell(spellType).getAnimation().getKeyFrame(archive.getAnimator().getStateTime()), x, y);
     }
 

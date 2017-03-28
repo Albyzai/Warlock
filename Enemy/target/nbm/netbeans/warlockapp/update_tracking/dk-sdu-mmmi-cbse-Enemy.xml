@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.Enemy">
-    <module_version install_time="1490184820341" last="true" origin="installer" specification_version="1.0.0">
+    <module_version install_time="1490691044761" last="true" origin="installer" specification_version="1.0.0">
         <file crc="4083148919" name="config/Modules/dk-sdu-mmmi-cbse-Enemy.xml"/>
-        <file crc="2296397781" name="modules/dk-sdu-mmmi-cbse-Enemy.jar"/>
+        <file crc="1980020071" name="modules/dk-sdu-mmmi-cbse-Enemy.jar"/>
     </module_version>
 </module>
