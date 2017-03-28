@@ -12,10 +12,12 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
+import data.Entity;
 import data.GameData;
 import static data.GameKeys.*;
 import data.World;
@@ -50,6 +52,7 @@ public class GameEngine implements ApplicationListener {
     private MapLayers mapLayers, groundLayers;
     private float shrinkTimer, shrinkTime;
     private int layerCount;
+    private ShapeRenderer sr;
 
     @Override
     public void create() {
@@ -64,12 +67,13 @@ public class GameEngine implements ApplicationListener {
         pluginResult = lookup.lookupResult(IGamePluginService.class);
         processorResult = lookup.lookupResult(IEntityProcessingService.class);
         mapResult = lookup.lookupResult(MapSPI.class);
+        sr = new ShapeRenderer();
+        
 
         assetManager.load("assets/shrinkingmap.tmx", TiledMap.class);
         assetManager.finishLoading();
         map = assetManager.get("assets/shrinkingmap.tmx");
 
-        System.out.println("hej");
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
         renderer = new IsometricTiledMapRenderer(map);
         camera = new OrthographicCamera();
@@ -79,6 +83,9 @@ public class GameEngine implements ApplicationListener {
         mapLayers = map.getLayers();
         groundLayers = new MapLayers();
         
+        gameData.setDisplayWidth(Gdx.graphics.getWidth());
+        gameData.setDisplayHeight(Gdx.graphics.getHeight());
+        camera.position.set(camera.viewportWidth/2 + 900, camera.viewportHeight/2, 0);
 
         for (int i = 2; i < mapLayers.getCount(); i++) {
             mapLayers.get(i).setVisible(false);
@@ -116,6 +123,24 @@ public class GameEngine implements ApplicationListener {
     }
 
     private void draw() {
+for (Entity entity : world.getEntities()) {
+            float[] shapex = entity.getShapeX();
+            float[] shapey = entity.getShapeY();
+            if (shapex != null && shapey != null) {
+
+                sr.setColor(1, 1, 1, 1);
+
+                sr.begin(ShapeRenderer.ShapeType.Line);
+
+                for (int i = 0, j = shapex.length - 1;
+                        i < shapex.length;
+                        j = i++) {
+
+                    sr.line(shapex[i], shapey[i], shapex[j], shapey[j]);
+                }
+                sr.end();
+            }
+        }
 
     }
 
@@ -150,20 +175,20 @@ public class GameEngine implements ApplicationListener {
         for (IEntityProcessingService processor : processors) {
             processor.process(gameData, world);
         }
-        if (gameData.getKeys().isDown(LEFT)) {
-            camera.translate(-10, 0);
-        }
-        if (gameData.getKeys().isDown(RIGHT)) {
-            camera.translate(10, 0);
-        }
-
-        if (gameData.getKeys().isDown(UP)) {
-            camera.translate(0, 10);
-        }
-
-        if (gameData.getKeys().isDown(DOWN)) {
-            camera.translate(0, -10);
-        }
+//        if (gameData.getKeys().isDown(LEFT)) {
+//            camera.translate(-10, 0);
+//        }
+//        if (gameData.getKeys().isDown(RIGHT)) {
+//            camera.translate(10, 0);
+//        }
+//
+//        if (gameData.getKeys().isDown(UP)) {
+//            camera.translate(0, 10);
+//        }
+//
+//        if (gameData.getKeys().isDown(DOWN)) {
+//            camera.translate(0, -10);
+//        }
     }
 
     @Override
