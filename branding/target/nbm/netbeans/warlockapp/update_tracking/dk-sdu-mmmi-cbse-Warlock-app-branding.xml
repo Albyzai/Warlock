@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.Warlock.app.branding">
-<<<<<<< HEAD
-    <module_version install_time="1490711216794" last="true" origin="installer" specification_version="1.0.0">
-        <file crc="1278988287" name="config/Modules/dk-sdu-mmmi-cbse-Warlock-app-branding.xml"/>
-        <file crc="1680205748" name="core/locale/core_warlockapp.jar"/>
-        <file crc="2916917" name="modules/dk-sdu-mmmi-cbse-Warlock-app-branding.jar"/>
-        <file crc="3213633565" name="modules/locale/org-netbeans-core-windows_warlockapp.jar"/>
-        <file crc="325453502" name="modules/locale/org-netbeans-core_warlockapp.jar"/>
-=======
-    <module_version install_time="1490711098232" last="true" origin="installer" specification_version="1.0.0">
+    <module_version install_time="1490711758709" last="true" origin="installer" specification_version="1.0.0">
         <file crc="561273809" name="config/Modules/dk-sdu-mmmi-cbse-Warlock-app-branding.xml"/>
-        <file crc="4265384426" name="core/locale/core_warlockapp.jar"/>
-        <file crc="987523491" name="modules/dk-sdu-mmmi-cbse-Warlock-app-branding.jar"/>
-        <file crc="4011920368" name="modules/locale/org-netbeans-core-windows_warlockapp.jar"/>
-        <file crc="1496983019" name="modules/locale/org-netbeans-core_warlockapp.jar"/>
->>>>>>> d72c638069cadf1a2609b6947f46e60dc32430fe
+        <file crc="1760173272" name="core/locale/core_warlockapp.jar"/>
+        <file crc="3173709889" name="modules/dk-sdu-mmmi-cbse-Warlock-app-branding.jar"/>
+        <file crc="884868105" name="modules/locale/org-netbeans-core-windows_warlockapp.jar"/>
+        <file crc="3180097684" name="modules/locale/org-netbeans-core_warlockapp.jar"/>
     </module_version>
 </module>

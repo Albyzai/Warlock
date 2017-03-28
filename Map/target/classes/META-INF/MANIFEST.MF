@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 Manifest-Version: 1.0
 OpenIDE-Module-Install: map/Installer.class
 OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/map/Bundle.properti
  es
 OpenIDE-Module-Specification-Version: 1.0.0
 OpenIDE-Module-Implementation-Version: 1.0.0-20170328
-OpenIDE-Module-Build-Version: 201703281427
+OpenIDE-Module-Build-Version: 201703281436
 OpenIDE-Module: dk.sdu.mmmi.cbse.Map
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
@@ -42,48 +41,3 @@ OpenIDE-Module-Module-Dependencies: org.netbeans.api.annotations.commo
  n/1 > 1.27.1, org.openide.modules > 7.48.1, org.openide.util.ui > 9.6
  .1, dk.sdu.mmmi.cbse.Common > 1.0.0
 
-=======
-Manifest-Version: 1.0
-OpenIDE-Module-Install: map/Installer.class
-OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/map/Bundle.properti
- es
-OpenIDE-Module-Specification-Version: 1.0.0
-OpenIDE-Module-Implementation-Version: 1.0.0-20170328
-OpenIDE-Module-Build-Version: 201703281425
-OpenIDE-Module: dk.sdu.mmmi.cbse.Map
-OpenIDE-Module-Public-Packages: -
-OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
-OpenIDE-Module-Display-Category: dk.sdu.mmmi.cbse
-OpenIDE-Module-Name: Map
-OpenIDE-Module-Short-Description: <undefined>
-OpenIDE-Module-Long-Description: <undefined>
-X-Class-Path: ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx.jar e
- xt/dk.sdu.mmmi.cbse.Map/com-badlogicgames-gdx/gdx-backend-lwjgl.jar e
- xt/dk.sdu.mmmi.cbse.Map/org-lwjgl-lwjgl/lwjgl.jar ext/dk.sdu.mmmi.cbs
- e.Map/org-lwjgl-lwjgl/lwjgl-platform-natives-windows.jar ext/dk.sdu.m
- mmi.cbse.Map/org-lwjgl-lwjgl/lwjgl-platform-natives-linux.jar ext/dk.
- sdu.mmmi.cbse.Map/org-lwjgl-lwjgl/lwjgl-platform-natives-osx.jar ext/
- dk.sdu.mmmi.cbse.Map/net-java-jinput/jinput.jar ext/dk.sdu.mmmi.cbse.
- Map/net-java-jutils/jutils.jar ext/dk.sdu.mmmi.cbse.Map/org-lwjgl-lwj
- gl/lwjgl_util.jar ext/dk.sdu.mmmi.cbse.Map/com-badlogicgames-jlayer/j
- layer.jar ext/dk.sdu.mmmi.cbse.Map/org-jcraft/jorbis.jar ext/dk.sdu.m
- mmi.cbse.Map/com-badlogicgames-gdx/gdx-box2d.jar ext/dk.sdu.mmmi.cbse
- .Map/com-badlogicgames-gdx/gdx-box2d-platform.jar ext/dk.sdu.mmmi.cbs
- e.Map/com-badlogicgames-gdx/gdx-freetype.jar ext/dk.sdu.mmmi.cbse.Map
- /com-badlogicgames-gdx/gdx-freetype-platform.jar ext/dk.sdu.mmmi.cbse
- .Map/com-badlogicgames-gdx/gdx-platform.jar
-Maven-Class-Path: com.badlogicgames.gdx:gdx:1.9.6 com.badlogicgames.gd
- x:gdx-backend-lwjgl:1.9.6 org.lwjgl.lwjgl:lwjgl:2.9.2 org.lwjgl.lwjgl
- :lwjgl-platform:2.9.2:natives-windows org.lwjgl.lwjgl:lwjgl-platform:
- 2.9.2:natives-linux org.lwjgl.lwjgl:lwjgl-platform:2.9.2:natives-osx 
- net.java.jinput:jinput:2.0.5 net.java.jutils:jutils:1.0.0 org.lwjgl.l
- wjgl:lwjgl_util:2.9.2 com.badlogicgames.jlayer:jlayer:1.0.1-gdx org.j
- craft:jorbis:0.0.17 com.badlogicgames.gdx:gdx-box2d:1.9.6 com.badlogi
- cgames.gdx:gdx-box2d-platform:1.9.6 com.badlogicgames.gdx:gdx-freetyp
- e:1.9.6 com.badlogicgames.gdx:gdx-freetype-platform:1.9.6 com.badlogi
- cgames.gdx:gdx-platform:1.9.6
-OpenIDE-Module-Module-Dependencies: org.netbeans.api.annotations.commo
- n/1 > 1.27.1, org.openide.modules > 7.48.1, org.openide.util.ui > 9.6
- .1, dk.sdu.mmmi.cbse.Common > 1.0.0
-
->>>>>>> d72c638069cadf1a2609b6947f46e60dc32430fe
