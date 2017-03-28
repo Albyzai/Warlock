@@ -19,10 +19,7 @@ public class HealthEntity implements IGamePluginService {
 
     @Override
     public void start(GameData gameData, World world) {
-        for (Entity e : world.getEntities(PLAYER)) {
-            e.setHealth(100);
-        }
-        for (Entity e : world.getEntities(ENEMY)) {
+        for (Entity e : world.getEntities(PLAYER, ENEMY)) {
             e.setHealth(100);
         }
     }

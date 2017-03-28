@@ -30,6 +30,8 @@ public final class Entity implements Serializable {
     private float width;
     private boolean usingSpell;
     private SpellType chosenSpell;
+    private int level;
+    private int expPoints;
     private ArrayList<Integer> damageTaken = new ArrayList<>();
 
     public SpellType getChosenSpell() {
@@ -255,5 +257,24 @@ public final class Entity implements Serializable {
     {
         damageTaken.add(damage);
     }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getExpPoints() {
+        return expPoints;
+    }
+
+    public void setExpPoints(int expPoints) {
+        this.expPoints = expPoints;
+    }
+    
+    
+    
 
 }

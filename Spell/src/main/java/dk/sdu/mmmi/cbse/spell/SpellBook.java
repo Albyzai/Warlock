@@ -3,7 +3,9 @@ package dk.sdu.mmmi.cbse.spell;
 import java.util.ArrayList;
 import java.util.List;
 import data.Entity;
+import data.EntityType;
 import data.SpellType;
+import data.World;
 
 /**
  *
@@ -20,12 +22,17 @@ public class SpellBook {
         addDefaultSpells();
     }
 
-    public void addToSpellBook(SpellType spellType) {
-        spellBook.add((Spell) SpellArchive.getSpellArchive().get(spellType));
+    public void addToSpellBook(World world, Entity owner, SpellType spellType) {
+        getSpellBook(world, owner).add((Spell) SpellArchive.getSpellArchive().get(spellType));
     }
 
-    public List<Spell> getSpellBook() {
-        return spellBook;
+    public List<Spell> getSpellBook(World world, Entity owner) {
+        for(Entity entity : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)){
+            if(owner.equals(this.owner)){
+                return spellBook;
+            }
+        }
+        return null;
     }
 
     public Spell getSpell(SpellType spellType) {

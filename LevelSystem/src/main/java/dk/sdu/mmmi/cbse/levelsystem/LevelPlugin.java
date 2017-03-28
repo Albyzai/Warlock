@@ -20,13 +20,13 @@ import services.IGamePluginService;
     @ServiceProvider(service = IEntityProcessingService.class)
 })
 
-public class Level implements IGamePluginService, IEntityProcessingService {
+public class LevelPlugin implements IGamePluginService, IEntityProcessingService {
 
 
 
     @Override
     public void start(GameData gameData, World world) {
-        
+        LevelSystem levelSystem = new LevelSystem(world);
 
     }
 
@@ -34,6 +34,7 @@ public class Level implements IGamePluginService, IEntityProcessingService {
     public void process(GameData gameData, World world) {
         float dt = gameData.getDelta();
     }
+    
 
     @Override
     public void stop(GameData gameData, World world) {

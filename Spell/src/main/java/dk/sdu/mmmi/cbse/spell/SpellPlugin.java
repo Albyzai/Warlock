@@ -39,7 +39,7 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
     public void process(GameData gameData, World world) {
         for (Entity entity : world.getEntities(EntityType.PLAYER)) {
             if (entity.isUsingSpell()) {
-                useSpell(entity.getChosenSpell(), entity.getX(), entity.getY(), entity);
+                useSpell(world, entity.getChosenSpell(), entity.getX(), entity.getY(), entity);
             }
         }
         for (Entity spell : world.getEntities(EntityType.SPELL)) {
@@ -54,12 +54,12 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
         }
     }
 
-    public void unlockSpell(SpellType spellType) {
-        spellBook.addToSpellBook(spellType);
+    public void unlockSpell(World world, Entity owner, SpellType spellType) {
+        spellBook.addToSpellBook(world, owner, spellType);
     }
 
-    public void useSpell(SpellType spellType, float x, float y, Entity caster) {
-        for (Spell spell : spellBook.getSpellBook()) {
+    public void useSpell(World world, SpellType spellType, float x, float y, Entity caster) {
+        for (Spell spell : spellBook.getSpellBook(world, caster)) {
             if (spell.getSpellType().equals(spellType)) {
                 archive.getAnimator().getBatch().draw((TextureRegion) spellBook.getSpell(spellType).getAnimation().getKeyFrame(archive.getAnimator().getStateTime()), x, y);
                 spell.getSpellEntity().setPosition(caster.getX(), caster.getY());
