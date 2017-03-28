@@ -123,7 +123,8 @@ public class GameEngine implements ApplicationListener {
     }
 
     private void draw() {
-for (Entity entity : world.getEntities()) {
+
+        for (Entity entity : world.getEntities()) {
             float[] shapex = entity.getShapeX();
             float[] shapey = entity.getShapeY();
             if (shapex != null && shapey != null) {

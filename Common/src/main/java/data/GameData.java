@@ -15,6 +15,9 @@ public class GameData {
     private int displayHeight;
     private final GameKeys keys = new GameKeys();
     private final List<Event> events = new CopyOnWriteArrayList<>();
+    private int screenX;
+    private int screenY;
+
 
     public int getLayerCount()
     {
@@ -86,4 +89,20 @@ public class GameData {
     public int getDisplayHeight() {
         return displayHeight;
     }
+        public void setScreenX(int screenX) {
+        this.screenX = screenX;
+    }
+
+    public void setScreenY(int screenY) {
+        this.screenY = screenY;
+    }
+
+    public int getScreenY() {
+        return screenY;
+    }
+
+    public int getScreenX() {
+        return screenX;
+    }
+
 }
