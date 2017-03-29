@@ -8,8 +8,7 @@ package dk.sdu.mmmi.cbse.movementsystem;
 import data.Entity;
 import static data.EntityType.SPELL;
 import data.GameData;
-import static data.GameKeys.LEFT_MOUSE;
-import static data.GameKeys.RIGHT_MOUSE;
+import static data.GameKeys.*;
 import data.World;
 import java.util.Collection;
 import org.openide.util.lookup.ServiceProvider;
@@ -28,10 +27,11 @@ public class ControlProcessor implements IEntityProcessingService {
     float directionY;
     float elapsed;
     float distance;
+    float speed = 200;
+    float dt;
 
     @Override
-    public void process(GameData gameData, World world)
-    {
+    public void process(GameData gameData, World world) {
         Collection<Entity> entities = world.getEntities();
 
         for (Entity entity : entities) {
@@ -45,46 +45,42 @@ public class ControlProcessor implements IEntityProcessingService {
         }
     }
 
-    private void handleMoveClick(Entity e, GameData gameData)
-    {
+    private void handleMoveClick(Entity e, GameData gameData) {
         if (gameData.getKeys().isPressed(RIGHT_MOUSE)) {
 
             startX = e.getX();
             startY = e.getY();
             endX = gameData.getScreenX();
-            endY = gameData.getScreenY();
+            endY = gameData.getDisplayHeight() - gameData.getScreenY();
             elapsed = 0.01f;
-            System.out.println("endX = " + endX);
-            System.out.println("endY = " + endY);
-
-            e.setDeacceleration(4);
-
-            float pathX = gameData.getScreenX() - e.getX();
-            float pathY = (gameData.getDisplayHeight() - gameData.getScreenY()) - e.getY();
+//            System.out.println("X coordinate clicked: " + endX);
+//            System.out.println("Y coordinate clicked" + endY);
 
             distance = (float) Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
             //float distance = (float) Math.sqrt(pathX * pathX + pathY * pathY);
 
-            directionX = pathX / distance;
-            directionY = pathY / distance;
+            directionX = (endX - startX) / distance;
+            directionY = (endY - startY) / distance;
             e.setX(startX);
             e.setY(startY);
             moving = true;
         }
 
-        if (moving) {
-            e.setX( e.getX() + directionX * e.getAcceleration());
-            e.setY(e.getY() + directionY * e.getAcceleration());
-            if (Math.sqrt(Math.pow(e.getX() - startX, 2) + Math.pow(e.getY() - startY, 2)) >= distance) {
-                e.setX(endX);
-                e.setY(endY);
-                moving = false;
+        if (distance > 0) {
+            if (moving) {
+                e.setX(e.getX() + directionX * speed * gameData.getDelta());
+                e.setY(e.getY() + directionY * speed * gameData.getDelta());
+                if (Math.sqrt(Math.pow(e.getX() - startX, 2) + Math.pow(e.getY() - startY, 2)) >= distance) {
+//                    System.out.println("Moving set to false");
+                    e.setX(endX);
+                    e.setY(endY);
+//                    System.out.println("X coordinate reached: " + e.getX());
+//                    System.out.println("Y coordinate reached: " + e.getY());
+                    moving = false;
+                }
+
             }
-
         }
-
-        System.out.println("x = " + e.getX());
-        System.out.println("y = " + e.getY());
 
 //        int diffx = Math.abs((int) e.getX() - gameData.getScreenX());
 //        int diffy = Math.abs((int) e.getY() - gameData.getScreenY());
@@ -106,8 +102,7 @@ public class ControlProcessor implements IEntityProcessingService {
 //        }
     }
 
-    private void handleShoot(Entity e, GameData gameData)
-    {
+    private void handleShoot(Entity e, GameData gameData) {
 
         //Shooting left mouse
         if (gameData.getKeys().isDown(LEFT_MOUSE)) {
@@ -115,10 +110,28 @@ public class ControlProcessor implements IEntityProcessingService {
         }
     }
 
-    private void handleTargetClick(Entity e, GameData gameData)
-    {
+    private void handleTargetClick(Entity e, GameData gameData) {
+        if (gameData.getKeys().isPressed(NUM_1)) {
+            //Spell 1
+
+        }
+        if (gameData.getKeys().isPressed(NUM_2)) {
+            //Spell 2
+
+        }
+        if (gameData.getKeys().isPressed(NUM_3)) {
+            //Spell 3
+
+        }
+        if (gameData.getKeys().isPressed(NUM_4)) {
+            //Spell 4
+
+        }
+        if (gameData.getKeys().isPressed(Q)) {
+            //Potions?
+
+        }
 
     }
 
 }
-

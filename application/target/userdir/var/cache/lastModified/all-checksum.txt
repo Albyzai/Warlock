@@ -1,0 +1,11 @@
+platform=1490711687951
+cluster.bin=1490711687945
+cluster.etc=1490711687950
+cluster.platform=1490711687951
+cluster.warlockapp=1490711687952
+user=1490711687952
+crc=7
+locale=da_DK
+branding=warlockapp
+java.version=1.8.0_101
+java.vm.version=25.101-b13

@@ -1,4 +1,6 @@
-/Common/target/
-/Player/target/
-/GameEngine/target/
-/application/target/
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

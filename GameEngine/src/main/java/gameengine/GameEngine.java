@@ -18,6 +18,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
 import data.Entity;
+import static data.EntityType.PLAYER;
 import data.GameData;
 import static data.GameKeys.*;
 import data.World;
@@ -114,7 +115,7 @@ public class GameEngine implements ApplicationListener {
     public void render() {
         gameData.setDelta(Gdx.graphics.getDeltaTime());
         Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); 
         renderer.setView(camera);
         renderer.render();
         camera.update();
@@ -175,6 +176,15 @@ public class GameEngine implements ApplicationListener {
 //        }
         for (IEntityProcessingService processor : processors) {
             processor.process(gameData, world);
+        }
+        
+        for(Entity e : world.getEntities()){
+            if(e.getType() == PLAYER){
+                camera.position.x = e.getX();
+                camera.position.y = e.getY();
+                camera.update();
+                System.out.println(sr.getProjectionMatrix());
+            }
         }
 //        if (gameData.getKeys().isDown(LEFT)) {
 //            camera.translate(-10, 0);
