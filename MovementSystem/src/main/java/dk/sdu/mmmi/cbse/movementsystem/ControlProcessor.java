@@ -5,10 +5,12 @@
  */
 package dk.sdu.mmmi.cbse.movementsystem;
 
+import States.CharacterState;
 import data.Entity;
 import static data.EntityType.SPELL;
 import data.GameData;
 import static data.GameKeys.*;
+import data.SpellType;
 import data.World;
 import java.util.Collection;
 import org.openide.util.lookup.ServiceProvider;
@@ -81,42 +83,34 @@ public class ControlProcessor implements IEntityProcessingService {
 
             }
         }
+if (gameData.getKeys().isPressed(LEFT_MOUSE)) {
+            //leGameMenu.plsShowUp();
 
-//        int diffx = Math.abs((int) e.getX() - gameData.getScreenX());
-//        int diffy = Math.abs((int) e.getY() - gameData.getScreenY());
-//        if (diffx < 50 && diffx > -50 && diffy < 50 && diffy
-//                > -50) {
-//            e.setSpeed(0);
-//        }
-//
-//        float vec = (float) Math.sqrt(e.getDx() * e.getDx() + e.getDy() * e.getDy());
-//        if (vec
-//                > 0) {
-//            e.setDx(e.getDx() - (e.getDx() / vec) * e.getDeacceleration() * gameData.getDelta());
-//            e.setDy(e.getDy() - (e.getDy() / vec) * e.getDeacceleration() * gameData.getDelta());
-//        }
-//        if (vec
-//                > e.getMaxSpeed()) {
-//            e.setDx((e.getDx() / vec) * e.getMaxSpeed());
-//            e.setDy((e.getDy() / vec) * e.getMaxSpeed());
-//        }
+        }
+        if (gameData.getKeys().isPressed(Q)) {
+            //Potions?
     }
 
     private void handleShoot(Entity e, GameData gameData) {
-
-        //Shooting left mouse
         if (gameData.getKeys().isDown(LEFT_MOUSE)) {
-            System.out.println("shoot at target location");
-        }
+            if (e.getChosenSpell() == null) {
+                System.out.println("No spell chosen");
+            } else {
+
+                System.out.println("shoot at target location");
+                e.setCharState(CharacterState.CASTING);
+                System.out.println("Shooting: + " + e.getChosenSpell());
+            }
+
+    }
     }
 
-    private void handleTargetClick(Entity e, GameData gameData) {
+        private void handleTargetClick(Entity e, GameData gameData) {
         if (gameData.getKeys().isPressed(NUM_1)) {
-            //Spell 1
-
+            e.setChosenSpell(SpellType.FIREBALL);
         }
         if (gameData.getKeys().isPressed(NUM_2)) {
-            //Spell 2
+            e.setChosenSpell(SpellType.SPELL2);
 
         }
         if (gameData.getKeys().isPressed(NUM_3)) {
@@ -127,10 +121,7 @@ public class ControlProcessor implements IEntityProcessingService {
             //Spell 4
 
         }
-        if (gameData.getKeys().isPressed(Q)) {
-            //Potions?
 
-        }
 
     }
 
