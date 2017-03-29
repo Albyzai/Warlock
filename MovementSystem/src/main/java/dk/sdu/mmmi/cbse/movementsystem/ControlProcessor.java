@@ -8,8 +8,7 @@ package dk.sdu.mmmi.cbse.movementsystem;
 import data.Entity;
 import static data.EntityType.SPELL;
 import data.GameData;
-import static data.GameKeys.LEFT_MOUSE;
-import static data.GameKeys.RIGHT_MOUSE;
+import static data.GameKeys.*;
 import data.World;
 import java.util.Collection;
 import org.openide.util.lookup.ServiceProvider;
@@ -32,8 +31,7 @@ public class ControlProcessor implements IEntityProcessingService {
     float dt;
 
     @Override
-    public void process(GameData gameData, World world)
-    {
+    public void process(GameData gameData, World world) {
         Collection<Entity> entities = world.getEntities();
 
         for (Entity entity : entities) {
@@ -47,8 +45,7 @@ public class ControlProcessor implements IEntityProcessingService {
         }
     }
 
-    private void handleMoveClick(Entity e, GameData gameData)
-    {
+    private void handleMoveClick(Entity e, GameData gameData) {
         if (gameData.getKeys().isPressed(RIGHT_MOUSE)) {
 
             startX = e.getX();
@@ -85,7 +82,6 @@ public class ControlProcessor implements IEntityProcessingService {
             }
         }
 
-
 //        int diffx = Math.abs((int) e.getX() - gameData.getScreenX());
 //        int diffy = Math.abs((int) e.getY() - gameData.getScreenY());
 //        if (diffx < 50 && diffx > -50 && diffy < 50 && diffy
@@ -106,8 +102,7 @@ public class ControlProcessor implements IEntityProcessingService {
 //        }
     }
 
-    private void handleShoot(Entity e, GameData gameData)
-    {
+    private void handleShoot(Entity e, GameData gameData) {
 
         //Shooting left mouse
         if (gameData.getKeys().isDown(LEFT_MOUSE)) {
@@ -115,8 +110,27 @@ public class ControlProcessor implements IEntityProcessingService {
         }
     }
 
-    private void handleTargetClick(Entity e, GameData gameData)
-    {
+    private void handleTargetClick(Entity e, GameData gameData) {
+        if (gameData.getKeys().isPressed(NUM_1)) {
+            //Spell 1
+
+        }
+        if (gameData.getKeys().isPressed(NUM_2)) {
+            //Spell 2
+
+        }
+        if (gameData.getKeys().isPressed(NUM_3)) {
+            //Spell 3
+
+        }
+        if (gameData.getKeys().isPressed(NUM_4)) {
+            //Spell 4
+
+        }
+        if (gameData.getKeys().isPressed(Q)) {
+            //Potions?
+
+        }
 
     }
 
