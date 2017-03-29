@@ -88,10 +88,9 @@ public class ControlProcessor implements IEntityProcessingService {
 
     private void handleShoot(Entity e, GameData gameData) {
         if (gameData.getKeys().isDown(LEFT_MOUSE)) {
-<<<<<<< HEAD
             System.out.println("shoot at target location");
             e.setCharState(CharacterState.CASTING);
-=======
+
             if (e.getChosenSpell() == null) {
                 System.out.println("No spell chosen");
             } else {
@@ -101,7 +100,6 @@ public class ControlProcessor implements IEntityProcessingService {
                 System.out.println("Shooting: + " + e.getChosenSpell());
             }
 
->>>>>>> ac7a1e97e4daf910fe4cb0fc7a65ace04e514825
         }
     }
 
