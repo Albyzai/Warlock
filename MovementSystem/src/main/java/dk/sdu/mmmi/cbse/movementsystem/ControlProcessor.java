@@ -56,8 +56,8 @@ public class ControlProcessor implements IEntityProcessingService {
             endX = gameData.getScreenX();
             endY = gameData.getDisplayHeight() - gameData.getScreenY();
             elapsed = 0.01f;
-            System.out.println("X coordinate clicked: " + endX);
-            System.out.println("Y coordinate clicked" + endY);
+//            System.out.println("X coordinate clicked: " + endX);
+//            System.out.println("Y coordinate clicked" + endY);
 
             distance = (float) Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
             //float distance = (float) Math.sqrt(pathX * pathX + pathY * pathY);
@@ -74,11 +74,11 @@ public class ControlProcessor implements IEntityProcessingService {
                 e.setX(e.getX() + directionX * speed * gameData.getDelta());
                 e.setY(e.getY() + directionY * speed * gameData.getDelta());
                 if (Math.sqrt(Math.pow(e.getX() - startX, 2) + Math.pow(e.getY() - startY, 2)) >= distance) {
-                    System.out.println("Moving set to false");
+//                    System.out.println("Moving set to false");
                     e.setX(endX);
                     e.setY(endY);
-                    System.out.println("X coordinate reached: " + e.getX());
-                    System.out.println("Y coordinate reached: " + e.getY());
+//                    System.out.println("X coordinate reached: " + e.getX());
+//                    System.out.println("Y coordinate reached: " + e.getY());
                     moving = false;
                 }
 
