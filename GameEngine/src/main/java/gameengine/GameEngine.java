@@ -48,7 +48,7 @@ public class GameEngine implements ApplicationListener {
     private List<MapSPI> maps;
     private TiledMap map;
     private IsometricTiledMapRenderer renderer;
-    private OrthographicCamera camera;
+    private DotaCamera camera;
     private AssetManager assetManager;
     private MapLayers mapLayers, groundLayers;
     private float shrinkTimer, shrinkTime;
@@ -77,7 +77,7 @@ public class GameEngine implements ApplicationListener {
 
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
         renderer = new IsometricTiledMapRenderer(map);
-        camera = new OrthographicCamera();
+        camera = new DotaCamera();
         processors = new CopyOnWriteArrayList<>();
         entityPlugins = new CopyOnWriteArrayList<>();
         
@@ -118,7 +118,7 @@ public class GameEngine implements ApplicationListener {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); 
         renderer.setView(camera);
         renderer.render();
-        camera.update();
+        camera.updateAndMove();
         update();
         draw();
     }
@@ -180,26 +180,12 @@ public class GameEngine implements ApplicationListener {
         
         for(Entity e : world.getEntities()){
             if(e.getType() == PLAYER){
-                camera.position.x = e.getX();
-                camera.position.y = e.getY();
-                camera.update();
-                System.out.println(sr.getProjectionMatrix());
+//                camera.position.x = e.getX();
+//                camera.position.y = e.getY();
+//                camera.update();
+//                System.out.println(sr.getProjectionMatrix());
             }
         }
-//        if (gameData.getKeys().isDown(LEFT)) {
-//            camera.translate(-10, 0);
-//        }
-//        if (gameData.getKeys().isDown(RIGHT)) {
-//            camera.translate(10, 0);
-//        }
-//
-//        if (gameData.getKeys().isDown(UP)) {
-//            camera.translate(0, 10);
-//        }
-//
-//        if (gameData.getKeys().isDown(DOWN)) {
-//            camera.translate(0, -10);
-//        }
     }
 
     @Override
@@ -219,3 +205,4 @@ public class GameEngine implements ApplicationListener {
     }
 
 }
+
