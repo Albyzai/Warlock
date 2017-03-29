@@ -46,17 +46,17 @@ public class PlayerControlSystem implements IEntityProcessingService {
     }
 
     private void setShape(float x, float y, float radians) {
-        shapex[0] = (float) (x + Math.cos(radians) * 8f);
-        shapey[0] = (float) (y + Math.sin(radians) * 8);
+        shapex[0] = (float) (x + Math.cos(radians) * 32);
+        shapey[0] = (float) (y + Math.sin(radians) * 32);
 
-        shapex[1] = (float) (x + Math.cos(radians - 4 * 3.1415f / 5) * 8);
-        shapey[1] = (float) (y + Math.sin(radians - 4 * 3.1145f / 5) * 8);
+        shapex[1] = (float) (x + Math.cos(radians - 16 * 3.1415f / 20) * 32);
+        shapey[1] = (float) (y + Math.sin(radians - 16 * 3.1145f / 20) * 32);
 
-        shapex[2] = (float) (x + Math.cos(radians + 3.1415f) * 5);
-        shapey[2] = (float) (y + Math.sin(radians + 3.1415f) * 5);
+        shapex[2] = (float) (x + Math.cos(radians + 3.1415f) * 20);
+        shapey[2] = (float) (y + Math.sin(radians + 3.1415f) * 20);
 
-        shapex[3] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 8);
-        shapey[3] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 8);
+        shapex[3] = (float) (x + Math.cos(radians + 16 * 3.1415f / 20) * 32);
+        shapey[3] = (float) (y + Math.sin(radians + 16 * 3.1415f / 20) * 32);
 
     }
 
