@@ -5,6 +5,7 @@ import events.EventType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import States.GameState;
 
 public class GameData {
 
@@ -17,28 +18,59 @@ public class GameData {
     private final List<Event> events = new CopyOnWriteArrayList<>();
     private int screenX;
     private int screenY;
+    private GameState gameState;
+    private float roundTime;
+    private int roundNumber;
+    private float currentTime;
 
+    public float getCurrentTime() {
+        return currentTime;
+    }
 
-    public int getLayerCount()
-    {
+    public void setCurrentTime(float currentTime) {
+        this.currentTime = currentTime;
+    }
+
+    public int getRoundNumber() {
+        return roundNumber;
+    }
+
+    public void setRoundNumber(int roundNumber) {
+        this.roundNumber = roundNumber;
+    }
+
+    public GameState getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+    }
+
+    public float getRoundTime() {
+        return roundTime;
+    }
+
+    public void setRoundTime(float roundTime) {
+        this.roundTime = roundTime;
+    }
+
+    public int getLayerCount() {
         return layerCount;
     }
 
-    public void setLayerCount(int layerCount)
-    {
+    public void setLayerCount(int layerCount) {
         this.layerCount = layerCount;
     }
-    
-    public int getShrinkTime()
-    {
+
+    public int getShrinkTime() {
         return shrinkTime;
     }
 
-    public void setShrinkTime(int shrinkTime)
-    {
+    public void setShrinkTime(int shrinkTime) {
         this.shrinkTime = shrinkTime;
     }
-    
+
     public void addEvent(Event e) {
         events.add(e);
     }
@@ -89,7 +121,8 @@ public class GameData {
     public int getDisplayHeight() {
         return displayHeight;
     }
-        public void setScreenX(int screenX) {
+
+    public void setScreenX(int screenX) {
         this.screenX = screenX;
     }
 

@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
->Log Session: Tuesday, March 28, 2017 4:34:49 PM CEST
+>Log Session: Wednesday, March 29, 2017 4:01:39 PM CEST
 >System Info: 
   Product Version         = NetBeans Platform 8.2 (Build 201609300101)
   Operating System        = Windows 10 version 10.0 running on amd64
@@ -22,8 +22,11 @@
 -------------------------------------------------------------------------------
 INFO [org.netbeans.core.startup.NbEvents]: Module patch or custom extension: C:\Users\mads1\OneDrive\Documents\NetBeansProjects\Warlock Semesterprojekt\application\target\warlockapp\..\..\..\Common\target\classes
 INFO [org.netbeans.core.startup.NbEvents]: Module patch or custom extension: C:\Users\mads1\OneDrive\Documents\NetBeansProjects\Warlock Semesterprojekt\application\target\warlockapp\..\..\..\Spell\target\classes
+INFO [org.netbeans.core.startup.NbEvents]: Module patch or custom extension: C:\Users\mads1\OneDrive\Documents\NetBeansProjects\Warlock Semesterprojekt\application\target\warlockapp\..\..\..\RoundSystem\target\classes
+INFO [org.netbeans.core.startup.NbEvents]: Module patch or custom extension: C:\Users\mads1\OneDrive\Documents\NetBeansProjects\Warlock Semesterprojekt\application\target\warlockapp\..\..\..\MovementSystem\target\classes
 INFO [org.netbeans.core.startup.NbEvents]: Module patch or custom extension: C:\Users\mads1\OneDrive\Documents\NetBeansProjects\Warlock Semesterprojekt\application\target\warlockapp\..\..\..\LevelSystem\target\classes
 INFO [org.netbeans.core.startup.NbEvents]: Module patch or custom extension: C:\Users\mads1\OneDrive\Documents\NetBeansProjects\Warlock Semesterprojekt\application\target\warlockapp\..\..\..\HealthSystem\target\classes
+INFO [org.netbeans.core.startup.NbEvents]: Module patch or custom extension: C:\Users\mads1\OneDrive\Documents\NetBeansProjects\Warlock Semesterprojekt\application\target\warlockapp\..\..\..\CurrencySystem\target\classes
 INFO [org.netbeans.core.startup.NbEvents]: Turning on modules:
 	org.openide.util.lookup [8.33.1 201609300101]
 	org.openide.util [9.7.1 201609300101]
@@ -35,15 +38,15 @@ INFO [org.netbeans.core.startup.NbEvents]: Turning on modules:
 	org.netbeans.bootstrap/1 [2.76.1 201609300101]
 	org.netbeans.core.startup/1 [1.62.1.1 201609300101]
 	org.netbeans.api.annotations.common/1 [1.27.1 201609300101]
-	dk.sdu.mmmi.cbse.Common [1.0.0 1.0.0-20170328 201703281433]
-	dk.sdu.mmmi.cbse.Spell [1.0.0 1.0.0-20170328 201703281433]
-	dk.sdu.mmmi.cbse.RoundSystem [1.0.0 1.0.0-20170328 201703281433]
-	dk.sdu.mmmi.cbse.Player [1.0.0 1.0.0-20170328 201703281433]
-	dk.sdu.mmmi.cbse.MovementSystem [1.0.0 1.0.0-20170328 201703281433]
-	dk.sdu.mmmi.cbse.Map [1.0.0 1.0.0-20170328 201703281433]
-	dk.sdu.mmmi.cbse.LevelSystem [1.0.0 1.0.0-20170328 201703281433]
-	dk.sdu.mmmi.cbse.HealthSystem [1.0.0 1.0.0-20170328 201703281433]
-	dk.sdu.mmmi.cbse.CollisionSystem [1.0.0 1.0.0-20170328 201703281433]
-	dk.sdu.mmmi.cbse.Enemy [1.0.0 1.0.0-20170328 201703281433]
-	dk.sdu.mmmi.cbse.CurrencySystem [1.0.0 1.0.0-20170328 201703281433]
-	dk.sdu.mmmi.cbse.GameEngine [1.0.0 1.0.0-20170328 201703281433]
+	dk.sdu.mmmi.cbse.Common [1.0.0 1.0.0-20170329 201703291358]
+	dk.sdu.mmmi.cbse.Spell [1.0.0 1.0.0-20170329 201703291359]
+	dk.sdu.mmmi.cbse.RoundSystem [1.0.0 1.0.0-20170329 201703291359]
+	dk.sdu.mmmi.cbse.Player [1.0.0 1.0.0-20170329 201703291359]
+	dk.sdu.mmmi.cbse.MovementSystem [1.0.0 1.0.0-20170329 201703291359]
+	dk.sdu.mmmi.cbse.Map [1.0.0 1.0.0-20170329 201703291359]
+	dk.sdu.mmmi.cbse.LevelSystem [1.0.0 1.0.0-20170329 201703291359]
+	dk.sdu.mmmi.cbse.HealthSystem [1.0.0 1.0.0-20170329 201703291359]
+	dk.sdu.mmmi.cbse.CollisionSystem [1.0.0 1.0.0-20170329 201703291359]
+	dk.sdu.mmmi.cbse.Enemy [1.0.0 1.0.0-20170329 201703291359]
+	dk.sdu.mmmi.cbse.CurrencySystem [1.0.0 1.0.0-20170329 201703291359]
+	dk.sdu.mmmi.cbse.GameEngine [1.0.0 1.0.0-20170329 201703291359]

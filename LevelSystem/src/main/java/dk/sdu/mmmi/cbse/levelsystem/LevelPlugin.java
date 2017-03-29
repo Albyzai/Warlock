@@ -33,16 +33,16 @@ public class LevelPlugin implements IGamePluginService, IEntityProcessingService
         float dt = gameData.getDelta();
         
         //---------- UDKOMMERTERET PAAGRUND AF NULLPOINTER DA INGEN ANDRE ENTITIES END PLAYER ------------
-        for (Entity caster : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)) {
-            for (Entity reciever : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)) {
-            if (reciever.getHitBy().equals(caster) && !(reciever.equals(caster))) {
-                levelSystem.gainExp(caster, levelSystem.HIT);
-            }
-            if (reciever.getHealth() <= 0 && !(reciever.equals(caster))) {
-                levelSystem.gainExp(caster, levelSystem.KILL);
-            }
-        }
-        }
+//        for (Entity caster : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)) {
+//            for (Entity reciever : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)) {
+//            if (reciever.getHitBy().equals(caster) && !(reciever.equals(caster))) {
+//                levelSystem.gainExp(caster, levelSystem.HIT);
+//            }
+//            if (reciever.getHealth() <= 0 && !(reciever.equals(caster))) {
+//                levelSystem.gainExp(caster, levelSystem.KILL);
+//            }
+//        }
+//        }
     }
 
     @Override
