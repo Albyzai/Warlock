@@ -90,6 +90,7 @@ if (gameData.getKeys().isPressed(LEFT_MOUSE)) {
         if (gameData.getKeys().isPressed(Q)) {
             //Potions?
     }
+    }
 
     private void handleShoot(Entity e, GameData gameData) {
         if (gameData.getKeys().isDown(LEFT_MOUSE)) {
