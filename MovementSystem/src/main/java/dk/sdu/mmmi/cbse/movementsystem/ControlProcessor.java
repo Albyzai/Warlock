@@ -5,10 +5,12 @@
  */
 package dk.sdu.mmmi.cbse.movementsystem;
 
+import States.CharacterState;
 import data.Entity;
 import static data.EntityType.SPELL;
 import data.GameData;
 import static data.GameKeys.*;
+import data.SpellType;
 import data.World;
 import java.util.Collection;
 import org.openide.util.lookup.ServiceProvider;
@@ -107,13 +109,13 @@ public class ControlProcessor implements IEntityProcessingService {
         //Shooting left mouse
         if (gameData.getKeys().isDown(LEFT_MOUSE)) {
             System.out.println("shoot at target location");
+            e.setCharState(CharacterState.CASTING);
         }
     }
 
     private void handleTargetClick(Entity e, GameData gameData) {
         if (gameData.getKeys().isPressed(NUM_1)) {
-            //Spell 1
-
+            e.setChosenSpell(SpellType.FIREBALL);
         }
         if (gameData.getKeys().isPressed(NUM_2)) {
             //Spell 2

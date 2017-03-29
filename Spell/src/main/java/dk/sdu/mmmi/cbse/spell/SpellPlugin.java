@@ -58,7 +58,7 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
     public void useSpell(World world, SpellType spellType, float x, float y, Entity caster) {
         for (Spell spell : spellBook.getSpellBook(world, caster)) {
             if (spell.getSpellType().equals(spellType)) {
-                archive.getAnimator().getBatch().draw((TextureRegion) spellBook.getSpell(spellType).getAnimation().getKeyFrame(archive.getAnimator().getStateTime()), x, y);
+                //archive.getAnimator().getBatch().draw((TextureRegion) spellBook.getSpell(spellType).getAnimation().getKeyFrame(archive.getAnimator().getStateTime()), x, y);
                 spell.getSpellEntity().setType(EntityType.SPELL);
                 spell.getSpellEntity().setPosition(caster.getX(), caster.getY());
                 spell.getSpellEntity().setRadians(caster.getRadians());

@@ -35,6 +35,11 @@ public final class Entity implements Serializable {
     private Entity hitBy;
     private int level;
     private int expPoints;
+    private int kills = 0;
+    private int hits = 0;
+    private int totalKills = 0;
+    private int totalHits = 0;
+    private int gold;
 
     public SpellType hitByWhichSpell(){
             return getHitBy().usedSpell;
@@ -287,6 +292,50 @@ public final class Entity implements Serializable {
 
     public void setExpPoints(int expPoints) {
         this.expPoints = expPoints;
+    }
+
+    public int getKills() {
+        return kills;
+    }
+
+    public void setKills(int kills) {
+        this.kills = kills;
+    }
+
+    public int getHits() {
+        return hits;
+    }
+
+    public void setHits(int hits) {
+        this.hits = hits;
+    }
+
+    public int getTotalKills() {
+        return totalKills;
+    }
+
+    public void setTotalKills(int totalKills) {
+        if(this.totalKills != totalKills){
+            this.totalKills = totalKills;
+        }
+    }
+
+    public int getTotalHits() {
+        return totalHits;
+    }
+
+    public void setTotalHits(int totalHits) {
+        if(this.totalHits != totalHits){
+            this.totalHits = totalHits;
+        }
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
     
     
