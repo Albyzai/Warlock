@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.GameEngine">
-    <module_version install_time="1490795995349" last="true" origin="installer" specification_version="1.0.0">
+    <module_version install_time="1490796991092" last="true" origin="installer" specification_version="1.0.0">
         <file crc="299485465" name="config/Modules/dk-sdu-mmmi-cbse-GameEngine.xml"/>
-        <file crc="2391175025" name="modules/dk-sdu-mmmi-cbse-GameEngine.jar"/>
+        <file crc="3915274588" name="modules/dk-sdu-mmmi-cbse-GameEngine.jar"/>
         <file crc="288087022" name="modules/ext/dk.sdu.mmmi.cbse.GameEngine/com-badlogicgames-gdx/gdx-backend-lwjgl.jar"/>
         <file crc="3911982898" name="modules/ext/dk.sdu.mmmi.cbse.GameEngine/com-badlogicgames-gdx/gdx-box2d-platform-natives-desktop.jar"/>
         <file crc="1676888048" name="modules/ext/dk.sdu.mmmi.cbse.GameEngine/com-badlogicgames-gdx/gdx-box2d.jar"/>

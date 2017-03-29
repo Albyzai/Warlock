@@ -18,8 +18,6 @@ import States.GameState;
 })
 
 public class RoundPlugin implements IGamePluginService, IEntityProcessingService {
-
-    private float currentTime;
     
     @Override
     public void start(GameData gameData, World world) {
@@ -30,17 +28,15 @@ public class RoundPlugin implements IGamePluginService, IEntityProcessingService
 
     @Override
     public void process(GameData gameData, World world) {
-        //float dt = Gdx.graphics.getDeltaTime();
-        
-        //float timer;
-//        timer = gameData.getRoundNumber()
-//        gameData.getCurrentTime();
-//        currentTime = roundTime -= dt;
-//        int minutes = ((int)roundTime) / 60;
-//        int seconds = ((int)roundTime) % 60;
-//        if(currentTime <= 0){
-//            GameState.ROUNDEND;
-//            roundNumber++; 
+        //DONT DELETE
+//        float dt = Gdx.graphics.getDeltaTime();
+//        
+//        gameData.setCurrentTime(gameData.getRoundTime() - dt);
+//        int minutes = ((int)gameData.getRoundTime()) / 60;
+//        int seconds = ((int)gameData.getRoundTime()) % 60;
+//        if(gameData.getCurrentTime() <= 0){
+//            gameData.setGameState(GameState.ROUNDEND);
+//            gameData.setRoundNumber(gameData.getRoundNumber() + 1);
 //        }
         
     }

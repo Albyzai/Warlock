@@ -7,6 +7,7 @@ package dk.sdu.mmmi.cbse.movementsystem;
 
 import States.CharacterState;
 import data.Entity;
+import data.EntityType;
 import static data.EntityType.SPELL;
 import data.GameData;
 import static data.GameKeys.*;
@@ -34,16 +35,12 @@ public class ControlProcessor implements IEntityProcessingService {
 
     @Override
     public void process(GameData gameData, World world) {
-        Collection<Entity> entities = world.getEntities();
 
-        for (Entity entity : entities) {
-
+        for (Entity entity : world.getEntities(EntityType.PLAYER)) {
             handleMoveClick(entity, gameData);
             handleTargetClick(entity, gameData);
-
-            if (entity.getType() != SPELL) {
-                handleShoot(entity, gameData);
-            }
+            handleShoot(entity, gameData);
+            
         }
     }
 

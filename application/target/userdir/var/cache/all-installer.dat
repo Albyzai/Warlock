@@ -1,4 +1,4 @@
-#Wed Mar 29 16:01:14 CEST 2017
+#Wed Mar 29 16:23:26 CEST 2017
 dk.sdu.mmmi.cbse.GameEngine.OpenIDE-Module-Description=\u0000
 org.openide.util.ui.OpenIDE-Module-Install=\u0000
 org.netbeans.api.annotations.common.OpenIDE-Module-Install=\u0000
@@ -53,8 +53,8 @@ org.netbeans.bootstrap.OpenIDE-Module-Layer=\u0000
 dk.sdu.mmmi.cbse.GameEngine.OpenIDE-Module-Hide-Classpath-Packages=\u0000
 org.netbeans.api.annotations.common.OpenIDE-Module-Layer=\u0000
 dk.sdu.mmmi.cbse.Player.AutoUpdate-Show-In-Client=\u0000
-org.openide.util.ui.AutoUpdate-Show-In-Client=false
 org.netbeans.core.startup.base.AutoUpdate-Show-In-Client=false
+org.openide.util.ui.AutoUpdate-Show-In-Client=false
 org.openide.util.OpenIDE-Module-Description=\u0000
 dk.sdu.mmmi.cbse.Common.AutoUpdate-Show-In-Client=\u0000
 org.openide.util.ui.OpenIDE-Module-Description=\u0000
@@ -87,8 +87,8 @@ org.openide.util.lookup.OpenIDE-Module-Layer=\u0000
 dk.sdu.mmmi.cbse.LevelSystem.OpenIDE-Module-Deprecated=\u0000
 dk.sdu.mmmi.cbse.MovementSystem.OpenIDE-Module-Layer=\u0000
 org.openide.util.lookup.OpenIDE-Module-Hide-Classpath-Packages=\u0000
-org.netbeans.core.startup.AutoUpdate-Show-In-Client=false
 org.openide.modules.AutoUpdate-Show-In-Client=false
+org.netbeans.core.startup.AutoUpdate-Show-In-Client=false
 org.netbeans.bootstrap.OpenIDE-Module-Deprecated=\u0000
 dk.sdu.mmmi.cbse.Enemy.OpenIDE-Module-Install=dk/sdu/mmmi/cbse/enemy/Installer.class
 dk.sdu.mmmi.cbse.RoundSystem.AutoUpdate-Show-In-Client=\u0000
