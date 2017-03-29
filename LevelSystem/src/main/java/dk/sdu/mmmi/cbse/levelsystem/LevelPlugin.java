@@ -32,7 +32,7 @@ public class LevelPlugin implements IGamePluginService, IEntityProcessingService
     public void process(GameData gameData, World world) {
         float dt = gameData.getDelta();
         
-        //---------- UDKOMMERTERET PÅGRUND AF NULLPOINTER DA INGEN ANDRE ENTITIES END PLAYER ------------
+        //---------- UDKOMMERTERET PAAGRUND AF NULLPOINTER DA INGEN ANDRE ENTITIES END PLAYER ------------
 //        for (Entity caster : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)) {
 //            for (Entity reciever : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)) {
 //            if (reciever.getHitBy().equals(caster) && !(reciever.equals(caster))) {
