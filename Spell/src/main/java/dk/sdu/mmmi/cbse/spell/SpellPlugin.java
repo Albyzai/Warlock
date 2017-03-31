@@ -24,7 +24,7 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
 
     @Override
     public void start(GameData gameData, World world) {
-        for (Entity entity : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)) {
+        for (Entity entity : world.getEntities(EntityType.PLAYER)) {
             spellBook = new SpellBook(entity);
         }
         archive = new SpellArchive(world);
