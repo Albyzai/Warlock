@@ -14,6 +14,7 @@ import static data.GameKeys.*;
 import data.SpellType;
 import data.World;
 import java.util.Collection;
+import data.SpellInfo;
 import org.openide.util.lookup.ServiceProvider;
 import services.IEntityProcessingService;
 
@@ -28,7 +29,6 @@ public class ControlProcessor implements IEntityProcessingService {
     float startX, startY, endX, endY;
     float directionX;
     float directionY;
-    float elapsed;
     float distance;
     float speed = 200;
     float dt;
@@ -40,7 +40,12 @@ public class ControlProcessor implements IEntityProcessingService {
             handleMoveClick(entity, gameData);
             handleTargetClick(entity, gameData);
             handleShoot(entity, gameData);
-            
+
+            for (Entity spell : world.getEntities(EntityType.SPELL)) {
+                spell.setX(directionX * SpellInfo.getSpellSpeed(entity.getChosenSpell()) * gameData.getDelta());
+                spell.setY(directionY * SpellInfo.getSpellSpeed(entity.getChosenSpell()) * gameData.getDelta());
+            }
+
         }
     }
 
@@ -51,7 +56,6 @@ public class ControlProcessor implements IEntityProcessingService {
             startY = e.getY();
             endX = gameData.getScreenX();
             endY = gameData.getDisplayHeight() - gameData.getScreenY();
-            elapsed = 0.01f;
 
             distance = (float) Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
 
@@ -59,17 +63,17 @@ public class ControlProcessor implements IEntityProcessingService {
             directionY = (endY - startY) / distance;
             e.setX(startX);
             e.setY(startY);
-            moving = true;
+            e.setCharState(CharacterState.MOVING);
         }
 
         if (distance > 0) {
-            if (moving) {
+            if (e.getCharState().equals(CharacterState.MOVING)) {
                 e.setX(e.getX() + directionX * speed * gameData.getDelta());
                 e.setY(e.getY() + directionY * speed * gameData.getDelta());
                 if (Math.sqrt(Math.pow(e.getX() - startX, 2) + Math.pow(e.getY() - startY, 2)) >= distance) {
                     e.setX(endX);
                     e.setY(endY);
-                    moving = false;
+                    e.setCharState(CharacterState.IDLE);
                 }
 
             }
@@ -85,9 +89,6 @@ public class ControlProcessor implements IEntityProcessingService {
 
     private void handleShoot(Entity e, GameData gameData) {
         if (gameData.getKeys().isDown(LEFT_MOUSE)) {
-            System.out.println("shoot at target location");
-            e.setCharState(CharacterState.CASTING);
-
             if (e.getChosenSpell() == null) {
                 System.out.println("No spell chosen");
             } else {

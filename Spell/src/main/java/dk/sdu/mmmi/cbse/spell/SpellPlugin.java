@@ -42,8 +42,6 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
         for (Entity spell : world.getEntities(EntityType.SPELL)) {
             float dt = gameData.getDelta();
             spell.reduceExpiration(dt);
-            spell.dx += spell.getMaxSpeed() * spell.getAcceleration();
-            spell.dy += spell.getMaxSpeed() * spell.getAcceleration();
             if (spell.getExpiration() <= 0) {
                 world.removeEntity(spell);
                 archive.getAnimator().getBatch().end();

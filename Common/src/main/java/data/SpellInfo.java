@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package data;
+import data.SpellType;
 
 /**
  *
@@ -18,4 +19,12 @@ public class SpellInfo {
     public static final int FIREBALL_ACCELERATION = 20;
     public static final int FIREBALL_COOLDOWN = 4;
     public static final boolean FIREBALL_STATIC = false;
+    
+    public static int getSpellSpeed(SpellType spellType){
+        switch(spellType){
+            case FIREBALL:
+                return FIREBALL_SPEED;
+        }
+        return 0; 
+    }
 }
