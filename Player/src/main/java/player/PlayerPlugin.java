@@ -16,17 +16,37 @@ import services.IEntityProcessingService;
 import services.IGamePluginService;
 
 @ServiceProviders(value = {
-    @ServiceProvider(service = IEntityProcessingService.class),})
+    @ServiceProvider(service = IEntityProcessingService.class),
+    @ServiceProvider(service = IGamePluginService.class)
+})
 /**
  *
  * @author jcs
  */
-public class PlayerControlSystem implements IEntityProcessingService {
+public class PlayerPlugin implements IEntityProcessingService, IGamePluginService {
 
     private float[] shapex = new float[4];
     private float[] shapey = new float[4];
-    float directionY;
-    float directionX;
+    private float directionY;
+    private float directionX;
+    private Entity player;
+    
+    @Override
+    public void start(GameData gameData, World world) {
+        // Add entities to the world
+        Entity player = new Entity();
+        player.setType(PLAYER);
+
+        player.setPosition(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
+
+        player.setMaxSpeed(2);
+        player.setAcceleration(2);
+        player.setDeacceleration(1);
+
+        player.setRadians(3.1415f / 2);
+        player.setRotationSpeed(3);
+        world.addEntity(player);
+    }
 
     @Override
     public void process(GameData gameData, World world) {
@@ -58,6 +78,12 @@ public class PlayerControlSystem implements IEntityProcessingService {
         shapex[3] = (float) (x + Math.cos(radians + 16 * 3.1415f / 20) * 32);
         shapey[3] = (float) (y + Math.sin(radians + 16 * 3.1415f / 20) * 32);
 
+    }
+
+    @Override
+    public void stop(GameData gameData, World world) {
+        // Remove entities
+        world.removeEntity(player);
     }
 
 }
