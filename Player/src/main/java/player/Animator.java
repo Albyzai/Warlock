@@ -17,6 +17,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import States.MovementState;
+import data.Entity;
 
 /**
  *
@@ -28,10 +29,7 @@ public class Animator extends ApplicationAdapter{
     private Batch batch;
     private TextureAtlas atlas;
     private AssetManager assets;
-    private String characterName;
     private float stateTime;
-
-    private MovementState currentState, previousState;
 
     private TextureRegion chStandingRight, chStandingLeft, chStandingUp, chStandingDown;
 
@@ -49,8 +47,6 @@ public class Animator extends ApplicationAdapter{
 
         stateTime = 0;
         Texture texture = atlas.findRegion("FireCharacter").getTexture();
-        //sprite = new Sprite();
-        currentState = MovementState.STANDINGRIGHT;
 
         chStandingRight = new TextureRegion(texture, 0, 0, 16, 16);
         chStandingLeft = new TextureRegion(texture, 0, 16, 16, 16);
@@ -86,8 +82,6 @@ public class Animator extends ApplicationAdapter{
         }
         chRunningDown = new Animation(0.1f, frames);
         frames.clear();
-        
-        //sprite.setSize(500, 500);
     }
 
     @Override
@@ -97,8 +91,6 @@ public class Animator extends ApplicationAdapter{
 //        sprite.setTexture(getFrame().getTexture());
 
         batch.begin();
-        System.out.println("tegner");
-        batch.draw(getFrame(), 500, 500);
         //sprite.draw(batch);
         batch.end();
     }
@@ -116,9 +108,9 @@ public class Animator extends ApplicationAdapter{
         return sprite;
     }
 
-    public TextureRegion getFrame() {
+    public TextureRegion getFrame(Entity entity) {
         TextureRegion region = null;
-        switch (currentState) {
+        switch (entity.getMoveState()) {
             case RUNNINGRIGHT:
                 region = (TextureRegion) chRunningRight.getKeyFrame(stateTime, true);
                 break;

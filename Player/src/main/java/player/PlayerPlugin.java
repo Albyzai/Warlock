@@ -1,5 +1,6 @@
 package player;
 
+import States.CharacterState;
 import data.Entity;
 import static data.EntityType.PLAYER;
 import data.GameData;
@@ -8,6 +9,8 @@ import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 import services.IEntityProcessingService;
 import services.IGamePluginService;
+import States.MovementState;
+import data.ViewManager;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IEntityProcessingService.class),
@@ -24,6 +27,9 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
     private float directionY;
     private float directionX;
     private Entity player;
+    private static final String PLAYER_IMAGE_PATH = "assets/Characters.png";
+    private static String PLAYER_FINAL_IMAGE_PATH = "";
+	
             
     @Override
     public void start(GameData gameData, World world) {
@@ -41,6 +47,13 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         player.setRotationSpeed(3);
         world.addEntity(player);
         
+        player.setMoveState(MovementState.STANDINGRIGHT);
+        player.setCharState(CharacterState.IDLE);
+        
+        PLAYER_FINAL_IMAGE_PATH = PlayerPlugin.class.getResource(PLAYER_IMAGE_PATH).getPath().replace("file:", "");
+	
+        ViewManager.createView(PLAYER_FINAL_IMAGE_PATH, false);
+	player.setView(ViewManager.getView(PLAYER_FINAL_IMAGE_PATH));
     }
 
     @Override

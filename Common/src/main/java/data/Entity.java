@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import java.io.Serializable;
 import java.util.ArrayList;
 import States.CharacterState;
+import States.MovementState;
 import java.util.UUID;
 
 public final class Entity implements Serializable {
@@ -30,6 +31,7 @@ public final class Entity implements Serializable {
     private int numPoints;
     private float width;
     private CharacterState charState;
+    private MovementState moveState;
     private SpellType chosenSpell;
     private SpellType usedSpell;
     private Entity hitBy;
@@ -40,6 +42,15 @@ public final class Entity implements Serializable {
     private int totalKills = 0;
     private int totalHits = 0;
     private int gold;
+    private View view;
+
+    public MovementState getMoveState() {
+        return moveState;
+    }
+
+    public void setMoveState(MovementState moveState) {
+        this.moveState = moveState;
+    }
 
     public SpellType hitByWhichSpell(){
             return getHitBy().usedSpell;
@@ -336,6 +347,14 @@ public final class Entity implements Serializable {
 
     public void setGold(int gold) {
         this.gold = gold;
+    }
+
+    public View getView() {
+        return view;
+    }
+
+    public void setView(View view) {
+        this.view = view;
     }
     
     
