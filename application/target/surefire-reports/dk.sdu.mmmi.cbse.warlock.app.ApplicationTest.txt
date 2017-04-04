@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: dk.sdu.mmmi.cbse.warlock.app.ApplicationTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.157 sec
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.414 sec
->>>>>>> 282a4f5395c0f80480475d43ac2486a1d9eddaf1
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.798 sec

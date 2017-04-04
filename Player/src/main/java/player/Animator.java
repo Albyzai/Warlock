@@ -18,15 +18,17 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import States.MovementState;
 import data.Entity;
+import data.GameData;
+import data.ViewManager;
 
 /**
  *
  * @author mads1
  */
-public class Animator extends ApplicationAdapter{
+public class Animator{
 
     private Sprite sprite;
-    private Batch batch;
+    private SpriteBatch batch;
     private TextureAtlas atlas;
     private AssetManager assets;
     private float stateTime;
@@ -36,12 +38,11 @@ public class Animator extends ApplicationAdapter{
     private Animation chRunningRight, chRunningLeft, chRunningUp, chRunningDown;
     
 
-    @Override
-    public void create(){
+    public void Animator(){
         batch = new SpriteBatch();
 
         assets = new AssetManager();
-        assets.load("assets/Characters.pack", TextureAtlas.class);
+        assets.load(ViewManager.getView(PlayerPlugin.PLAYER_FINAL_IMAGE_PATH).getImageFilePath(), TextureAtlas.class);
         assets.finishLoading();
         atlas = assets.get("assets/Characters.pack", TextureAtlas.class);
 
@@ -84,22 +85,15 @@ public class Animator extends ApplicationAdapter{
         frames.clear();
     }
 
-    @Override
-    public void render() {
-        stateTime += Gdx.graphics.getDeltaTime();
-//        sprite.setPosition(1700, 100);
-//        sprite.setTexture(getFrame().getTexture());
-
+    public void render(Entity entity, GameData gameData) {
+        stateTime += gameData.getDelta();
+        
+        //batch.setProjectionMatrix();
         batch.begin();
-        //sprite.draw(batch);
+        batch.draw(getFrame(entity), entity.getX(), entity.getY());
         batch.end();
     }
 
-    @Override
-    public void dispose(){
-        batch.dispose();
-        atlas.dispose();
-    }
     public TextureAtlas getAtlas() {
         return atlas;
     }
@@ -108,7 +102,7 @@ public class Animator extends ApplicationAdapter{
         return sprite;
     }
 
-    public TextureRegion getFrame(Entity entity) {
+    private TextureRegion getFrame(Entity entity) {
         TextureRegion region = null;
         switch (entity.getMoveState()) {
             case RUNNINGRIGHT:

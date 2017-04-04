@@ -48,7 +48,7 @@ public class GameEngine implements ApplicationListener {
     private List<MapSPI> maps;
     private TiledMap map;
     private IsometricTiledMapRenderer renderer;
-    private DotaCamera camera;
+    public  DotaCamera camera;
     private AssetManager assetManager;
     private MapLayers mapLayers, groundLayers;
     private float shrinkTimer, shrinkTime;
@@ -203,6 +203,9 @@ public class GameEngine implements ApplicationListener {
         map.dispose();
         renderer.dispose();
     }
+
+    
+    
 
 }
 
