@@ -44,7 +44,6 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
             spell.reduceExpiration(dt);
             if (spell.getExpiration() <= 0) {
                 world.removeEntity(spell);
-                archive.getAnimator().getBatch().end();
             }
         }
     }

@@ -5,9 +5,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import States.CharacterState;
 import States.MovementState;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.UUID;
 
 public final class Entity implements Serializable {
+
     private final UUID ID = UUID.randomUUID();
     private EntityType type;
     private float x;
@@ -43,6 +45,12 @@ public final class Entity implements Serializable {
     private int totalHits = 0;
     private int gold;
     private View view;
+    private Animator animator = new Animator();
+
+
+    public Animator getAnimator() {
+        return animator;
+    }
 
     public MovementState getMoveState() {
         return moveState;
@@ -52,8 +60,8 @@ public final class Entity implements Serializable {
         this.moveState = moveState;
     }
 
-    public SpellType hitByWhichSpell(){
-            return getHitBy().usedSpell;
+    public SpellType hitByWhichSpell() {
+        return getHitBy().usedSpell;
     }
 
     public Entity getHitBy() {
@@ -71,8 +79,7 @@ public final class Entity implements Serializable {
     public void setUsedSpell(SpellType usedSpell) {
         this.usedSpell = usedSpell;
     }
-    
-    
+
     public SpellType getChosenSpell() {
         return chosenSpell;
     }
@@ -89,79 +96,79 @@ public final class Entity implements Serializable {
         this.charState = charState;
     }
 
-    
-    
-    public void setSpeed(float speed){
+    public void setSpeed(float speed) {
         this.speed = speed;
     }
-    
-    public float getSpeed(){
+
+    public float getSpeed() {
         return this.speed;
     }
-    public void setWidth(float width){
+
+    public void setWidth(float width) {
         this.width = width;
     }
-    
-    public float getWidth(){
+
+    public float getWidth() {
         return this.width;
     }
-    
-    public void setNumpoints(int numpoints){
+
+    public void setNumpoints(int numpoints) {
         this.numPoints = numpoints;
     }
-    public int getNumpoints(){
+
+    public int getNumpoints() {
         return this.numPoints;
     }
-    
-    
-    public float[] getDists(){
+
+    public float[] getDists() {
         return this.dists;
     }
-    public void setDists(float[] floatarray){
-    this.dists = floatarray;
-}
-    public void setSize(int size){
+
+    public void setDists(float[] floatarray) {
+        this.dists = floatarray;
+    }
+
+    public void setSize(int size) {
         this.size = size;
     }
-    
-    public int getSize(){
+
+    public int getSize() {
         return this.size;
     }
-    
-    public void reduceExpiration(float delta){
+
+    public void reduceExpiration(float delta) {
         this.expiration -= delta;
     }
-    
-    public float getExpiration(){
+
+    public float getExpiration() {
         return expiration;
     }
-    
-    public void setExpiration(float value){
+
+    public void setExpiration(float value) {
         this.expiration = value;
     }
-    
-    public boolean getIsHit(){
+
+    public boolean getIsHit() {
         return isHit;
     }
-    
-    public void setIsHit(boolean hit){
+
+    public void setIsHit(boolean hit) {
         this.isHit = hit;
     }
-    
-    
-    public void setRadius(float r){
+
+    public void setRadius(float r) {
         this.radius = r;
     }
-    
-    public float getRadius(){
+
+    public float getRadius() {
         return radius;
     }
-    
-    public int getHealth(){
+
+    public int getHealth() {
         return health;
     }
-    
-    public void setHealth(int health){
+
+    public void setHealth(int health) {
         this.health = health;
     }
 
@@ -196,16 +203,16 @@ public final class Entity implements Serializable {
     public float getX() {
         return x;
     }
-    
-    public void setX(float x){
+
+    public void setX(float x) {
         this.x = x;
     }
 
     public float getY() {
         return y;
     }
-    
-    public void setY(float y){
+
+    public void setY(float y) {
         this.y = y;
     }
 
@@ -273,14 +280,13 @@ public final class Entity implements Serializable {
     public boolean isType(EntityType entityType) {
         return this.type.equals(entityType);
     }
-    
-        public boolean contains(float x, float y)
-    {
+
+    public boolean contains(float x, float y) {
         boolean b = false;
         for (int i = 0, j = shapeX.length - 1; i < shapeX.length; j = i++) {
 
-            if ((shapeY[i] > y) != (shapeY[j] > y) && 
-                    (x < (shapeX[j] - shapeX[i])
+            if ((shapeY[i] > y) != (shapeY[j] > y)
+                    && (x < (shapeX[j] - shapeX[i])
                     * (y - shapeY[i]) / (shapeY[j] - shapeY[i])
                     + shapeX[i])) {
                 b = !b;
@@ -326,7 +332,7 @@ public final class Entity implements Serializable {
     }
 
     public void setTotalKills(int totalKills) {
-        if(this.totalKills != totalKills){
+        if (this.totalKills != totalKills) {
             this.totalKills = totalKills;
         }
     }
@@ -336,7 +342,7 @@ public final class Entity implements Serializable {
     }
 
     public void setTotalHits(int totalHits) {
-        if(this.totalHits != totalHits){
+        if (this.totalHits != totalHits) {
             this.totalHits = totalHits;
         }
     }
@@ -356,8 +362,5 @@ public final class Entity implements Serializable {
     public void setView(View view) {
         this.view = view;
     }
-    
-    
-    
 
 }

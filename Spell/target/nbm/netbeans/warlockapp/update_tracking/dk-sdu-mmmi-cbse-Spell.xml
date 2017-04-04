@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.Spell">
-    <module_version install_time="1491308247438" last="true" origin="installer" specification_version="1.0.0">
+    <module_version install_time="1491317070607" last="true" origin="installer" specification_version="1.0.0">
         <file crc="2289440828" name="config/Modules/dk-sdu-mmmi-cbse-Spell.xml"/>
-        <file crc="3213999631" name="modules/dk-sdu-mmmi-cbse-Spell.jar"/>
+        <file crc="3444074099" name="modules/dk-sdu-mmmi-cbse-Spell.jar"/>
         <file crc="1390441787" name="modules/ext/dk.sdu.mmmi.cbse.Spell/com-badlogicgames-gdx/gdx.jar"/>
     </module_version>
 </module>

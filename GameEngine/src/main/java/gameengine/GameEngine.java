@@ -30,6 +30,7 @@ import org.openide.util.Lookup;
 import services.IEntityProcessingService;
 import services.IGamePluginService;
 import services.MapSPI;
+import data.Animator;
 
 /**
  *
@@ -48,12 +49,13 @@ public class GameEngine implements ApplicationListener {
     private List<MapSPI> maps;
     private TiledMap map;
     private IsometricTiledMapRenderer renderer;
-    public  DotaCamera camera;
+    public DotaCamera camera;
     private AssetManager assetManager;
     private MapLayers mapLayers, groundLayers;
     private float shrinkTimer, shrinkTime;
     private int layerCount;
     private ShapeRenderer sr;
+    private SpriteBatch playerSprite;
 
     @Override
     public void create() {
@@ -64,12 +66,11 @@ public class GameEngine implements ApplicationListener {
         AssetsJarFileResolver jfhr = new AssetsJarFileResolver();
         assetManager = new AssetManager(jfhr);
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        
+
         pluginResult = lookup.lookupResult(IGamePluginService.class);
         processorResult = lookup.lookupResult(IEntityProcessingService.class);
         mapResult = lookup.lookupResult(MapSPI.class);
         sr = new ShapeRenderer();
-        
 
         assetManager.load("assets/shrinkingmap.tmx", TiledMap.class);
         assetManager.finishLoading();
@@ -80,13 +81,13 @@ public class GameEngine implements ApplicationListener {
         camera = new DotaCamera();
         processors = new CopyOnWriteArrayList<>();
         entityPlugins = new CopyOnWriteArrayList<>();
-        
+
         mapLayers = map.getLayers();
         groundLayers = new MapLayers();
-        
+
         gameData.setDisplayWidth(Gdx.graphics.getWidth());
         gameData.setDisplayHeight(Gdx.graphics.getHeight());
-        camera.position.set(camera.viewportWidth/2 + 900, camera.viewportHeight/2, 0);
+        camera.position.set(camera.viewportWidth / 2 + 900, camera.viewportHeight / 2, 0);
 
         for (int i = 2; i < mapLayers.getCount(); i++) {
             mapLayers.get(i).setVisible(false);
@@ -102,6 +103,8 @@ public class GameEngine implements ApplicationListener {
             processors.add(processor);
         }
         
+        playerSprite = new SpriteBatch();
+
     }
 
     @Override
@@ -115,7 +118,7 @@ public class GameEngine implements ApplicationListener {
     public void render() {
         gameData.setDelta(Gdx.graphics.getDeltaTime());
         Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); 
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.setView(camera);
         renderer.render();
         camera.updateAndMove();
@@ -125,6 +128,13 @@ public class GameEngine implements ApplicationListener {
 
     private void draw() {
 
+        //NO DELETE PLZZZ
+//        for (Entity e : world.getEntities(PLAYER)) {
+//            playerSprite.setProjectionMatrix(camera.combined);
+//            playerSprite.begin();
+//            playerSprite.draw(e.getAnimator().getFrame(e), e.getX(), e.getY());
+//            playerSprite.end();
+//        }
         for (Entity entity : world.getEntities()) {
             float[] shapex = entity.getShapeX();
             float[] shapey = entity.getShapeY();
@@ -146,8 +156,7 @@ public class GameEngine implements ApplicationListener {
 
     }
 
-    private void mapShrink(int layerCount)
-    {
+    private void mapShrink(int layerCount) {
 
         mapLayers.get(1).setVisible(false);
         for (int i = 0; i < groundLayers.getCount(); i++) {
@@ -159,13 +168,13 @@ public class GameEngine implements ApplicationListener {
 
         }
     }
+
     private void update() {
 
-        
         shrinkTimer += gameData.getDelta();
         if (shrinkTimer >= shrinkTime) {
-            layerCount ++;
-            if(layerCount >= groundLayers.getCount()){
+            layerCount++;
+            if (layerCount >= groundLayers.getCount()) {
                 layerCount--;
             }
             mapShrink(layerCount);
@@ -177,15 +186,11 @@ public class GameEngine implements ApplicationListener {
         for (IEntityProcessingService processor : processors) {
             processor.process(gameData, world);
         }
-        
-        for(Entity e : world.getEntities()){
-            if(e.getType() == PLAYER){
+
 //                camera.position.x = e.getX();
 //                camera.position.y = e.getY();
 //                camera.update();
 //                System.out.println(sr.getProjectionMatrix());
-            }
-        }
     }
 
     @Override
@@ -204,8 +209,4 @@ public class GameEngine implements ApplicationListener {
         renderer.dispose();
     }
 
-    
-    
-
 }
-

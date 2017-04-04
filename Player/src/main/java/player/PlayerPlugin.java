@@ -11,6 +11,8 @@ import services.IEntityProcessingService;
 import services.IGamePluginService;
 import States.MovementState;
 import data.ViewManager;
+import data.ViewPaths;
+import data.Animator;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IEntityProcessingService.class),
@@ -27,9 +29,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
     private float directionY;
     private float directionX;
     private Entity player;
-    private Animator animator;
-    private static final String PLAYER_IMAGE_PATH = "assets/Characters.pack";
-    public static String PLAYER_FINAL_IMAGE_PATH = "";
+    
 	
             
     @Override
@@ -51,11 +51,11 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         player.setMoveState(MovementState.STANDINGRIGHT);
         player.setCharState(CharacterState.IDLE);
         
-        PLAYER_FINAL_IMAGE_PATH = PlayerPlugin.class.getResource(PLAYER_IMAGE_PATH).getPath().replace("file:", "");
-        ViewManager.createView(PLAYER_FINAL_IMAGE_PATH, false);
-	player.setView(ViewManager.getView(PLAYER_FINAL_IMAGE_PATH));
+        ViewPaths.CHARACTER_FINAL_IMAGE_PATH = PlayerPlugin.class.getResource(ViewPaths.CHARACTER_IMAGE_PATH).getPath().replace("file:", "");
+        ViewManager.createView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH, false);
+	player.setView(ViewManager.getView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH));
         
-        animator = new Animator();
+        
     }
 
     @Override
@@ -70,8 +70,6 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
 //            setShape(x, y, player.getRadians());
 //            player.setShapeX(shapex);
 //            player.setShapeY(shapey);
-
-            animator.render(player, gameData);
         }
 
     }
@@ -90,6 +88,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
 //        shapey[3] = (float) (y + Math.sin(radians + 16 * 3.1415f / 20) * 32);
 //
 //    }
+
     
 
     @Override

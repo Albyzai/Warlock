@@ -12,18 +12,14 @@ import data.SpellInfo;
 public class SpellArchive {
 
     private static final TreeMap spellArchive = new TreeMap<SpellType, Spell>();
-    private Animator animator = new Animator();
 
     public SpellArchive(World world) {
-        spellArchive.put(SpellType.FIREBALL, new Spell(world, SpellType.FIREBALL, SpellInfo.FIREBALL_DMG, animator.getSpell1(), SpellInfo.FIREBALL_STATIC, SpellInfo.FIREBALL_EXPIRATION, SpellInfo.FIREBALL_SPEED, SpellInfo.FIREBALL_ACCELERATION, SpellInfo.FIREBALL_COOLDOWN, SpellInfo.FIREBALL_BOUNCE));
+        //spellArchive.put(SpellType.FIREBALL, new Spell(world, SpellType.FIREBALL, SpellInfo.FIREBALL_DMG, animator.getSpell1(), SpellInfo.FIREBALL_STATIC, SpellInfo.FIREBALL_EXPIRATION, SpellInfo.FIREBALL_SPEED, SpellInfo.FIREBALL_ACCELERATION, SpellInfo.FIREBALL_COOLDOWN, SpellInfo.FIREBALL_BOUNCE));
     }
 
     public static TreeMap getSpellArchive() {
         return spellArchive;
     }
 
-    public Animator getAnimator() {
-        return animator;
-    }
 
 }
