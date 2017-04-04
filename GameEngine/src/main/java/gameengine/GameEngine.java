@@ -101,7 +101,7 @@ public class GameEngine implements ApplicationListener {
         for (IEntityProcessingService processor : processorResult.allInstances()) {
             processors.add(processor);
         }
-
+        
     }
 
     @Override

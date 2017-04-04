@@ -44,5 +44,11 @@
             <version>1.9.6</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>org-apache-commons-io</artifactId>
+            <version>RELEASE82</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 </project>

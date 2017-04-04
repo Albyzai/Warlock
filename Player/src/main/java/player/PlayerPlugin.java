@@ -1,14 +1,8 @@
 package player;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Buttons;
-import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector3;
 import data.Entity;
 import static data.EntityType.PLAYER;
 import data.GameData;
-import static data.GameKeys.*;
 import data.World;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
@@ -30,7 +24,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
     private float directionY;
     private float directionX;
     private Entity player;
-    
+            
     @Override
     public void start(GameData gameData, World world) {
         // Add entities to the world
@@ -46,6 +40,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         player.setRadians(3.1415f / 2);
         player.setRotationSpeed(3);
         world.addEntity(player);
+        
     }
 
     @Override
@@ -79,6 +74,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         shapey[3] = (float) (y + Math.sin(radians + 16 * 3.1415f / 20) * 32);
 
     }
+    
 
     @Override
     public void stop(GameData gameData, World world) {
