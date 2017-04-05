@@ -41,6 +41,7 @@ public class Animator{
         assets.load(ViewManager.getView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH).getImageFilePath(), TextureAtlas.class);
         assets.finishLoading();
         atlas = assets.get(ViewPaths.CHARACTER_FINAL_IMAGE_PATH, TextureAtlas.class);
+       
 
         stateTime = 0;
         Texture texture = atlas.findRegion("FireCharacter").getTexture();
@@ -129,6 +130,8 @@ public class Animator{
     public float getStateTime() {
         return stateTime;
     }
+
+    
     
 
 }

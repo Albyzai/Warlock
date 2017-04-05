@@ -12,7 +12,6 @@ import services.IGamePluginService;
 import States.MovementState;
 import data.ViewManager;
 import data.ViewPaths;
-import data.Animator;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IEntityProcessingService.class),
@@ -35,9 +34,13 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
     @Override
     public void start(GameData gameData, World world) {
         // Add entities to the world
+        ViewPaths.CHARACTER_FINAL_IMAGE_PATH = PlayerPlugin.class.getResource(ViewPaths.CHARACTER_IMAGE_PATH).getPath().replace("file:", "");
+        ViewManager.createView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH, false);
+        
         Entity player = new Entity();
         player.setType(PLAYER);
 
+	player.setView(ViewManager.getView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH));
         player.setPosition(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
 
         player.setMaxSpeed(2);
@@ -51,9 +54,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         player.setMoveState(MovementState.STANDINGRIGHT);
         player.setCharState(CharacterState.IDLE);
         
-        ViewPaths.CHARACTER_FINAL_IMAGE_PATH = PlayerPlugin.class.getResource(ViewPaths.CHARACTER_IMAGE_PATH).getPath().replace("file:", "");
-        ViewManager.createView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH, false);
-	player.setView(ViewManager.getView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH));
+        
         
         
     }
@@ -67,27 +68,27 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
             float y = player.getY();
 
             // set shape
-//            setShape(x, y, player.getRadians());
-//            player.setShapeX(shapex);
-//            player.setShapeY(shapey);
+            setShape(x, y, player.getRadians());
+            player.setShapeX(shapex);
+            player.setShapeY(shapey);
         }
 
     }
 
-//    private void setShape(float x, float y, float radians) {
-//        shapex[0] = (float) (x + Math.cos(radians) * 32);
-//        shapey[0] = (float) (y + Math.sin(radians) * 32);
-//
-//        shapex[1] = (float) (x + Math.cos(radians - 16 * 3.1415f / 20) * 32);
-//        shapey[1] = (float) (y + Math.sin(radians - 16 * 3.1145f / 20) * 32);
-//
-//        shapex[2] = (float) (x + Math.cos(radians + 3.1415f) * 20);
-//        shapey[2] = (float) (y + Math.sin(radians + 3.1415f) * 20);
-//
-//        shapex[3] = (float) (x + Math.cos(radians + 16 * 3.1415f / 20) * 32);
-//        shapey[3] = (float) (y + Math.sin(radians + 16 * 3.1415f / 20) * 32);
-//
-//    }
+    private void setShape(float x, float y, float radians) {
+        shapex[0] = (float) (x + Math.cos(radians) * 32);
+        shapey[0] = (float) (y + Math.sin(radians) * 32);
+
+        shapex[1] = (float) (x + Math.cos(radians - 16 * 3.1415f / 20) * 32);
+        shapey[1] = (float) (y + Math.sin(radians - 16 * 3.1145f / 20) * 32);
+
+        shapex[2] = (float) (x + Math.cos(radians + 3.1415f) * 20);
+        shapey[2] = (float) (y + Math.sin(radians + 3.1415f) * 20);
+
+        shapex[3] = (float) (x + Math.cos(radians + 16 * 3.1415f / 20) * 32);
+        shapey[3] = (float) (y + Math.sin(radians + 16 * 3.1415f / 20) * 32);
+
+    }
 
     
 

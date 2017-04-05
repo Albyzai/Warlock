@@ -4,15 +4,18 @@ OpenIDE-Module-Install: dk/sdu/mmmi/cbse/movementsystem/Installer.clas
 OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/movementsystem/Bund
  le.properties
 OpenIDE-Module-Specification-Version: 1.0.0
-OpenIDE-Module-Implementation-Version: 1.0.0-20170404
-OpenIDE-Module-Build-Version: 201704041444
+OpenIDE-Module-Implementation-Version: 1.0.0-20170405
+OpenIDE-Module-Build-Version: 201704051206
 OpenIDE-Module: dk.sdu.mmmi.cbse.MovementSystem
-OpenIDE-Module-Public-Packages: -
+OpenIDE-Module-Public-Packages: dk.sdu.mmmi.cbse.movementsystem.*
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
 OpenIDE-Module-Display-Category: dk.sdu.mmmi.cbse
 OpenIDE-Module-Name: MovementSystem
 OpenIDE-Module-Short-Description: <undefined>
 OpenIDE-Module-Long-Description: <undefined>
+X-Class-Path: ext/dk.sdu.mmmi.cbse.MovementSystem/com-badlogicgames-gd
+ x/gdx.jar
+Maven-Class-Path: com.badlogicgames.gdx:gdx:1.9.6
 OpenIDE-Module-Module-Dependencies: org.netbeans.api.annotations.commo
  n/1 > 1.27.1, org.openide.modules > 7.48.1, org.openide.util.ui > 9.6
  .1, dk.sdu.mmmi.cbse.Common > 1.0.0

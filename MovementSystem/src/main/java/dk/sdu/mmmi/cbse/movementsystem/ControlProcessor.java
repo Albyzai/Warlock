@@ -6,6 +6,7 @@
 package dk.sdu.mmmi.cbse.movementsystem;
 
 import States.CharacterState;
+import com.badlogic.gdx.math.Vector3;
 import data.Entity;
 import data.EntityType;
 import static data.EntityType.SPELL;
@@ -54,10 +55,11 @@ public class ControlProcessor implements IEntityProcessingService {
 
             startX = e.getX();
             startY = e.getY();
+            Vector3 vec = new Vector3(gameData.getScreenX(), gameData.getScreenY(), 0);
             endX = gameData.getScreenX();
             endY = gameData.getDisplayHeight() - gameData.getScreenY();
 
-            distance = (float) Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+            distance = (float) Math.sqrt(Math.pow(endY - startX, 2) + Math.pow(endY - startY, 2));
 
             directionX = (endX - startX) / distance;
             directionY = (endY - startY) / distance;
