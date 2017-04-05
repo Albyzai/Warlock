@@ -6,6 +6,7 @@
 package dk.sdu.mmmi.cbse.movementsystem;
 
 import States.CharacterState;
+import States.MovementState;
 import data.Entity;
 import data.EntityType;
 import static data.EntityType.SPELL;
@@ -25,13 +26,13 @@ import services.IEntityProcessingService;
  */
 public class ControlProcessor implements IEntityProcessingService {
 
-    private boolean moving;
     float startX, startY, endX, endY;
     float directionX;
     float directionY;
     float distance;
     float speed = 200;
     float dt;
+    float angle;
 
     @Override
     public void process(GameData gameData, World world) {
@@ -52,10 +53,12 @@ public class ControlProcessor implements IEntityProcessingService {
     private void handleMoveClick(Entity e, GameData gameData) {
         if (gameData.getKeys().isPressed(RIGHT_MOUSE)) {
 
+            //skal rykkes ud herfra saa man kan bruge vaerdierne
             startX = e.getX();
             startY = e.getY();
             endX = gameData.getScreenX();
             endY = gameData.getDisplayHeight() - gameData.getScreenY();
+            angle = (float) Math.toDegrees(Math.atan2(endY - startY, endX - startX));
 
             distance = (float) Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
 
@@ -64,6 +67,17 @@ public class ControlProcessor implements IEntityProcessingService {
             e.setX(startX);
             e.setY(startY);
             e.setCharState(CharacterState.MOVING);
+            System.out.println(angle);
+
+            if (angle > -45 && angle < 45) {
+                e.setMoveState(MovementState.RUNNINGRIGHT);
+            } else if (angle < 135 && angle > 45) {
+                e.setMoveState(MovementState.RUNNINGUP);
+            } else if (angle > -135 && angle < -45) {
+                e.setMoveState(MovementState.RUNNINGDOWN);
+            } else {
+                e.setMoveState(MovementState.RUNNINGLEFT);
+            }
         }
 
         if (distance > 0) {
@@ -92,7 +106,15 @@ public class ControlProcessor implements IEntityProcessingService {
             if (e.getChosenSpell() == null) {
                 System.out.println("No spell chosen");
             } else {
-
+                if (angle > -45 && angle < 45) {
+                    e.setMoveState(MovementState.STANDINGRIGHT);
+                } else if (angle < 135 && angle > 45) {
+                    e.setMoveState(MovementState.STANDINGUP);
+                } else if (angle > -135 && angle < -45) {
+                    e.setMoveState(MovementState.STANDINGDOWN);
+                } else {
+                    e.setMoveState(MovementState.STANDINGLEFT);
+                }
                 System.out.println("shoot at target location");
                 e.setCharState(CharacterState.CASTING);
                 System.out.println("Shooting: + " + e.getChosenSpell());
