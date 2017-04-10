@@ -4,7 +4,7 @@ OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/warlock/app/brandin
 AutoUpdate-Essential-Module: true
 OpenIDE-Module-Specification-Version: 1.0.0
 OpenIDE-Module-Implementation-Version: 1.0.0-20170405
-OpenIDE-Module-Build-Version: 201704051251
+OpenIDE-Module-Build-Version: 201704051301
 OpenIDE-Module: dk.sdu.mmmi.cbse.Warlock.app.branding
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
