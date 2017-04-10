@@ -12,7 +12,6 @@ import services.IGamePluginService;
 import States.MovementState;
 import data.ViewManager;
 import data.ViewPaths;
-import data.Animator;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IEntityProcessingService.class),
@@ -35,9 +34,13 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
     @Override
     public void start(GameData gameData, World world) {
         // Add entities to the world
+        ViewPaths.CHARACTER_FINAL_IMAGE_PATH = PlayerPlugin.class.getResource(ViewPaths.CHARACTER_IMAGE_PATH).getPath().replace("file:", "");
+        ViewManager.createView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH, false);
+        
         Entity player = new Entity();
         player.setType(PLAYER);
 
+	player.setView(ViewManager.getView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH));
         player.setPosition(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
 
         player.setMaxSpeed(2);
@@ -51,9 +54,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         player.setMoveState(MovementState.STANDINGRIGHT);
         player.setCharState(CharacterState.IDLE);
         
-        ViewPaths.CHARACTER_FINAL_IMAGE_PATH = PlayerPlugin.class.getResource(ViewPaths.CHARACTER_IMAGE_PATH).getPath().replace("file:", "");
-        ViewManager.createView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH, false);
-	player.setView(ViewManager.getView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH));
+        
         
         
     }
@@ -66,6 +67,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
             float x = player.getX();
             float y = player.getY();
 
+            // set shape
             setShape(x, y, player.getRadians());
             player.setShapeX(shapex);
             player.setShapeY(shapey);

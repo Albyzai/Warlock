@@ -6,6 +6,7 @@
 package dk.sdu.mmmi.cbse.movementsystem;
 
 import States.CharacterState;
+import com.badlogic.gdx.math.Vector3;
 import States.MovementState;
 import data.Entity;
 import data.EntityType;
@@ -56,18 +57,18 @@ public class ControlProcessor implements IEntityProcessingService {
             //skal rykkes ud herfra saa man kan bruge vaerdierne
             startX = e.getX();
             startY = e.getY();
+            Vector3 vec = new Vector3(gameData.getScreenX(), gameData.getScreenY(), 0);
             endX = gameData.getScreenX();
             endY = gameData.getDisplayHeight() - gameData.getScreenY();
             angle = (float) Math.toDegrees(Math.atan2(endY - startY, endX - startX));
 
-            distance = (float) Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+            distance = (float) Math.sqrt(Math.pow(endY - startX, 2) + Math.pow(endY - startY, 2));
 
             directionX = (endX - startX) / distance;
             directionY = (endY - startY) / distance;
             e.setX(startX);
             e.setY(startY);
-            e.setCharState(CharacterState.MOVING);
-            System.out.println(angle);
+            e.setCharState(CharacterState.MOVING);  
 
             if (angle > -45 && angle < 45) {
                 e.setMoveState(MovementState.RUNNINGRIGHT);
