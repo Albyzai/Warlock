@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 OpenIDE-Module-Install: player/Installer.class
-OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/player/Bundle.properties
+OpenIDE-Module-Localizing-Bundle: player/Bundle.properties
 

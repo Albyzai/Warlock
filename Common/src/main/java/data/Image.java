@@ -6,12 +6,12 @@
 package data;
 
 
-public class View
+public class Image
 {
     private final String imageFile;
     private final boolean repeatImage;
 
-    public View(String path, boolean repeatImage)
+    public Image(String path, boolean repeatImage)
     {
         this.imageFile = path;
         this.repeatImage = repeatImage;

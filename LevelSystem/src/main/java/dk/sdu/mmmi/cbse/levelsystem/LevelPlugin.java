@@ -46,7 +46,7 @@ public class LevelPlugin implements IGamePluginService, IEntityProcessingService
     }
 
     @Override
-    public void stop(GameData gameData, World world) {
+    public void stop() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

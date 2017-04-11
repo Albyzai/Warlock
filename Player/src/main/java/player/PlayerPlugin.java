@@ -10,8 +10,7 @@ import org.openide.util.lookup.ServiceProviders;
 import services.IEntityProcessingService;
 import services.IGamePluginService;
 import States.MovementState;
-import data.ViewManager;
-import data.ViewPaths;
+import data.ImageManager;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IEntityProcessingService.class),
@@ -28,19 +27,20 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
     private float directionY;
     private float directionX;
     private Entity player;
-    
-	
+    public static final String CHARACTER_IMAGE_PATH = "assets/Characters.png";
+    public static String CHARACTER_FINAL_IMAGE_PATH = "";
+    private World world;
             
     @Override
     public void start(GameData gameData, World world) {
         // Add entities to the world
-        ViewPaths.CHARACTER_FINAL_IMAGE_PATH = PlayerPlugin.class.getResource(ViewPaths.CHARACTER_IMAGE_PATH).getPath().replace("file:", "");
-        ViewManager.createView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH, false);
-        
-        Entity player = new Entity();
+        CHARACTER_FINAL_IMAGE_PATH = PlayerPlugin.class.getResource(CHARACTER_IMAGE_PATH).getPath().replace("file:", "");
+        ImageManager.createImage(CHARACTER_FINAL_IMAGE_PATH, false);
+        this.world = world;
+        player = new Entity();
         player.setType(PLAYER);
 
-	player.setView(ViewManager.getView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH));
+	player.setView(ImageManager.getImage(CHARACTER_FINAL_IMAGE_PATH));
         player.setPosition(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
 
         player.setMaxSpeed(2);
@@ -63,17 +63,14 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
     public void process(GameData gameData, World world) {
         // TODO: Implement entity processor
 
-        for (Entity player : world.getEntities(PLAYER)) {
-            float x = player.getX();
-            float y = player.getY();
+        for (Entity p : world.getEntities(PLAYER)) {
+            float x = p.getX();
+            float y = p.getY();
 
-<<<<<<< HEAD
-            // set shape
-=======
->>>>>>> 4359e952832ddda0416015a3c9ea0e9e5443c378
-            setShape(x, y, player.getRadians());
-            player.setShapeX(shapex);
-            player.setShapeY(shapey);
+
+            setShape(x, y, p.getRadians());
+            p.setShapeX(shapex);
+            p.setShapeY(shapey);
         }
 
     }
@@ -96,7 +93,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
     
 
     @Override
-    public void stop(GameData gameData, World world) {
+    public void stop() {
         // Remove entities
         world.removeEntity(player);
     }

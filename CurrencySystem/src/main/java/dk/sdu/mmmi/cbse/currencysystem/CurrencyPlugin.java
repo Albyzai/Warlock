@@ -41,7 +41,7 @@ public class CurrencyPlugin implements IGamePluginService, IEntityProcessingServ
 
 
     @Override
-    public void stop(GameData gameData, World world) {
+    public void stop() {
     }
 
 }
