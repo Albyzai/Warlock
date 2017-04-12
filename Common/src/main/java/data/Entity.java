@@ -44,13 +44,8 @@ public final class Entity implements Serializable {
     private int totalKills = 0;
     private int totalHits = 0;
     private int gold;
-    private View view;
-    private Animator animator = new Animator();
+    private Image view;
 
-
-    public Animator getAnimator() {
-        return animator;
-    }
 
     public MovementState getMoveState() {
         return moveState;
@@ -355,11 +350,11 @@ public final class Entity implements Serializable {
         this.gold = gold;
     }
 
-    public View getView() {
+    public Image getView() {
         return view;
     }
 
-    public void setView(View view) {
+    public void setView(Image view) {
         this.view = view;
     }
 

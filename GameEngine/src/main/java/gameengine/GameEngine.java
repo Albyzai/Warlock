@@ -10,8 +10,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -20,7 +21,6 @@ import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
 import data.Entity;
 import static data.EntityType.PLAYER;
 import data.GameData;
-import static data.GameKeys.*;
 import data.World;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -30,7 +30,8 @@ import org.openide.util.Lookup;
 import services.IEntityProcessingService;
 import services.IGamePluginService;
 import services.MapSPI;
-import data.Animator;
+import data.Image;
+import data.ImageManager;
 
 /**
  *
@@ -56,25 +57,25 @@ public class GameEngine implements ApplicationListener {
     private int layerCount;
     private ShapeRenderer sr;
     private SpriteBatch playerSprite;
+    private Animator animator;
 
     @Override
     public void create() {
+
         world = new World();
         gameData = new GameData();
         maps = new CopyOnWriteArrayList<>();
+        animator = new Animator();
         shrinkTime = 15;
         AssetsJarFileResolver jfhr = new AssetsJarFileResolver();
         assetManager = new AssetManager(jfhr);
-        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 
         pluginResult = lookup.lookupResult(IGamePluginService.class);
         processorResult = lookup.lookupResult(IEntityProcessingService.class);
         mapResult = lookup.lookupResult(MapSPI.class);
         sr = new ShapeRenderer();
-
-        assetManager.load("assets/shrinkingmap.tmx", TiledMap.class);
-        assetManager.finishLoading();
-        map = assetManager.get("assets/shrinkingmap.tmx");
+        loadMap();
+        map = assetManager.get("assets/shrinkingmap.tmx", TiledMap.class);
 
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
         renderer = new IsometricTiledMapRenderer(map);
@@ -102,9 +103,31 @@ public class GameEngine implements ApplicationListener {
         for (IEntityProcessingService processor : processorResult.allInstances()) {
             processors.add(processor);
         }
+
+        loadImages();
         
         playerSprite = new SpriteBatch();
 
+    }
+
+    private void loadImages() {
+        for (Image image : ImageManager.images()) {
+            String imagePath = image.getImageFilePath();
+
+            if (!assetManager.isLoaded(imagePath, Texture.class)) {
+                assetManager.load(imagePath, Texture.class);
+                assetManager.finishLoading();
+
+            }
+        }
+    }
+
+    private void loadMap() {
+        if (!assetManager.isLoaded("assets/shrinkingmap.tmx", TiledMap.class)) {
+            assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+            assetManager.load("assets/shrinkingmap.tmx", TiledMap.class);
+            assetManager.finishLoading();
+        }
     }
 
     @Override
@@ -128,32 +151,23 @@ public class GameEngine implements ApplicationListener {
 
     private void draw() {
 
-        //NO DELETE PLZZZ
-//        for (Entity e : world.getEntities(PLAYER)) {
-//            playerSprite.setProjectionMatrix(camera.combined);
-//            playerSprite.begin();
-//            playerSprite.draw(e.getAnimator().getFrame(e), e.getX(), e.getY());
-//            playerSprite.end();
-//        }
-        for (Entity entity : world.getEntities()) {
-            float[] shapex = entity.getShapeX();
-            float[] shapey = entity.getShapeY();
-            if (shapex != null && shapey != null) {
+        for (Entity e : world.getEntities(PLAYER)) {
+            Image image = e.getView();
+            System.out.println(image.getImageFilePath());
+            if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
 
-                sr.setColor(1, 1, 1, 1);
+                animator.initializeSprite(assetManager.get(image.getImageFilePath(), Texture.class));
+                System.out.println(image.getImageFilePath());
 
-                sr.begin(ShapeRenderer.ShapeType.Line);
-
-                for (int i = 0, j = shapex.length - 1;
-                        i < shapex.length;
-                        j = i++) {
-
-                    sr.line(shapex[i], shapey[i], shapex[j], shapey[j]);
+                if (!image.isRepeat()) {
+                    animator.updateStateTime(gameData.getDelta());
+                    playerSprite.setProjectionMatrix(camera.combined);
+                    playerSprite.begin();
+                    playerSprite.draw(animator.getFrame(e), e.getX(), e.getY());
+                    playerSprite.end();
                 }
-                sr.end();
             }
         }
-
     }
 
     private void mapShrink(int layerCount) {
@@ -162,7 +176,8 @@ public class GameEngine implements ApplicationListener {
         for (int i = 0; i < groundLayers.getCount(); i++) {
             if (layerCount == i + 1 && i != 4) {
                 groundLayers.get(i).setVisible(true);
-            } else {
+            }
+            else {
                 groundLayers.get(i).setVisible(false);
             }
 
@@ -170,6 +185,7 @@ public class GameEngine implements ApplicationListener {
     }
 
     private void update() {
+        assetManager.update();
 
         shrinkTimer += gameData.getDelta();
         if (shrinkTimer >= shrinkTime) {
@@ -187,10 +203,7 @@ public class GameEngine implements ApplicationListener {
             processor.process(gameData, world);
         }
 
-//                camera.position.x = e.getX();
-//                camera.position.y = e.getY();
-//                camera.update();
-//                System.out.println(sr.getProjectionMatrix());
+        camera.update();
     }
 
     @Override
@@ -207,6 +220,7 @@ public class GameEngine implements ApplicationListener {
     public void dispose() {
         map.dispose();
         renderer.dispose();
+        assetManager.dispose();
     }
 
 }
