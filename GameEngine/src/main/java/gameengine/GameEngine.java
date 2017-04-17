@@ -20,6 +20,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
 import data.Entity;
 import static data.EntityType.PLAYER;
+import static data.EntityType.SPELL;
 import data.GameData;
 import data.World;
 import java.util.List;
@@ -153,17 +154,30 @@ public class GameEngine implements ApplicationListener {
 
         for (Entity e : world.getEntities(PLAYER)) {
             Image image = e.getView();
-            System.out.println(image.getImageFilePath());
             if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
 
                 animator.initializeSprite(assetManager.get(image.getImageFilePath(), Texture.class));
-                System.out.println(image.getImageFilePath());
 
                 if (!image.isRepeat()) {
                     animator.updateStateTime(gameData.getDelta());
                     playerSprite.setProjectionMatrix(camera.combined);
                     playerSprite.begin();
                     playerSprite.draw(animator.getFrame(e), e.getX(), e.getY());
+                    playerSprite.end();
+                }
+            }
+        }
+        for (Entity e : world.getEntities(SPELL)) {
+            Image image = e.getView();
+            if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
+
+                animator.initializeSpell(assetManager.get(image.getImageFilePath(), Texture.class));
+
+                if (!image.isRepeat()) {
+                    animator.updateStateTime(gameData.getDelta());
+                    playerSprite.setProjectionMatrix(camera.combined);
+                    playerSprite.begin();
+                    playerSprite.draw(animator.getSpellTexture(), e.getX(), e.getY());
                     playerSprite.end();
                 }
             }

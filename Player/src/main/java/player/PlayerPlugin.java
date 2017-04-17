@@ -63,16 +63,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
     public void process(GameData gameData, World world) {
         // TODO: Implement entity processor
 
-<<<<<<< HEAD
-        for (Entity player : world.getEntities(PLAYER)) {
-            float x = player.getX();
-            float y = player.getY();
-            
-            // set shape
-            setShape(x, y, player.getRadians());
-            player.setShapeX(shapex);
-            player.setShapeY(shapey);
-=======
+
         for (Entity p : world.getEntities(PLAYER)) {
             float x = p.getX();
             float y = p.getY();
@@ -81,7 +72,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
             setShape(x, y, p.getRadians());
             p.setShapeX(shapex);
             p.setShapeY(shapey);
->>>>>>> 8367a8fc6b26128c3ac736cef641d66324e2b3b4
+
         }
 
     }

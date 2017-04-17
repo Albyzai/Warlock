@@ -121,8 +121,12 @@ public class ControlProcessor implements IEntityProcessingService {
         if (gameData.getKeys().isPressed(NUM_1)) {
             e.setChosenSpell(SpellType.FIREBALL);
         }
+        else
+        {
+            return;
+        }
         if (gameData.getKeys().isPressed(NUM_2)) {
-            e.setChosenSpell(SpellType.SPELL2);
+            //e.setChosenSpell(SpellType.SPELL2);
 
         }
         if (gameData.getKeys().isPressed(NUM_3)) {

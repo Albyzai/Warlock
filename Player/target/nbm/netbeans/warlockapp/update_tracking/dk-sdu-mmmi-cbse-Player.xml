@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.Player">
-    <module_version install_time="1491915056896" last="true" origin="installer" specification_version="1.0.0">
+    <module_version install_time="1492464111413" last="true" origin="installer" specification_version="1.0.0">
         <file crc="477641821" name="config/Modules/dk-sdu-mmmi-cbse-Player.xml"/>
-        <file crc="1490970671" name="modules/dk-sdu-mmmi-cbse-Player.jar"/>
+        <file crc="3683571554" name="modules/dk-sdu-mmmi-cbse-Player.jar"/>
         <file crc="1390441787" name="modules/ext/dk.sdu.mmmi.cbse.Player/com-badlogicgames-gdx/gdx.jar"/>
     </module_version>
 </module>
