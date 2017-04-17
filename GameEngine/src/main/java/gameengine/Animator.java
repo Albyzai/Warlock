@@ -3,20 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data;
+package gameengine;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
+
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
-import States.MovementState;
+import data.Entity;
+import data.GameData;
 
 /**
  *
@@ -24,9 +20,7 @@ import States.MovementState;
  */
 public class Animator{
 
-    private SpriteBatch batch;
-    private TextureAtlas atlas;
-    private AssetManager assets;
+    private Texture texture;
     private float stateTime;
 
     private TextureRegion chStandingRight, chStandingLeft, chStandingUp, chStandingDown;
@@ -35,55 +29,11 @@ public class Animator{
     
 
     public void Animator(){
-        batch = new SpriteBatch();
 
-        assets = new AssetManager();
-        assets.load(ViewManager.getView(ViewPaths.CHARACTER_FINAL_IMAGE_PATH).getImageFilePath(), TextureAtlas.class);
-        assets.finishLoading();
-        atlas = assets.get(ViewPaths.CHARACTER_FINAL_IMAGE_PATH, TextureAtlas.class);
-       
-
-        stateTime = 0;
-        Texture texture = atlas.findRegion("FireCharacter").getTexture();
-
-        chStandingRight = new TextureRegion(texture, 0, 0, 16, 16);
-        chStandingLeft = new TextureRegion(texture, 0, 16, 16, 16);
-        chStandingUp = new TextureRegion(texture, 0, 32, 16, 16);
-        chStandingDown = new TextureRegion(texture, 0, 48, 16, 16);
-
-        Array<TextureRegion> frames = new Array<>();
-
-        //run right
-        for (int i = 1; i < 7; i++) {
-            frames.add(new TextureRegion(texture, i * 16, 0, 16, 16));
-        }
-        chRunningRight = new Animation(0.1f, frames);
-        frames.clear();
-
-        //run left
-        for (int i = 1; i < 7; i++) {
-            frames.add(new TextureRegion(texture, i * 16, 0, 16, 16));
-        }
-        chRunningLeft = new Animation(0.1f, frames);
-        frames.clear();
-
-        //run up
-        for (int i = 1; i < 5; i++) {
-            frames.add(new TextureRegion(texture, i * 16, 0, 16, 16));
-        }
-        chRunningUp = new Animation(0.1f, frames);
-        frames.clear();
-
-        //run down
-        for (int i = 1; i < 5; i++) {
-            frames.add(new TextureRegion(texture, i * 16, 0, 16, 16));
-        }
-        chRunningDown = new Animation(0.1f, frames);
-        frames.clear();
     }
 
     public void render(Entity entity, GameData gameData) {
-        stateTime += gameData.getDelta();
+        //stateTime += gameData.getDelta();
         
         //batch.setProjectionMatrix();
 //        batch.begin();
@@ -91,8 +41,49 @@ public class Animator{
 //        batch.end();
     }
 
-    public TextureAtlas getAtlas() {
-        return atlas;
+    public void initializeSprite(Texture imageFile){
+    texture = imageFile;
+
+
+        stateTime = 0;
+        chStandingRight = new TextureRegion(texture, 0, 0, 32, 32);
+        chStandingLeft = new TextureRegion(texture, 0, 32, 32, 32);
+        chStandingUp = new TextureRegion(texture, 0, 64, 32, 32);
+        chStandingDown = new TextureRegion(texture, 0, 128, 32, 32);
+
+        Array<TextureRegion> frames = new Array<>();
+
+        //run right
+        for (int i = 1; i < 7; i++) {
+            frames.add(new TextureRegion(texture, i * 32, 0, 32, 32));
+        }
+        chRunningRight = new Animation(0.1f, frames);
+        frames.clear();
+
+        //run left
+        for (int i = 1; i < 7; i++) {
+            frames.add(new TextureRegion(texture, i * 32, 0, 32, 32));
+        }
+        chRunningLeft = new Animation(0.1f, frames);
+        frames.clear();
+
+        //run up
+        for (int i = 1; i < 5; i++) {
+            frames.add(new TextureRegion(texture, i * 32, 0, 32, 32));
+        }
+        chRunningUp = new Animation(0.1f, frames);
+        frames.clear();
+
+        //run down
+        for (int i = 1; i < 5; i++) {
+            frames.add(new TextureRegion(texture, i * 32, 0, 32, 32));
+        }
+        chRunningDown = new Animation(0.1f, frames);
+        frames.clear();
+    }
+    
+    public Texture getTexture() {
+        return texture;
     }
 
 
@@ -129,6 +120,11 @@ public class Animator{
 
     public float getStateTime() {
         return stateTime;
+    }
+    
+    public void updateStateTime(float dt){
+        stateTime += dt;
+    
     }
 
     

@@ -44,7 +44,7 @@ public class RoundPlugin implements IGamePluginService, IEntityProcessingService
 
 
     @Override
-    public void stop(GameData gameData, World world) {
+    public void stop() {
     }
 
 }

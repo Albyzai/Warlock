@@ -11,22 +11,22 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ViewManager
+public class ImageManager
 {
-    private static Map<String, View> views = new ConcurrentHashMap<>();
+    private static Map<String, Image> images = new ConcurrentHashMap<>();
 
-    public static Collection<View> views()
+    public static Collection<Image> images()
     {
-        return views.values();
+        return images.values();
     }
 
-    public static void createView(String path, boolean repeatImage)
+    public static void createImage(String path, boolean repeatImage)
     {
-        View v = null;
+        Image image = null;
         try
         {
-            v = new View(new File(path).getCanonicalPath().replace("\\", "/"), repeatImage);
-            views.put(path, v);
+            image = new Image(new File(path).getCanonicalPath().replace("\\", "/"), repeatImage);
+            images.put(path, image);
         }
         catch (IOException ex)
         {
@@ -35,13 +35,13 @@ public class ViewManager
         }
     }
 
-    public static View getView(String path)
+    public static Image getImage(String path)
     {
-        return views.get(path);
+        return images.get(path);
     }
 
-    public static void removeView(String path)
+    public static void removeImage(String path)
     {
-        views.remove(path);
+        images.remove(path);
     }
 }

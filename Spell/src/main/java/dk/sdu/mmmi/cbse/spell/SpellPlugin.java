@@ -21,7 +21,8 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
 
     private SpellBook spellBook;
     private SpellArchive archive;
-
+    private World world;
+    
     @Override
     public void start(GameData gameData, World world) {
         for (Entity entity : world.getEntities(EntityType.PLAYER)) {
@@ -67,7 +68,7 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
     }
 
     @Override
-    public void stop(GameData gameData, World world) {
+    public void stop() {
         for (Entity spell : world.getEntities(EntityType.SPELL)) {
             world.removeEntity(spell);
         }

@@ -5,9 +5,16 @@
  */
 package player;
 
+import services.IGamePluginService;
 import org.openide.modules.ModuleInstall;
 
-public class Installer extends ModuleInstall {
+/**
+ *
+ * @author frede
+ */
+public class Installer extends ModuleInstall
+{
+    public static IGamePluginService Plugin = null;
 
     @Override
     public void restored()
@@ -15,4 +22,12 @@ public class Installer extends ModuleInstall {
         // TODO
     }
 
+    @Override
+    public void uninstalled()
+    {
+        if (Plugin != null)
+        {
+            Plugin.stop();
+        }
+    }
 }
