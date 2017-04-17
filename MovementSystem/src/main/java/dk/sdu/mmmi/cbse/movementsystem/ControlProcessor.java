@@ -53,22 +53,19 @@ public class ControlProcessor implements IEntityProcessingService {
 
     private void handleMoveClick(Entity e, GameData gameData) {
         if (gameData.getKeys().isPressed(RIGHT_MOUSE)) {
-
-            //skal rykkes ud herfra saa man kan bruge vaerdierne
             startX = e.getX();
             startY = e.getY();
-            Vector3 vec = new Vector3(gameData.getScreenX(), gameData.getScreenY(), 0);
             endX = gameData.getScreenX();
             endY = gameData.getDisplayHeight() - gameData.getScreenY();
             angle = (float) Math.toDegrees(Math.atan2(endY - startY, endX - startX));
 
-            distance = (float) Math.sqrt(Math.pow(endY - startX, 2) + Math.pow(endY - startY, 2));
+            distance = (float) Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
 
             directionX = (endX - startX) / distance;
             directionY = (endY - startY) / distance;
             e.setX(startX);
             e.setY(startY);
-            e.setCharState(CharacterState.MOVING);  
+            e.setCharState(CharacterState.MOVING);
 
             if (angle > -45 && angle < 45) {
                 e.setMoveState(MovementState.RUNNINGRIGHT);
@@ -80,17 +77,13 @@ public class ControlProcessor implements IEntityProcessingService {
                 e.setMoveState(MovementState.RUNNINGLEFT);
             }
         }
-
-        if (distance > 0) {
-            if (e.getCharState().equals(CharacterState.MOVING)) {
-                e.setX(e.getX() + directionX * speed * gameData.getDelta());
-                e.setY(e.getY() + directionY * speed * gameData.getDelta());
-                if (Math.sqrt(Math.pow(e.getX() - startX, 2) + Math.pow(e.getY() - startY, 2)) >= distance) {
-                    e.setX(endX);
-                    e.setY(endY);
-                    e.setCharState(CharacterState.IDLE);
-                }
-
+        if (e.getCharState().equals(CharacterState.MOVING)) {
+            e.setX(e.getX() + directionX * speed * gameData.getDelta());
+            e.setY(e.getY() + directionY * speed * gameData.getDelta());
+            if ((float) Math.sqrt(Math.pow(e.getX() - startX, 2) + Math.pow(e.getY() - startY, 2)) >= distance){
+                e.setX(endX);
+                e.setY(endY);
+                e.setCharState(CharacterState.IDLE);
             }
         }
         if (gameData.getKeys().isPressed(ESCAPE)) {
@@ -98,7 +91,7 @@ public class ControlProcessor implements IEntityProcessingService {
 
         }
         if (gameData.getKeys().isPressed(Q)) {
-            //Potions?
+            //lePotion.plsDrink();
         }
     }
 

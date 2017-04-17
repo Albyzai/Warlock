@@ -66,7 +66,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         for (Entity player : world.getEntities(PLAYER)) {
             float x = player.getX();
             float y = player.getY();
-
+            
             // set shape
             setShape(x, y, player.getRadians());
             player.setShapeX(shapex);
