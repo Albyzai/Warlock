@@ -15,13 +15,8 @@ import java.util.List;
  */
 public class SpellBook {
 
-    private boolean isCasting;
     private float globalCooldownTime;
     private float cooldownTimeLeft;
     private List<SpellType> spells = new ArrayList<>();
-    
 
-    
-    
-    
 }

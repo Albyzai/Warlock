@@ -31,10 +31,15 @@ public class ControlProcessor implements IEntityProcessingService {
     float sStartX, sStartY, sEndX, sEndY;
     float directionX;
     float directionY;
+    float sDirectionX;
+    float sDirectionY;
     float distance;
+    float sDistance;
     float speed = 200;
     float dt;
+    float sAngle;
     float angle;
+    boolean spellIsMoving;
 
     @Override
     public void process(GameData gameData, World world) {
@@ -45,8 +50,29 @@ public class ControlProcessor implements IEntityProcessingService {
             handleShoot(entity, gameData);
 
             for (Entity spell : world.getEntities(EntityType.SPELL)) {
-                spell.setX(gameData.getMousePositionX() * SpellInfo.getSpellSpeed(entity.getChosenSpell()));
-                spell.setY(gameData.getMousePositionY() * SpellInfo.getSpellSpeed(entity.getChosenSpell()));
+                 
+                sStartX = spell.getX();
+                sStartY = spell.getY();
+                sEndX = gameData.getMousePositionX();
+                sEndY = gameData.getMousePositionY();
+                sAngle = (float) Math.toDegrees(Math.atan2(sEndY - sStartY, sEndX - sStartX));
+                sDistance = (float) Math.sqrt(Math.pow(sEndX - sStartX, 2) + Math.pow(sEndY - sStartY, 2));
+
+                sDirectionX = (sEndX - sStartX) / sDistance;
+                sDirectionY = (sEndY - sStartY) / sDistance;
+                spell.setX(sStartX);
+                spell.setY(sStartY);
+                spellIsMoving = true;
+
+                if (spellIsMoving) {
+                    spell.setX(spell.getX() + sDirectionX * spell.getMaxSpeed() * gameData.getDelta());
+                    spell.setY(spell.getY() + sDirectionY * spell.getMaxSpeed() * gameData.getDelta());
+                    if ((float) Math.sqrt(Math.pow(spell.getX() - sStartX, 2) + Math.pow(spell.getY() - sStartY, 2)) >= sDistance) {
+                        spell.setX(sEndX);
+                        spell.setY(sEndY);
+                        spellIsMoving = false;
+                    }
+                }
             }
 
         }
@@ -70,18 +96,21 @@ public class ControlProcessor implements IEntityProcessingService {
 
             if (angle > -45 && angle < 45) {
                 e.setMoveState(MovementState.RUNNINGRIGHT);
-            } else if (angle < 135 && angle > 45) {
+            }
+            else if (angle < 135 && angle > 45) {
                 e.setMoveState(MovementState.RUNNINGUP);
-            } else if (angle > -135 && angle < -45) {
+            }
+            else if (angle > -135 && angle < -45) {
                 e.setMoveState(MovementState.RUNNINGDOWN);
-            } else {
+            }
+            else {
                 e.setMoveState(MovementState.RUNNINGLEFT);
             }
         }
         if (e.getCharState().equals(CharacterState.MOVING)) {
             e.setX(e.getX() + directionX * speed * gameData.getDelta());
             e.setY(e.getY() + directionY * speed * gameData.getDelta());
-            if ((float) Math.sqrt(Math.pow(e.getX() - startX, 2) + Math.pow(e.getY() - startY, 2)) >= distance){
+            if ((float) Math.sqrt(Math.pow(e.getX() - startX, 2) + Math.pow(e.getY() - startY, 2)) >= distance) {
                 e.setX(endX);
                 e.setY(endY);
                 e.setCharState(CharacterState.IDLE);
@@ -100,14 +129,18 @@ public class ControlProcessor implements IEntityProcessingService {
         if (gameData.getKeys().isDown(LEFT_MOUSE)) {
             if (e.getChosenSpell() == null) {
                 System.out.println("No spell chosen");
-            } else {
+            }
+            else {
                 if (angle > -45 && angle < 45) {
                     e.setMoveState(MovementState.STANDINGRIGHT);
-                } else if (angle < 135 && angle > 45) {
+                }
+                else if (angle < 135 && angle > 45) {
                     e.setMoveState(MovementState.STANDINGUP);
-                } else if (angle > -135 && angle < -45) {
+                }
+                else if (angle > -135 && angle < -45) {
                     e.setMoveState(MovementState.STANDINGDOWN);
-                } else {
+                }
+                else {
                     e.setMoveState(MovementState.STANDINGLEFT);
                 }
                 System.out.println("shoot at target location");
@@ -121,10 +154,9 @@ public class ControlProcessor implements IEntityProcessingService {
     private void handleTargetClick(Entity e, GameData gameData) {
         if (gameData.getKeys().isPressed(NUM_1)) {
             e.setChosenSpell(SpellType.FIREBALL);
-            
+
         }
-        else
-        {
+        else {
             return;
         }
         if (gameData.getKeys().isPressed(NUM_2)) {

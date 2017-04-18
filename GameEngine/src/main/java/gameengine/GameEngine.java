@@ -169,8 +169,9 @@ public class GameEngine implements ApplicationListener {
         }
         for (Entity e : world.getEntities(SPELL)) {
             Image image = e.getView();
+            System.out.println(world.getEntities(SPELL).size());
             if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
-
+                
                 animator.initializeSpell(assetManager.get(image.getImageFilePath(), Texture.class));
 
                 if (!image.isRepeat()) {
@@ -213,6 +214,7 @@ public class GameEngine implements ApplicationListener {
             mapShrink(layerCount);
             shrinkTimer = 0;
         }
+       
 //        for (MapSPI map : lookup.lookupAll(MapSPI.class)) {
 //            map.processMap(world, gameData);
 //        }
