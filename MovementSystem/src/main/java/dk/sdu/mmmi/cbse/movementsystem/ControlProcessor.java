@@ -28,6 +28,7 @@ import services.IEntityProcessingService;
 public class ControlProcessor implements IEntityProcessingService {
 
     float startX, startY, endX, endY;
+    float sStartX, sStartY, sEndX, sEndY;
     float directionX;
     float directionY;
     float distance;
@@ -44,8 +45,8 @@ public class ControlProcessor implements IEntityProcessingService {
             handleShoot(entity, gameData);
 
             for (Entity spell : world.getEntities(EntityType.SPELL)) {
-                spell.setX(directionX * SpellInfo.getSpellSpeed(entity.getChosenSpell()) * gameData.getDelta());
-                spell.setY(directionY * SpellInfo.getSpellSpeed(entity.getChosenSpell()) * gameData.getDelta());
+                spell.setX(gameData.getMousePositionX() * SpellInfo.getSpellSpeed(entity.getChosenSpell()));
+                spell.setY(gameData.getMousePositionY() * SpellInfo.getSpellSpeed(entity.getChosenSpell()));
             }
 
         }
@@ -55,8 +56,8 @@ public class ControlProcessor implements IEntityProcessingService {
         if (gameData.getKeys().isPressed(RIGHT_MOUSE)) {
             startX = e.getX();
             startY = e.getY();
-            endX = gameData.getScreenX();
-            endY = gameData.getDisplayHeight() - gameData.getScreenY();
+            endX = gameData.getMousePositionX();
+            endY = gameData.getMousePositionY();
             angle = (float) Math.toDegrees(Math.atan2(endY - startY, endX - startX));
 
             distance = (float) Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
@@ -120,6 +121,7 @@ public class ControlProcessor implements IEntityProcessingService {
     private void handleTargetClick(Entity e, GameData gameData) {
         if (gameData.getKeys().isPressed(NUM_1)) {
             e.setChosenSpell(SpellType.FIREBALL);
+            
         }
         else
         {

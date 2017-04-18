@@ -106,7 +106,7 @@ public class GameEngine implements ApplicationListener {
         }
 
         loadImages();
-        
+
         playerSprite = new SpriteBatch();
 
     }
@@ -200,6 +200,9 @@ public class GameEngine implements ApplicationListener {
 
     private void update() {
         assetManager.update();
+
+        gameData.setMousePosition(Gdx.input.getX() + (int) (camera.position.x - camera.viewportWidth / 2),
+                -Gdx.input.getY() + Gdx.graphics.getHeight() + (int) (camera.position.y - camera.viewportHeight / 2));
 
         shrinkTimer += gameData.getDelta();
         if (shrinkTimer >= shrinkTime) {

@@ -22,6 +22,25 @@ public class GameData {
     private float roundTime;
     private int roundNumber;
     private float currentTime;
+    
+    private int mousePositionX = 0;
+    private int mousePositionY = 0;
+    
+    public int getMousePositionX()
+    {
+        return mousePositionX;
+    }
+
+        public int getMousePositionY()
+    {
+        return mousePositionY;
+    }
+    
+    public void setMousePosition(int x, int y)
+    {
+        mousePositionX = x;
+        mousePositionY = y;
+    }
 
     public float getCurrentTime() {
         return currentTime;

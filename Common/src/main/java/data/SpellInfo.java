@@ -12,6 +12,7 @@ import data.SpellType;
  */
 public class SpellInfo {
     
+    public static final SpellType spellType = SpellType.FIREBALL;
     public static final int FIREBALL_DMG = 10;
     public static final int FIREBALL_BOUNCE = 4;
     public static final int FIREBALL_SPEED = 200;

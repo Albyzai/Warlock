@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import States.CharacterState;
 import States.MovementState;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import java.util.List;
 import java.util.UUID;
 
 public final class Entity implements Serializable {
@@ -45,7 +46,7 @@ public final class Entity implements Serializable {
     private int totalHits = 0;
     private int gold;
     private Image view;
-
+    private List<SpellType> spellBook;
 
     public MovementState getMoveState() {
         return moveState;
@@ -358,4 +359,22 @@ public final class Entity implements Serializable {
         this.view = view;
     }
 
+    public int getNumPoints() {
+        return numPoints;
+    }
+
+    public void setNumPoints(int numPoints) {
+        this.numPoints = numPoints;
+    }
+
+    public List<SpellType> getSpellBook() {
+        return spellBook;
+    }
+
+    public void setSpellBook(List<SpellType> spellBook) {
+        this.spellBook = spellBook;
+    }
+
+    
+    
 }
