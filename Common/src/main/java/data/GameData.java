@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import States.GameState;
+import com.badlogic.gdx.math.Vector3;
 
 public class GameData {
 
@@ -22,6 +23,7 @@ public class GameData {
     private float roundTime;
     private int roundNumber;
     private float currentTime;
+    private Vector3 vect;
 
     public float getCurrentTime() {
         return currentTime;

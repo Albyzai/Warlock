@@ -41,7 +41,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         player.setType(PLAYER);
 
 	player.setView(ImageManager.getImage(CHARACTER_FINAL_IMAGE_PATH));
-        player.setPosition(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
+        player.setPosition(0.0f, 0.0f);
 
         player.setMaxSpeed(2);
         player.setAcceleration(2);
@@ -54,16 +54,13 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         player.setMoveState(MovementState.STANDINGRIGHT);
         player.setCharState(CharacterState.IDLE);
         
-        
-        
-        
     }
 
     @Override
     public void process(GameData gameData, World world) {
         // TODO: Implement entity processor
 
-<<<<<<< HEAD
+
         for (Entity player : world.getEntities(PLAYER)) {
             float x = player.getX();
             float y = player.getY();
@@ -72,16 +69,6 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
             setShape(x, y, player.getRadians());
             player.setShapeX(shapex);
             player.setShapeY(shapey);
-=======
-        for (Entity p : world.getEntities(PLAYER)) {
-            float x = p.getX();
-            float y = p.getY();
-
-
-            setShape(x, y, p.getRadians());
-            p.setShapeX(shapex);
-            p.setShapeY(shapey);
->>>>>>> 8367a8fc6b26128c3ac736cef641d66324e2b3b4
         }
 
     }

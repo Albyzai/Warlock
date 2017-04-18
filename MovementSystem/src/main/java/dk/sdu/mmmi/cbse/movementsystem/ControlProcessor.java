@@ -8,6 +8,8 @@ package dk.sdu.mmmi.cbse.movementsystem;
 import States.CharacterState;
 import com.badlogic.gdx.math.Vector3;
 import States.MovementState;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import data.Entity;
 import data.EntityType;
 import static data.EntityType.SPELL;
@@ -15,6 +17,7 @@ import data.GameData;
 import static data.GameKeys.*;
 import data.SpellType;
 import data.World;
+
 import java.util.Collection;
 import data.SpellInfo;
 import org.openide.util.lookup.ServiceProvider;
@@ -57,7 +60,9 @@ public class ControlProcessor implements IEntityProcessingService {
             startY = e.getY();
             endX = gameData.getScreenX();
             endY = gameData.getDisplayHeight() - gameData.getScreenY();
+            
             angle = (float) Math.toDegrees(Math.atan2(endY - startY, endX - startX));
+            
 
             distance = (float) Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
 
@@ -66,7 +71,7 @@ public class ControlProcessor implements IEntityProcessingService {
             e.setX(startX);
             e.setY(startY);
             e.setCharState(CharacterState.MOVING);
-
+               
             if (angle > -45 && angle < 45) {
                 e.setMoveState(MovementState.RUNNINGRIGHT);
             } else if (angle < 135 && angle > 45) {
@@ -80,7 +85,9 @@ public class ControlProcessor implements IEntityProcessingService {
         if (e.getCharState().equals(CharacterState.MOVING)) {
             e.setX(e.getX() + directionX * speed * gameData.getDelta());
             e.setY(e.getY() + directionY * speed * gameData.getDelta());
-            if ((float) Math.sqrt(Math.pow(e.getX() - startX, 2) + Math.pow(e.getY() - startY, 2)) >= distance){
+            
+            
+            if ((float) Math.sqrt(Math.pow(e.getX() - startX, 2) + Math.pow(e.getY() - startY, 2)) >= distance) {
                 e.setX(endX);
                 e.setY(endY);
                 e.setCharState(CharacterState.IDLE);

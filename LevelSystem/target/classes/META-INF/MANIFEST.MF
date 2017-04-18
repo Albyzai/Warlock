@@ -3,8 +3,8 @@ OpenIDE-Module-Install: dk/sdu/mmmi/cbse/levelsystem/Installer.class
 OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/levelsystem/Bundle.
  properties
 OpenIDE-Module-Specification-Version: 1.0.0
-OpenIDE-Module-Implementation-Version: 1.0.0-20170411
-OpenIDE-Module-Build-Version: 201704111251
+OpenIDE-Module-Implementation-Version: 1.0.0-20170418
+OpenIDE-Module-Build-Version: 201704180923
 OpenIDE-Module: dk.sdu.mmmi.cbse.LevelSystem
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
