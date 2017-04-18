@@ -30,7 +30,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
     public static final String CHARACTER_IMAGE_PATH = "assets/Characters.png";
     public static String CHARACTER_FINAL_IMAGE_PATH = "";
     private World world;
-            
+
     @Override
     public void start(GameData gameData, World world) {
         // Add entities to the world
@@ -40,7 +40,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         player = new Entity();
         player.setType(PLAYER);
 
-	player.setView(ImageManager.getImage(CHARACTER_FINAL_IMAGE_PATH));
+        player.setView(ImageManager.getImage(CHARACTER_FINAL_IMAGE_PATH));
         player.setPosition(0.0f, 0.0f);
 
         player.setMaxSpeed(2);
@@ -50,25 +50,33 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         player.setRadians(3.1415f / 2);
         player.setRotationSpeed(3);
         world.addEntity(player);
-        
+
         player.setMoveState(MovementState.STANDINGRIGHT);
         player.setCharState(CharacterState.IDLE);
-        
+
     }
 
     @Override
     public void process(GameData gameData, World world) {
         // TODO: Implement entity processor
 
-
         for (Entity player : world.getEntities(PLAYER)) {
             float x = player.getX();
             float y = player.getY();
-            
+
             // set shape
             setShape(x, y, player.getRadians());
             player.setShapeX(shapex);
             player.setShapeY(shapey);
+        }
+        for (Entity p : world.getEntities(PLAYER)) {
+            float x = p.getX();
+            float y = p.getY();
+
+            setShape(x, y, p.getRadians());
+            p.setShapeX(shapex);
+            p.setShapeY(shapey);
+
         }
 
     }
@@ -87,8 +95,6 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         shapey[3] = (float) (y + Math.sin(radians + 16 * 3.1415f / 20) * 32);
 
     }
-
-    
 
     @Override
     public void stop() {

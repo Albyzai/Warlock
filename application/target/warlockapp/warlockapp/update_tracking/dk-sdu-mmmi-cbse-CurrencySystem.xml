@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.CurrencySystem">
     <module_version install_time="1492507443176" last="true" origin="installer" specification_version="1.0.0">
         <file crc="2175890143" name="config/Modules/dk-sdu-mmmi-cbse-CurrencySystem.xml"/>
         <file crc="2721265957" name="modules/dk-sdu-mmmi-cbse-CurrencySystem.jar"/>
     </module_version>
 </module>
+=======
+<?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.CurrencySystem">
+    <module_version install_time="1492508242536" last="true" origin="installer" specification_version="1.0.0">
+        <file crc="2175890143" name="config/Modules/dk-sdu-mmmi-cbse-CurrencySystem.xml"/>
+        <file crc="3439873303" name="modules/dk-sdu-mmmi-cbse-CurrencySystem.jar"/>
+    </module_version>
+</module>
+>>>>>>> 473a91547e002f3a7e3e314caf2e3aa3d64067d6

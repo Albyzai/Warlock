@@ -21,6 +21,7 @@ import data.GameData;
 public class Animator{
 
     private Texture texture;
+    private Texture spellTexture;
     private float stateTime;
 
     private TextureRegion chStandingRight, chStandingLeft, chStandingUp, chStandingDown;
@@ -86,7 +87,15 @@ public class Animator{
         return texture;
     }
 
-
+    public void initializeSpell(Texture imageFile){
+        spellTexture = imageFile;
+    }
+    
+    
+    public Texture getSpellTexture(){
+        return spellTexture;
+    }
+    
     public TextureRegion getFrame(Entity entity) {
         TextureRegion region = null;
         switch (entity.getMoveState()) {

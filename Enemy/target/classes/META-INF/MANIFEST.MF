@@ -4,7 +4,11 @@ OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/enemy/Bundle.proper
  ties
 OpenIDE-Module-Specification-Version: 1.0.0
 OpenIDE-Module-Implementation-Version: 1.0.0-20170418
+<<<<<<< HEAD
 OpenIDE-Module-Build-Version: 201704180923
+=======
+OpenIDE-Module-Build-Version: 201704180936
+>>>>>>> 473a91547e002f3a7e3e314caf2e3aa3d64067d6
 OpenIDE-Module: dk.sdu.mmmi.cbse.Enemy
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1

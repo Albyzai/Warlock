@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.HealthSystem">
     <module_version install_time="1492507443307" last="true" origin="installer" specification_version="1.0.0">
         <file crc="1785120891" name="config/Modules/dk-sdu-mmmi-cbse-HealthSystem.xml"/>
         <file crc="376946674" name="modules/dk-sdu-mmmi-cbse-HealthSystem.jar"/>
     </module_version>
 </module>
+=======
+<?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.HealthSystem">
+    <module_version install_time="1492508242596" last="true" origin="installer" specification_version="1.0.0">
+        <file crc="1785120891" name="config/Modules/dk-sdu-mmmi-cbse-HealthSystem.xml"/>
+        <file crc="2714684603" name="modules/dk-sdu-mmmi-cbse-HealthSystem.jar"/>
+    </module_version>
+</module>
+>>>>>>> 473a91547e002f3a7e3e314caf2e3aa3d64067d6

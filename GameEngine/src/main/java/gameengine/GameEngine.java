@@ -21,6 +21,7 @@ import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
 import data.Entity;
 import static data.EntityType.PLAYER;
+import static data.EntityType.SPELL;
 import data.GameData;
 import data.World;
 import java.util.List;
@@ -156,17 +157,30 @@ public class GameEngine implements ApplicationListener {
 
         for (Entity e : world.getEntities(PLAYER)) {
             Image image = e.getView();
-            System.out.println(image.getImageFilePath());
             if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
 
                 animator.initializeSprite(assetManager.get(image.getImageFilePath(), Texture.class));
-                System.out.println(image.getImageFilePath());
 
                 if (!image.isRepeat()) {
                     animator.updateStateTime(gameData.getDelta());
                     playerSprite.setProjectionMatrix(camera.combined);
                     playerSprite.begin();
                     playerSprite.draw(animator.getFrame(e), e.getX(), e.getY());
+                    playerSprite.end();
+                }
+            }
+        }
+        for (Entity e : world.getEntities(SPELL)) {
+            Image image = e.getView();
+            if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
+
+                animator.initializeSpell(assetManager.get(image.getImageFilePath(), Texture.class));
+
+                if (!image.isRepeat()) {
+                    animator.updateStateTime(gameData.getDelta());
+                    playerSprite.setProjectionMatrix(camera.combined);
+                    playerSprite.begin();
+                    playerSprite.draw(animator.getSpellTexture(), e.getX(), e.getY());
                     playerSprite.end();
                 }
             }
@@ -188,6 +202,9 @@ public class GameEngine implements ApplicationListener {
 
     private void update() {
         assetManager.update();
+
+        gameData.setMousePosition(Gdx.input.getX() + (int) (camera.position.x - camera.viewportWidth / 2),
+                -Gdx.input.getY() + Gdx.graphics.getHeight() + (int) (camera.position.y - camera.viewportHeight / 2));
 
         shrinkTimer += gameData.getDelta();
         if (shrinkTimer >= shrinkTime) {

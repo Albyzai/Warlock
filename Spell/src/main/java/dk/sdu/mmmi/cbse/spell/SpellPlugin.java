@@ -13,7 +13,8 @@ import data.SpellType;
 import States.CharacterState;
 
 @ServiceProviders(value = {
-    @ServiceProvider(service = IGamePluginService.class),
+    @ServiceProvider(service = IGamePluginService.class)
+    ,
     @ServiceProvider(service = IEntityProcessingService.class)
 })
 
@@ -22,18 +23,18 @@ public class SpellPlugin implements IGamePluginService, IEntityProcessingService
     private SpellBook spellBook;
     private SpellArchive archive;
     private World world;
-    
+
     @Override
     public void start(GameData gameData, World world) {
-        for (Entity entity : world.getEntities(EntityType.PLAYER)) {
-            spellBook = new SpellBook(entity);
-        }
         archive = new SpellArchive(world);
+
+        spellBook = new SpellBook();
 
     }
 
     @Override
     public void process(GameData gameData, World world) {
+        
         for (Entity entity : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)) {
             if (entity.getCharState() == CharacterState.CASTING) {
                 useSpell(world, entity.getChosenSpell(), entity.getX(), entity.getY(), entity);

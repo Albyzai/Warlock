@@ -8,27 +8,34 @@ package dk.sdu.mmmi.cbse.spell;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import data.SpellType;
 import data.Entity;
+import static data.EntityType.PLAYER;
+import data.ImageManager;
 import data.World;
 
 public class Spell {
 
     private SpellType spellType;
     private final float damage;
-    private final Animation animation;
     private boolean isStatic;
     private Entity spellEntity;
     private float speed;
-    private float acceleration; 
+    private float acceleration;
     private int cooldown;
     private int bouncePoints;
+    private String SPELL_IMAGE_PATH = "";
 
-    public Spell(World world, SpellType spellType, float damage, Animation animation, boolean isStatic, float expiration, float speed, float acceleration, int cooldown, int bouncePoints) {
+    public Spell(World world, SpellType spellType, float damage, String path, boolean isStatic, float expiration, float speed, float acceleration, int cooldown, int bouncePoints) {
+        SPELL_IMAGE_PATH = Spell.class.getResource(path).getPath().replace("file:", "");
+        ImageManager.createImage(SPELL_IMAGE_PATH, false);
+
         spellEntity = new Entity();
-        world.addEntity(spellEntity);
         spellEntity.setExpiration(expiration);
+
+        spellEntity.setView(ImageManager.getImage(SPELL_IMAGE_PATH));
+        world.addEntity(spellEntity);
+
         this.spellType = spellType;
         this.damage = damage;
-        this.animation = animation;
         this.isStatic = isStatic;
         this.speed = speed;
         this.acceleration = acceleration;
@@ -48,10 +55,6 @@ public class Spell {
         return damage;
     }
 
-    public Animation getAnimation() {
-        return animation;
-    }
-
     public int getCooldown() {
         return cooldown;
     }
@@ -64,7 +67,6 @@ public class Spell {
         return spellEntity;
     }
 
-
     public float getSpeed() {
         return speed;
     }
@@ -72,7 +74,5 @@ public class Spell {
     public float getAcceleration() {
         return acceleration;
     }
-    
-    
 
 }

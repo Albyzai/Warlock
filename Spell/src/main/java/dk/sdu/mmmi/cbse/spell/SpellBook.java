@@ -14,11 +14,9 @@ import data.World;
 public class SpellBook {
 
     private List<Spell> spellBook;
-    private final Entity owner;
 
-    public SpellBook(Entity owner) {
+    public SpellBook() {
         spellBook = new ArrayList();
-        this.owner = owner;
         addDefaultSpells();
     }
 
@@ -27,12 +25,8 @@ public class SpellBook {
     }
 
     public List<Spell> getSpellBook(World world, Entity owner) {
-        for(Entity entity : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)){
-            if(owner.equals(this.owner)){
-                return spellBook;
-            }
-        }
-        return null;
+
+        return spellBook;
     }
 
     public Spell getSpell(SpellType spellType) {
