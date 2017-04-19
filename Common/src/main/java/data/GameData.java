@@ -24,8 +24,6 @@ public class GameData {
     private int roundNumber;
     private float currentTime;
 
-    private Vector3 vect;
-
     private int mousePositionX = 0;
     private int mousePositionY = 0;
     

@@ -89,7 +89,7 @@ public class GameEngine implements ApplicationListener {
 
         gameData.setDisplayWidth(Gdx.graphics.getWidth());
         gameData.setDisplayHeight(Gdx.graphics.getHeight());
-        camera.position.set(camera.viewportWidth / 2 + 900, camera.viewportHeight / 2, 0);
+        camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
 
         for (int i = 2; i < mapLayers.getCount(); i++) {
             mapLayers.get(i).setVisible(false);
@@ -169,8 +169,9 @@ public class GameEngine implements ApplicationListener {
         }
         for (Entity e : world.getEntities(SPELL)) {
             Image image = e.getView();
+            System.out.println(world.getEntities(SPELL).size());
             if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
-
+                
                 animator.initializeSpell(assetManager.get(image.getImageFilePath(), Texture.class));
 
                 if (!image.isRepeat()) {
@@ -212,6 +213,7 @@ public class GameEngine implements ApplicationListener {
             mapShrink(layerCount);
             shrinkTimer = 0;
         }
+       
 //        for (MapSPI map : lookup.lookupAll(MapSPI.class)) {
 //            map.processMap(world, gameData);
 //        }

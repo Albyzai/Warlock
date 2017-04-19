@@ -4,8 +4,8 @@ OpenIDE-Module-Install: dk/sdu/mmmi/cbse/collisionsystem/Installer.cla
 OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/collisionsystem/Bun
  dle.properties
 OpenIDE-Module-Specification-Version: 1.0.0
-OpenIDE-Module-Implementation-Version: 1.0.0-20170418
-OpenIDE-Module-Build-Version: 201704181019
+OpenIDE-Module-Implementation-Version: 1.0.0-20170419
+OpenIDE-Module-Build-Version: 201704191118
 OpenIDE-Module: dk.sdu.mmmi.cbse.CollisionSystem
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
