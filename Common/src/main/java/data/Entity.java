@@ -33,6 +33,7 @@ public final class Entity implements Serializable {
     private int size;
     private int numPoints;
     private float width;
+    private float height;
     private CharacterState charState;
     private MovementState moveState;
     private SpellType chosenSpell;
@@ -107,7 +108,13 @@ public final class Entity implements Serializable {
     public float getWidth() {
         return this.width;
     }
-
+    public void setHeight(float height){
+        this.height = height;
+    }
+    public float getHeight(){
+        return this.height;
+    }
+    
     public void setNumpoints(int numpoints) {
         this.numPoints = numpoints;
     }

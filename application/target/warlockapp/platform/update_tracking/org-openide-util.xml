@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?><module codename="org.openide.util">
-    <module_version install_time="1492507445677" last="true" origin="installer" specification_version="9.7.1">
+    <module_version install_time="1492510762719" last="true" origin="installer" specification_version="9.7.1">
         <file crc="3443873185" name="config/ModuleAutoDeps/org-openide-util.xml"/>
         <file crc="979429308" name="lib/locale/org-openide-util_ja.jar"/>
         <file crc="4012452050" name="lib/locale/org-openide-util_pt_BR.jar"/>
@@ -9,15 +8,3 @@
         <file crc="459686642" name="lib/org-openide-util.jar"/>
     </module_version>
 </module>
-=======
-<?xml version="1.0" encoding="UTF-8"?><module codename="org.openide.util">
-    <module_version install_time="1492508244349" last="true" origin="installer" specification_version="9.7.1">
-        <file crc="3443873185" name="config/ModuleAutoDeps/org-openide-util.xml"/>
-        <file crc="979429308" name="lib/locale/org-openide-util_ja.jar"/>
-        <file crc="4012452050" name="lib/locale/org-openide-util_pt_BR.jar"/>
-        <file crc="2475201697" name="lib/locale/org-openide-util_ru.jar"/>
-        <file crc="4071949559" name="lib/locale/org-openide-util_zh_CN.jar"/>
-        <file crc="459686642" name="lib/org-openide-util.jar"/>
-    </module_version>
-</module>
->>>>>>> 473a91547e002f3a7e3e314caf2e3aa3d64067d6

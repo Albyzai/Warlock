@@ -60,12 +60,11 @@ public class ControlProcessor implements IEntityProcessingService {
             startX = e.getX();
             startY = e.getY();
 
-            endX = gameData.getScreenX();
-            endY = gameData.getDisplayHeight() - gameData.getScreenY();
-            
-
-            endX = gameData.getMousePositionX();
-            endY = gameData.getMousePositionY();
+//            endX = gameData.getScreenX();
+//            endY = gameData.getDisplayHeight() - gameData.getScreenY();
+ 
+            endX = gameData.getMousePositionX() - (e.getWidth()/2);
+            endY = gameData.getMousePositionY() - (e.getHeight()/2);
             angle = (float) Math.toDegrees(Math.atan2(endY - startY, endX - startX));
             
 

@@ -60,12 +60,9 @@ public class GameEngine implements ApplicationListener {
     private ShapeRenderer sr;
     private SpriteBatch playerSprite;
     private Animator animator;
-    private Vector3 v;
 
     @Override
     public void create() {
-        v = new Vector3(gameData.getScreenX(), gameData.getScreenY(), 0);
-
         world = new World();
         gameData = new GameData();
         maps = new CopyOnWriteArrayList<>();
