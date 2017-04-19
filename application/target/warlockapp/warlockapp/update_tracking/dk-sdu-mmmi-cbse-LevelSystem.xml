@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.LevelSystem">
-    <module_version install_time="1492603814968" last="true" origin="installer" specification_version="1.0.0">
+    <module_version install_time="1492607581492" last="true" origin="installer" specification_version="1.0.0">
         <file crc="3414659054" name="config/Modules/dk-sdu-mmmi-cbse-LevelSystem.xml"/>
-        <file crc="632292457" name="modules/dk-sdu-mmmi-cbse-LevelSystem.jar"/>
+        <file crc="96904051" name="modules/dk-sdu-mmmi-cbse-LevelSystem.jar"/>
     </module_version>
 </module>

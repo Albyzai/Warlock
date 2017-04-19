@@ -3,7 +3,7 @@ OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/common/Bundle.prope
  rties
 OpenIDE-Module-Specification-Version: 1.0.0
 OpenIDE-Module-Implementation-Version: 1.0.0-20170419
-OpenIDE-Module-Build-Version: 201704191209
+OpenIDE-Module-Build-Version: 201704191312
 OpenIDE-Module: dk.sdu.mmmi.cbse.Common
 OpenIDE-Module-Public-Packages: States.*, data.*, events.*, services.*
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
