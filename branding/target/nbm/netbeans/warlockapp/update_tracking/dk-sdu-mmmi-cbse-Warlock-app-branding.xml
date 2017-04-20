@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.Warlock.app.branding">
-    <module_version install_time="1492607555559" last="true" origin="installer" specification_version="1.0.0">
+    <module_version install_time="1492648175081" last="true" origin="installer" specification_version="1.0.0">
         <file crc="1278988287" name="config/Modules/dk-sdu-mmmi-cbse-Warlock-app-branding.xml"/>
-        <file crc="2823470402" name="core/locale/core_warlockapp.jar"/>
-        <file crc="869582727" name="modules/dk-sdu-mmmi-cbse-Warlock-app-branding.jar"/>
-        <file crc="1495512018" name="modules/locale/org-netbeans-core-windows_warlockapp.jar"/>
-        <file crc="2144947217" name="modules/locale/org-netbeans-core_warlockapp.jar"/>
+        <file crc="4215829964" name="core/locale/core_warlockapp.jar"/>
+        <file crc="1550942261" name="modules/dk-sdu-mmmi-cbse-Warlock-app-branding.jar"/>
+        <file crc="2777474410" name="modules/locale/org-netbeans-core-windows_warlockapp.jar"/>
+        <file crc="3510318061" name="modules/locale/org-netbeans-core_warlockapp.jar"/>
     </module_version>
 </module>

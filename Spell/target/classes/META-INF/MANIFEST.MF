@@ -3,8 +3,8 @@ OpenIDE-Module-Install: dk/sdu/mmmi/cbse/spell/Installer.class
 OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/spell/Bundle.proper
  ties
 OpenIDE-Module-Specification-Version: 1.0.0
-OpenIDE-Module-Implementation-Version: 1.0.0-20170419
-OpenIDE-Module-Build-Version: 201704191312
+OpenIDE-Module-Implementation-Version: 1.0.0-20170420
+OpenIDE-Module-Build-Version: 201704200029
 OpenIDE-Module: dk.sdu.mmmi.cbse.Spell
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
