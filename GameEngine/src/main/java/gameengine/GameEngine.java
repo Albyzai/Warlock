@@ -162,7 +162,7 @@ public class GameEngine implements ApplicationListener {
                     animator.updateStateTime(gameData.getDelta());
                     playerSprite.setProjectionMatrix(camera.combined);
                     playerSprite.begin();
-                    playerSprite.draw(animator.getFrame(e), e.getX(), e.getY());
+                    playerSprite.draw(animator.getFrame(e), e.getX()-16, e.getY()-25);
                     playerSprite.end();
                 }
             }
