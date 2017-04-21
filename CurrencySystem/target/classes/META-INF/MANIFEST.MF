@@ -4,13 +4,8 @@ OpenIDE-Module-Install: dk/sdu/mmmi/cbse/currencysystem/Installer.clas
 OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/currencysystem/Bund
  le.properties
 OpenIDE-Module-Specification-Version: 1.0.0
-<<<<<<< HEAD
 OpenIDE-Module-Implementation-Version: 1.0.0-20170421
-OpenIDE-Module-Build-Version: 201704210717
-=======
-OpenIDE-Module-Implementation-Version: 1.0.0-20170420
-OpenIDE-Module-Build-Version: 201704200029
->>>>>>> e0095a5b7f98c51096345424c8479a11d17aae1b
+OpenIDE-Module-Build-Version: 201704210801
 OpenIDE-Module: dk.sdu.mmmi.cbse.CurrencySystem
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1

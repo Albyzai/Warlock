@@ -156,13 +156,13 @@ public class GameEngine implements ApplicationListener {
             Image image = e.getView();
             if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
 
-                animator.initializeSprite(assetManager.get(image.getImageFilePath(), Texture.class));
+                animator.initializeSprite(assetManager.get(image.getImageFilePath(), Texture.class), gameData);
 
                 if (!image.isRepeat()) {
                     animator.updateStateTime(gameData.getDelta());
                     playerSprite.setProjectionMatrix(camera.combined);
                     playerSprite.begin();
-                    playerSprite.draw(animator.getFrame(e), e.getX()-16, e.getY()-25);
+                    playerSprite.draw(animator.getFrame(e), e.getX()-gameData.getSpriteWidth()/2, e.getY()-gameData.getSpriteHeight()/2);
                     playerSprite.end();
                 }
             }

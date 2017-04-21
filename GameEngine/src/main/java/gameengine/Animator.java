@@ -40,14 +40,18 @@ public class Animator {
 //        batch.end();
     }
 
-    public void initializeSprite(Texture imageFile) {
+    public void initializeSprite(Texture imageFile, GameData gameData) {
         texture = imageFile;
+        int spriteHeight = 50;
+        int spriteWidth = 32;
 
         stateTime = 0;
-        chStandingRight = new TextureRegion(texture, 0, 0, 32, 50);
-        chStandingLeft = new TextureRegion(texture, 0, 55, 32, 50);
-        chStandingUp = new TextureRegion(texture, 0, 110, 32, 50);
-        chStandingDown = new TextureRegion(texture, 0, 165, 32, 50);
+        chStandingRight = new TextureRegion(texture, 0, 0, spriteWidth, spriteHeight);
+        chStandingLeft = new TextureRegion(texture, 0, 55, spriteWidth, spriteHeight);
+        chStandingUp = new TextureRegion(texture, 0, 110, spriteWidth, spriteHeight);
+        chStandingDown = new TextureRegion(texture, 0, 165, spriteWidth, spriteHeight);
+        gameData.setSpriteHeight(spriteHeight);
+        gameData.setSpriteWidth(spriteWidth);
 
         Array<TextureRegion> frames = new Array<>();
 
