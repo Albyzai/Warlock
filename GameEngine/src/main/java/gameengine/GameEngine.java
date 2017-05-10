@@ -19,7 +19,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import data.Entity;
+import static data.EntityType.ENEMY;
 import static data.EntityType.PLAYER;
 import static data.EntityType.SPELL;
 import data.GameData;
@@ -58,8 +60,9 @@ public class GameEngine implements ApplicationListener {
     private float shrinkTimer, shrinkTime;
     private int layerCount;
     private ShapeRenderer sr;
-    private SpriteBatch playerSprite;
+    private SpriteBatch spriteBatch;
     private Animator animator;
+    private HUD hud;
 
     @Override
     public void create() {
@@ -107,8 +110,9 @@ public class GameEngine implements ApplicationListener {
 
         loadImages();
 
-        playerSprite = new SpriteBatch();
+        spriteBatch = new SpriteBatch();
 
+        hud = new HUD(spriteBatch, gameData, world);
     }
 
     private void loadImages() {
@@ -160,13 +164,30 @@ public class GameEngine implements ApplicationListener {
 
                 if (!image.isRepeat()) {
                     animator.updateStateTime(gameData.getDelta());
-                    playerSprite.setProjectionMatrix(camera.combined);
-                    playerSprite.begin();
-                    playerSprite.draw(animator.getFrame(e), e.getX(), e.getY());
-                    playerSprite.end();
+                    spriteBatch.setProjectionMatrix(camera.combined);
+                    spriteBatch.begin();
+                    spriteBatch.draw(animator.getFrame(e), e.getX(), e.getY());
+                    spriteBatch.end();
                 }
             }
         }
+        
+        for (Entity e : world.getEntities(ENEMY)) {
+            Image image = e.getView();
+            if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
+
+                animator.initializeSprite(assetManager.get(image.getImageFilePath(), Texture.class));
+
+                if (!image.isRepeat()) {
+                    animator.updateStateTime(gameData.getDelta());
+                    spriteBatch.setProjectionMatrix(camera.combined);
+                    spriteBatch.begin();
+                    spriteBatch.draw(animator.getFrame(e), e.getX(), e.getY());
+                    spriteBatch.end();
+                }
+            }
+        }
+        
         for (Entity e : world.getEntities(SPELL)) {
             Image image = e.getView();
             System.out.println(world.getEntities(SPELL).size());
@@ -176,13 +197,17 @@ public class GameEngine implements ApplicationListener {
 
                 if (!image.isRepeat()) {
                     animator.updateStateTime(gameData.getDelta());
-                    playerSprite.setProjectionMatrix(camera.combined);
-                    playerSprite.begin();
-                    playerSprite.draw(animator.getSpellTexture(), e.getX(), e.getY());
-                    playerSprite.end();
+                    spriteBatch.setProjectionMatrix(camera.combined);
+                    spriteBatch.begin();
+                    spriteBatch.draw(animator.getSpellTexture(), e.getX(), e.getY());
+                    spriteBatch.end();
                 }
             }
         }
+        
+        spriteBatch.setProjectionMatrix(hud.getStage().getCamera().combined);
+        hud.getStage().act(gameData.getDelta());
+        hud.getStage().draw();
     }
 
     private void mapShrink(int layerCount) {

@@ -69,7 +69,6 @@
         <module>MovementSystem</module>
         <module>LevelSystem</module>
         <module>Common</module>
-        <module>HUD</module>
     </modules>
 
     <properties>
