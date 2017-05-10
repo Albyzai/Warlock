@@ -67,8 +67,8 @@
         <module>CollisionSystem</module>
         <module>MovementSystem</module>
         <module>LevelSystem</module>
-        <module>Common</module>
         <module>Player</module>
+        <module>Common</module>
     </modules>
 
     <properties>

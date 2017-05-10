@@ -17,10 +17,11 @@
                 <configuration>
                     <publicPackages>
                         <publicPackage>States</publicPackage>
+                        <publicPackage>componentdata</publicPackage>
                         <publicPackage>data</publicPackage>
+                        <publicPackage>data.componentdata</publicPackage>
                         <publicPackage>events</publicPackage>
                         <publicPackage>services</publicPackage>
-                        <publicPackage>data.componentdata</publicPackage>
                     </publicPackages>
                 </configuration>
             </plugin>
