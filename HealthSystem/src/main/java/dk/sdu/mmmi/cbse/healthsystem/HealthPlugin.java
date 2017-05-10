@@ -39,6 +39,7 @@ public class HealthPlugin implements IGamePluginService, IEntityProcessingServic
             if (health > 0 && e.getIsHit()) {
                 int dmg = getDamage(e.hitByWhichSpell());
                     e.setHealth(e.getHealth() - dmg);
+                    e.setIsHit(false);
             }
             if (e.getHealth() <= 0) {
                 e.setCharState(CharacterState.DEAD);

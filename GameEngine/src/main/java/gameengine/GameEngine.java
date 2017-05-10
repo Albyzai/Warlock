@@ -164,17 +164,15 @@ public class GameEngine implements ApplicationListener {
 
                 if (!image.isRepeat()) {
                     animator.updateStateTime(gameData.getDelta());
-<<<<<<< HEAD
                     spriteBatch.setProjectionMatrix(camera.combined);
                     spriteBatch.begin();
                     spriteBatch.draw(animator.getFrame(e), e.getX(), e.getY());
                     spriteBatch.end();
-=======
-                    playerSprite.setProjectionMatrix(camera.combined);
-                    playerSprite.begin();
-                    playerSprite.draw(animator.getFrame(e), e.getX()-gameData.getSpriteWidth()/2, e.getY()-gameData.getSpriteHeight()/2);
-                    playerSprite.end();
->>>>>>> bdf4b56305cc05011e006c7eb7e3c08d18adc7e9
+                    spriteBatch.setProjectionMatrix(camera.combined);
+                    spriteBatch.begin();
+                    spriteBatch.draw(animator.getFrame(e), e.getX()-gameData.getSpriteWidth()/2, e.getY()-gameData.getSpriteHeight()/2);
+                    spriteBatch.end();
+
                 }
             }
         }
@@ -183,7 +181,7 @@ public class GameEngine implements ApplicationListener {
             Image image = e.getView();
             if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
 
-                animator.initializeSprite(assetManager.get(image.getImageFilePath(), Texture.class));
+                animator.initializeSprite(assetManager.get(image.getImageFilePath(), Texture.class), gameData);
 
                 if (!image.isRepeat()) {
                     animator.updateStateTime(gameData.getDelta());
