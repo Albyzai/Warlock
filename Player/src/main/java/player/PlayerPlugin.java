@@ -48,7 +48,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
 
 	player.add(ImageManager.getImage(CHARACTER_FINAL_IMAGE_PATH));
         
-        Position pos = new Position(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
+        Position pos = new Position(0.0f, 0.0f);
         player.add(pos);
 
         player.setMaxSpeed(2);
@@ -57,7 +57,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
 
         player.setRadians(3.1415f / 2);
         
-        Body body = new Body(32, 32, Geometry.RECTANGLE);
+        Body body = new Body(50, 32, Geometry.RECTANGLE);
         player.add(body);
         
         
