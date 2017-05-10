@@ -20,6 +20,7 @@
                         <publicPackage>data</publicPackage>
                         <publicPackage>events</publicPackage>
                         <publicPackage>services</publicPackage>
+                        <publicPackage>data.componentdata</publicPackage>
                     </publicPackages>
                 </configuration>
             </plugin>

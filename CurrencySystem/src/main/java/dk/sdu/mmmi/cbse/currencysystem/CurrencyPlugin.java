@@ -4,6 +4,8 @@ import data.Entity;
 import data.EntityType;
 import data.GameData;
 import data.World;
+import data.componentdata.Currency;
+import data.componentdata.Score;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 import services.IEntityProcessingService;
@@ -22,19 +24,21 @@ public class CurrencyPlugin implements IGamePluginService, IEntityProcessingServ
     @Override
     public void start(GameData gameData, World world) {
         for(Entity entity : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)){
-            entity.setGold(0);
+            entity.add(new Currency(0));
         }
     }
 
     @Override
     public void process(GameData gameData, World world) {
         for(Entity entity : world.getEntities(EntityType.PLAYER, EntityType.ENEMY)){
-            for(int i = 0; i < entity.getTotalHits(); i++){
-                entity.setGold(entity.getGold() + GOLD_FOR_HIT);
-            }
-            for(int i = 0; i < entity.getTotalKills(); i++){
-                entity.setGold(entity.getGold() + GOLD_FOR_KILL);
-            }
+            Score score = entity.get(Score.class);
+            Currency c = entity.get(Currency.class);
+//            for(int i = 0; i < score.getTotalHits(); i++){
+//                c.setGold(c.getGold() + GOLD_FOR_HIT);
+//            }
+//            for(int i = 0; i < score.getTotalKills(); i++){
+//                c.setGold(c.getGold() + GOLD_FOR_KILL);
+//            }
         }
     }
 

@@ -10,7 +10,12 @@ import org.openide.util.lookup.ServiceProviders;
 import services.IEntityProcessingService;
 import services.IGamePluginService;
 import States.MovementState;
+import com.badlogic.gdx.math.Rectangle;
 import data.ImageManager;
+import data.componentdata.Body;
+import data.componentdata.Body.Geometry;
+import data.componentdata.Image;
+import data.componentdata.Position;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IEntityProcessingService.class),
@@ -24,11 +29,14 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
 
     private float[] shapex = new float[4];
     private float[] shapey = new float[4];
+    private float directionY;
+    private float directionX;
     private Entity player;
     public static final String CHARACTER_IMAGE_PATH = "assets/Characters.png";
     public static String CHARACTER_FINAL_IMAGE_PATH = "";
     private World world;
-            
+    private Rectangle r;        
+    
     @Override
     public void start(GameData gameData, World world) {
         // Add entities to the world
@@ -38,19 +46,26 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         player = new Entity();
         player.setType(PLAYER);
 
-	player.setView(ImageManager.getImage(CHARACTER_FINAL_IMAGE_PATH));
-        player.setPosition(0.0f, 0.0f);
+	player.add(ImageManager.getImage(CHARACTER_FINAL_IMAGE_PATH));
+        
+        Position pos = new Position(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
+        player.add(pos);
 
         player.setMaxSpeed(2);
         player.setAcceleration(2);
         player.setDeacceleration(1);
 
         player.setRadians(3.1415f / 2);
-        player.setRotationSpeed(3);
-        world.addEntity(player);
+        
+        Body body = new Body(32, 32, Geometry.RECTANGLE);
+        player.add(body);
+        
         
         player.setMoveState(MovementState.STANDINGRIGHT);
         player.setCharState(CharacterState.IDLE);
+        world.addEntity(player);
+        
+        
         
     }
 
@@ -59,27 +74,17 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
         // TODO: Implement entity processor
 
 
-
-        for (Entity player : world.getEntities(PLAYER)) {
-            float x = player.getX();
-            float y = player.getY();
-            
-            // set shape
-            setShape(x, y, player.getRadians());
-            player.setShapeX(shapex);
-            player.setShapeY(shapey);
-        }
-        for (Entity p : world.getEntities(PLAYER)) {
-            float x = p.getX();
-            float y = p.getY();
-
-
-            setShape(x, y, p.getRadians());
-            p.setShapeX(shapex);
-            p.setShapeY(shapey);
-
-
-        }
+//        for (Entity p : world.getEntities(PLAYER)) {
+//            
+//            float x = p.getX();
+//            float y = p.getY();
+//
+//
+//            setShape(x, y, p.getRadians());
+//            p.setShapeX(shapex);
+//            p.setShapeY(shapey);
+//
+//        }
 
     }
 

@@ -10,7 +10,7 @@ import data.SpellType;
  *
  * @author mads1
  */
-public class SpellInfo {
+public class SpellList {
     
     public static final SpellType spellType = SpellType.FIREBALL;
     public static final int FIREBALL_DMG = 10;
