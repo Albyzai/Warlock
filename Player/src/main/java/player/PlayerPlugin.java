@@ -24,8 +24,6 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
 
     private float[] shapex = new float[4];
     private float[] shapey = new float[4];
-    private float directionY;
-    private float directionX;
     private Entity player;
     public static final String CHARACTER_IMAGE_PATH = "assets/Characters.png";
     public static String CHARACTER_FINAL_IMAGE_PATH = "";

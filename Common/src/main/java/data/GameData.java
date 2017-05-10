@@ -23,22 +23,20 @@ public class GameData {
     private float roundTime;
     private int roundNumber;
     private float currentTime;
-
+    private int spriteHeight;
+    private int spriteWidth;
     private int mousePositionX = 0;
     private int mousePositionY = 0;
-    
-    public int getMousePositionX()
-    {
+
+    public int getMousePositionX() {
         return mousePositionX;
     }
 
-        public int getMousePositionY()
-    {
+    public int getMousePositionY() {
         return mousePositionY;
     }
-    
-    public void setMousePosition(int x, int y)
-    {
+
+    public void setMousePosition(int x, int y) {
         mousePositionX = x;
         mousePositionY = y;
     }
@@ -156,6 +154,22 @@ public class GameData {
 
     public int getScreenX() {
         return screenX;
+    }
+
+    public int getSpriteHeight() {
+        return spriteHeight;
+    }
+
+    public void setSpriteHeight(int spriteHeight) {
+        this.spriteHeight = spriteHeight;
+    }
+
+    public int getSpriteWidth() {
+        return spriteWidth;
+    }
+
+    public void setSpriteWidth(int spriteWidth) {
+        this.spriteWidth = spriteWidth;
     }
 
 }

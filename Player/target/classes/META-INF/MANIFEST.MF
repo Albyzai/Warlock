@@ -3,7 +3,11 @@ OpenIDE-Module-Install: player/Installer.class
 OpenIDE-Module-Localizing-Bundle: player/Bundle.properties
 OpenIDE-Module-Specification-Version: 1.0.0
 OpenIDE-Module-Implementation-Version: 1.0.0-20170421
+<<<<<<< HEAD
 OpenIDE-Module-Build-Version: 201704210859
+=======
+OpenIDE-Module-Build-Version: 201704210801
+>>>>>>> bdf4b56305cc05011e006c7eb7e3c08d18adc7e9
 OpenIDE-Module: dk.sdu.mmmi.cbse.Player
 OpenIDE-Module-Public-Packages: player.*
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.RoundSystem">
+<<<<<<< HEAD
     <module_version install_time="1492765208126" last="true" origin="installer" specification_version="1.0.0">
         <file crc="2093282714" name="config/Modules/dk-sdu-mmmi-cbse-RoundSystem.xml"/>
         <file crc="2453038969" name="modules/dk-sdu-mmmi-cbse-RoundSystem.jar"/>
+=======
+    <module_version install_time="1492761691844" last="true" origin="installer" specification_version="1.0.0">
+        <file crc="2093282714" name="config/Modules/dk-sdu-mmmi-cbse-RoundSystem.xml"/>
+        <file crc="2957625642" name="modules/dk-sdu-mmmi-cbse-RoundSystem.jar"/>
+>>>>>>> bdf4b56305cc05011e006c7eb7e3c08d18adc7e9
         <file crc="1390441787" name="modules/ext/dk.sdu.mmmi.cbse.RoundSystem/com-badlogicgames-gdx/gdx.jar"/>
     </module_version>
 </module>
