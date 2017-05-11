@@ -36,8 +36,9 @@ import org.openide.util.Lookup;
 import services.IEntityProcessingService;
 import services.IGamePluginService;
 import services.MapSPI;
-import data.Image;
+import data.componentdata.Image;
 import data.ImageManager;
+import data.componentdata.Position;
 
 /**
  *
@@ -163,7 +164,8 @@ public class GameEngine implements ApplicationListener {
     private void draw() {
 
         for (Entity e : world.getEntities(PLAYER)) {
-            Image image = e.getView();
+            Position p = e.get(Position.class);
+            Image image = e.get(Image.class);
             if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
 
                 animator.initializeSprite(assetManager.get(image.getImageFilePath(), Texture.class), gameData);
@@ -172,15 +174,20 @@ public class GameEngine implements ApplicationListener {
                     animator.updateStateTime(gameData.getDelta());
                     spriteBatch.setProjectionMatrix(camera.combined);
                     spriteBatch.begin();
+<<<<<<< HEAD
                     spriteBatch.draw(animator.getFrame(e), e.getX(), e.getY());
+=======
+                    spriteBatch.draw(animator.getFrame(e), p.getX(), p.getY());
+>>>>>>> b205658b22705f5daf1e969a07d82e0b5eca6520
                     spriteBatch.end();
 
                 }
             }
         }
-        
+
         for (Entity e : world.getEntities(ENEMY)) {
-            Image image = e.getView();
+            Position p = e.get(Position.class);
+            Image image = e.get(Image.class);
             if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
 
                 animator.initializeSprite(assetManager.get(image.getImageFilePath(), Texture.class), gameData);
@@ -189,32 +196,40 @@ public class GameEngine implements ApplicationListener {
                     animator.updateStateTime(gameData.getDelta());
                     spriteBatch.setProjectionMatrix(camera.combined);
                     spriteBatch.begin();
-                    spriteBatch.draw(animator.getFrame(e), e.getX(), e.getY());
+                    spriteBatch.draw(animator.getFrame(e), p.getX(), p.getY());
                     spriteBatch.end();
                 }
             }
         }
-        
+
         for (Entity e : world.getEntities(SPELL)) {
-            Image image = e.getView();
+            Position p = e.get(Position.class);
+            Image image = e.get(Image.class);
             System.out.println(world.getEntities(SPELL).size());
             if (assetManager.isLoaded(image.getImageFilePath(), Texture.class)) {
-                
+
                 animator.initializeSpell(assetManager.get(image.getImageFilePath(), Texture.class));
 
                 if (!image.isRepeat()) {
                     animator.updateStateTime(gameData.getDelta());
                     spriteBatch.setProjectionMatrix(camera.combined);
                     spriteBatch.begin();
-                    spriteBatch.draw(animator.getSpellTexture(), e.getX(), e.getY());
+                    spriteBatch.draw(animator.getSpellTexture(), p.getX(), p.getY());
                     spriteBatch.end();
                 }
             }
         }
+<<<<<<< HEAD
         
         spriteBatch.setProjectionMatrix(stage.getCamera().combined);
         stage.act(gameData.getDelta());
         stage.draw();
+=======
+
+        spriteBatch.setProjectionMatrix(hud.getStage().getCamera().combined);
+        hud.getStage().act(gameData.getDelta());
+        hud.getStage().draw();
+>>>>>>> b205658b22705f5daf1e969a07d82e0b5eca6520
     }
 
     private void mapShrink(int layerCount) {
@@ -223,7 +238,8 @@ public class GameEngine implements ApplicationListener {
         for (int i = 0; i < groundLayers.getCount(); i++) {
             if (layerCount == i + 1 && i != 4) {
                 groundLayers.get(i).setVisible(true);
-            } else {
+            }
+            else {
                 groundLayers.get(i).setVisible(false);
             }
 
@@ -245,7 +261,7 @@ public class GameEngine implements ApplicationListener {
             mapShrink(layerCount);
             shrinkTimer = 0;
         }
-       
+
 //        for (MapSPI map : lookup.lookupAll(MapSPI.class)) {
 //            map.processMap(world, gameData);
 //        }

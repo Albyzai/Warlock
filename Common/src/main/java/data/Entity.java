@@ -1,20 +1,22 @@
 package data;
 
+import data.componentdata.Image;
 import com.badlogic.gdx.graphics.Texture;
 import java.io.Serializable;
 import java.util.ArrayList;
 import States.CharacterState;
 import States.MovementState;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class Entity implements Serializable {
 
-    private final UUID ID = UUID.randomUUID();
+    private final String ID = UUID.randomUUID().toString();
     private EntityType type;
-    private float x;
-    private float y;
     public float dx;
     public float dy;
     private float radians;
@@ -23,66 +25,44 @@ public final class Entity implements Serializable {
     private float deacceleration;
     private float[] shapeX = new float[4];
     private float[] shapeY = new float[4];
-    private float[] dists;
-    private int rotationSpeed;
     private float speed;
     private int health;
     private float radius;
-    private boolean isHit = false;
-    private float expiration;
     private int size;
     private int numPoints;
     private float width;
-    private float height;
     private CharacterState charState;
     private MovementState moveState;
-    private SpellType chosenSpell;
-    private SpellType usedSpell;
-    private Entity hitBy;
     private int level;
     private int expPoints;
-    private int kills = 0;
-    private int hits = 0;
-    private int totalKills = 0;
-    private int totalHits = 0;
-    private int gold;
-    private Image view;
-    private List<SpellType> spellBook;
 
+
+    private Image view;
+    private Rectangle rect;
+    private Map<Class<?>, Object> data = new ConcurrentHashMap<>();
+
+    public void add(Object data)
+    {
+        this.data.put(data.getClass(), data);
+    }
+
+    public void remove(Class<?> type)
+    {
+        this.data.remove(type);
+    }
+
+    public <T> T get(Class<T> type)
+    {
+        return (T)data.get(type);
+    }
+
+    
     public MovementState getMoveState() {
         return moveState;
     }
 
     public void setMoveState(MovementState moveState) {
         this.moveState = moveState;
-    }
-
-    public SpellType hitByWhichSpell() {
-        return getHitBy().usedSpell;
-    }
-
-    public Entity getHitBy() {
-        return hitBy;
-    }
-
-    public void setHitBy(Entity hitBy) {
-        this.hitBy = hitBy;
-    }
-
-    public SpellType getUsedSpell() {
-        return usedSpell;
-    }
-
-    public void setUsedSpell(SpellType usedSpell) {
-        this.usedSpell = usedSpell;
-    }
-
-    public SpellType getChosenSpell() {
-        return chosenSpell;
-    }
-
-    public void setChosenSpell(SpellType chosenSpell) {
-        this.chosenSpell = chosenSpell;
     }
 
     public CharacterState getCharState() {
@@ -108,13 +88,7 @@ public final class Entity implements Serializable {
     public float getWidth() {
         return this.width;
     }
-    public void setHeight(float height){
-        this.height = height;
-    }
-    public float getHeight(){
-        return this.height;
-    }
-    
+
     public void setNumpoints(int numpoints) {
         this.numPoints = numpoints;
     }
@@ -123,40 +97,12 @@ public final class Entity implements Serializable {
         return this.numPoints;
     }
 
-    public float[] getDists() {
-        return this.dists;
-    }
-
-    public void setDists(float[] floatarray) {
-        this.dists = floatarray;
-    }
-
     public void setSize(int size) {
         this.size = size;
     }
 
     public int getSize() {
         return this.size;
-    }
-
-    public void reduceExpiration(float delta) {
-        this.expiration -= delta;
-    }
-
-    public float getExpiration() {
-        return expiration;
-    }
-
-    public void setExpiration(float value) {
-        this.expiration = value;
-    }
-
-    public boolean getIsHit() {
-        return isHit;
-    }
-
-    public void setIsHit(boolean hit) {
-        this.isHit = hit;
     }
 
     public void setRadius(float r) {
@@ -201,27 +147,6 @@ public final class Entity implements Serializable {
 
     public void setDy(float dy) {
         this.dy = dy;
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public void setX(float x) {
-        this.x = x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public void setY(float y) {
-        this.y = y;
-    }
-
-    public void setPosition(float x, float y) {
-        this.x = x;
-        this.y = y;
     }
 
     public float getRadians() {
@@ -272,14 +197,6 @@ public final class Entity implements Serializable {
         this.shapeY = shapeY;
     }
 
-    public int getRotationSpeed() {
-        return rotationSpeed;
-    }
-
-    public void setRotationSpeed(int rotationSpeed) {
-        this.rotationSpeed = rotationSpeed;
-    }
-
     public boolean isType(EntityType entityType) {
         return this.type.equals(entityType);
     }
@@ -314,50 +231,6 @@ public final class Entity implements Serializable {
         this.expPoints = expPoints;
     }
 
-    public int getKills() {
-        return kills;
-    }
-
-    public void setKills(int kills) {
-        this.kills = kills;
-    }
-
-    public int getHits() {
-        return hits;
-    }
-
-    public void setHits(int hits) {
-        this.hits = hits;
-    }
-
-    public int getTotalKills() {
-        return totalKills;
-    }
-
-    public void setTotalKills(int totalKills) {
-        if (this.totalKills != totalKills) {
-            this.totalKills = totalKills;
-        }
-    }
-
-    public int getTotalHits() {
-        return totalHits;
-    }
-
-    public void setTotalHits(int totalHits) {
-        if (this.totalHits != totalHits) {
-            this.totalHits = totalHits;
-        }
-    }
-
-    public int getGold() {
-        return gold;
-    }
-
-    public void setGold(int gold) {
-        this.gold = gold;
-    }
-
     public Image getView() {
         return view;
     }
@@ -374,14 +247,15 @@ public final class Entity implements Serializable {
         this.numPoints = numPoints;
     }
 
-    public List<SpellType> getSpellBook() {
-        return spellBook;
+    public Rectangle getRect() {
+        return rect;
     }
 
-    public void setSpellBook(List<SpellType> spellBook) {
-        this.spellBook = spellBook;
+    public void setRect(Rectangle rect) {
+        this.rect = rect;
     }
 
+    
     
     
 }

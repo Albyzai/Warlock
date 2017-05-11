@@ -13,6 +13,7 @@ import static data.EntityType.PLAYER;
 import static data.EntityType.SPELL;
 import data.ImageManager;
 import data.World;
+import data.componentdata.Expiration;
 
 public class Spell {
 
@@ -31,9 +32,13 @@ public class Spell {
         ImageManager.createImage(SPELL_IMAGE_PATH, false);
 
         spellEntity = new Entity();
+<<<<<<< HEAD
         spellEntity.setType(SPELL);
         spellEntity.setExpiration(expiration);
 
+=======
+        spellEntity.add(new Expiration(expiration));
+>>>>>>> b205658b22705f5daf1e969a07d82e0b5eca6520
         spellEntity.setView(ImageManager.getImage(SPELL_IMAGE_PATH));
         world.addEntity(spellEntity);
 

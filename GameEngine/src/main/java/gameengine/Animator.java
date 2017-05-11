@@ -50,8 +50,6 @@ public class Animator {
         chStandingLeft = new TextureRegion(texture, 0, 55, spriteWidth, spriteHeight);
         chStandingUp = new TextureRegion(texture, 0, 110, spriteWidth, spriteHeight);
         chStandingDown = new TextureRegion(texture, 0, 165, spriteWidth, spriteHeight);
-        gameData.setSpriteHeight(spriteHeight);
-        gameData.setSpriteWidth(spriteWidth);
 
         Array<TextureRegion> frames = new Array<>();
 

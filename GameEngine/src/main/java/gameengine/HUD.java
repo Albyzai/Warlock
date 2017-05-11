@@ -13,6 +13,7 @@ import data.Entity;
 import data.EntityType;
 import data.GameData;
 import data.World;
+import data.componentdata.Currency;
 
 public class HUD {
 
@@ -35,7 +36,7 @@ public class HUD {
         roundNumb = gameData.getRoundNumber();
 
         for (Entity player : world.getEntities(EntityType.PLAYER)) {
-            gold = player.getGold();
+            gold = player.get(Currency.class).getGold();
             health = player.getHealth();
             exp = player.getExpPoints();
             level = player.getLevel();

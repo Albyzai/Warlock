@@ -57,7 +57,6 @@
     <modules>
         <module>branding</module>
         <module>application</module>
-        <module>Player</module>
         <module>Enemy</module>
         <module>Spell</module>
         <module>Map</module>
@@ -68,6 +67,7 @@
         <module>CollisionSystem</module>
         <module>MovementSystem</module>
         <module>LevelSystem</module>
+        <module>Player</module>
         <module>Common</module>
     </modules>
 
