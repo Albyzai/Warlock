@@ -10,6 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -20,6 +21,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import data.Entity;
 import static data.EntityType.ENEMY;
 import static data.EntityType.PLAYER;
@@ -63,6 +65,8 @@ public class GameEngine implements ApplicationListener {
     private SpriteBatch spriteBatch;
     private Animator animator;
     private HUD hud;
+    private FitViewport viewPort;
+    private Stage stage;
 
     @Override
     public void create() {
@@ -111,8 +115,10 @@ public class GameEngine implements ApplicationListener {
         loadImages();
 
         spriteBatch = new SpriteBatch();
+        viewPort = new FitViewport(gameData.getScreenX(), gameData.getScreenY(), new OrthographicCamera());
+        stage = new Stage(viewPort, spriteBatch);
 
-        hud = new HUD(spriteBatch, gameData, world);
+        hud = new HUD(stage, viewPort , gameData, world);
     }
 
     private void loadImages() {
@@ -145,7 +151,7 @@ public class GameEngine implements ApplicationListener {
     @Override
     public void render() {
         gameData.setDelta(Gdx.graphics.getDeltaTime());
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.setView(camera);
         renderer.render();
@@ -167,10 +173,6 @@ public class GameEngine implements ApplicationListener {
                     spriteBatch.setProjectionMatrix(camera.combined);
                     spriteBatch.begin();
                     spriteBatch.draw(animator.getFrame(e), e.getX(), e.getY());
-                    spriteBatch.end();
-                    spriteBatch.setProjectionMatrix(camera.combined);
-                    spriteBatch.begin();
-                    spriteBatch.draw(animator.getFrame(e), e.getX()-gameData.getSpriteWidth()/2, e.getY()-gameData.getSpriteHeight()/2);
                     spriteBatch.end();
 
                 }
@@ -210,9 +212,9 @@ public class GameEngine implements ApplicationListener {
             }
         }
         
-        spriteBatch.setProjectionMatrix(hud.getStage().getCamera().combined);
-        hud.getStage().act(gameData.getDelta());
-        hud.getStage().draw();
+        spriteBatch.setProjectionMatrix(stage.getCamera().combined);
+        stage.act(gameData.getDelta());
+        stage.draw();
     }
 
     private void mapShrink(int layerCount) {

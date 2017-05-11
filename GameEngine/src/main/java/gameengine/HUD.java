@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import data.Entity;
@@ -15,15 +16,12 @@ import data.World;
 
 public class HUD {
 
-    private Stage stage;
-    private FitViewport viewPort;
-
     private float health;
-    private int gold;
+    private Integer gold;
     private float roundTimer;
-    private int roundNumb;
-    private int exp;
-    private int level;
+    private Integer roundNumb;
+    private Integer exp;
+    private Integer level;
 
     private Label goldLabel;
     private Label roundTimerLabel;
@@ -32,7 +30,7 @@ public class HUD {
     private Label levelLabel;
     private Table table;
 
-    public HUD(SpriteBatch spriteBatch, GameData gameData, World world) {
+    public HUD(Stage stage, FitViewport viewPort, GameData gameData, World world) {
         roundTimer = gameData.getRoundTime();
         roundNumb = gameData.getRoundNumber();
 
@@ -42,9 +40,6 @@ public class HUD {
             exp = player.getExpPoints();
             level = player.getLevel();
         }
-
-        viewPort = new FitViewport(gameData.getScreenX(), gameData.getScreenY(), new OrthographicCamera());
-        stage = new Stage(viewPort, spriteBatch);
 
         table = new Table();
         table.top();
@@ -66,8 +61,5 @@ public class HUD {
         stage.addActor(table);
     }
 
-    public Stage getStage() {
-        return stage;
-    }
 
 }

@@ -56,19 +56,7 @@ public class PlayerPlugin implements IEntityProcessingService, IGamePluginServic
 
     @Override
     public void process(GameData gameData, World world) {
-        // TODO: Implement entity processor
-
-
-
-        for (Entity player : world.getEntities(PLAYER)) {
-            float x = player.getX();
-            float y = player.getY();
-            
-            // set shape
-            setShape(x, y, player.getRadians());
-            player.setShapeX(shapex);
-            player.setShapeY(shapey);
-        }
+   
         for (Entity p : world.getEntities(PLAYER)) {
             float x = p.getX();
             float y = p.getY();

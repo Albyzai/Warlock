@@ -8,7 +8,9 @@ package dk.sdu.mmmi.cbse.spell;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import data.SpellType;
 import data.Entity;
+import data.EntityType;
 import static data.EntityType.PLAYER;
+import static data.EntityType.SPELL;
 import data.ImageManager;
 import data.World;
 
@@ -29,6 +31,7 @@ public class Spell {
         ImageManager.createImage(SPELL_IMAGE_PATH, false);
 
         spellEntity = new Entity();
+        spellEntity.setType(SPELL);
         spellEntity.setExpiration(expiration);
 
         spellEntity.setView(ImageManager.getImage(SPELL_IMAGE_PATH));

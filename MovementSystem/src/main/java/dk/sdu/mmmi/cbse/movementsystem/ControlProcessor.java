@@ -58,26 +58,32 @@ public class ControlProcessor implements IEntityProcessingService {
                 sStartY = spell.getY();
                 sEndX = gameData.getMousePositionX();
                 sEndY = gameData.getMousePositionY();
-                sAngle = (float) Math.toDegrees(Math.atan2(sEndY - sStartY, sEndX - sStartX));
-                sDistance = (float) Math.sqrt(Math.pow(sEndX - sStartX, 2) + Math.pow(sEndY - sStartY, 2));
+                float dirX = sEndX - sStartX;
+                float dirY = sEndY - sStartY;
 
-                sDirectionX = (sEndX - sStartX) / sDistance;
-                sDirectionY = (sEndY - sStartY) / sDistance;
-                spell.setX(sStartX);
-                spell.setY(sStartY);
-                spellIsMoving = true;
+                float dirLength = (float) Math.sqrt(dirX * dirX + dirY * dirY);
+                dirX = dirX / dirLength;
+                dirY = dirY / dirLength;
+                //sAngle = (float) Math.toDegrees(Math.atan2(sEndY - sStartY, sEndX - sStartX));
+//                sDistance = (float) Math.sqrt(Math.pow(sEndX - sStartX, 2) + Math.pow(sEndY - sStartY, 2));
+//
+//                sDirectionX = (sEndX - sStartX) / sDistance;
+//                sDirectionY = (sEndY - sStartY) / sDistance;
+//                spell.setX(sStartX);
+//                spell.setY(sStartY);
 
-                if (spellIsMoving) {
-                    spell.setX(spell.getX() + sDirectionX * spell.getMaxSpeed() * gameData.getDelta());
-                    spell.setY(spell.getY() + sDirectionY * spell.getMaxSpeed() * gameData.getDelta());
-                    if ((float) Math.sqrt(Math.pow(spell.getX() - sStartX, 2) + Math.pow(spell.getY() - sStartY, 2)) >= sDistance) {
-                        spell.setX(sEndX);
-                        spell.setY(sEndY);
-                        spellIsMoving = false;
-                    }
-                }
+//                    spell.setX(spell.getX() + sDirectionX * spell.getMaxSpeed() * gameData.getDelta());
+//                    spell.setY(spell.getY() + sDirectionY * spell.getMaxSpeed() * gameData.getDelta());
+                spell.setX(spell.getX() + dirX * spell.getMaxSpeed() * gameData.getDelta());
+                spell.setY(spell.getY() + dirY * spell.getMaxSpeed() * gameData.getDelta());
+                System.out.println("X: " + spell.getX() + "    Y: " + spell.getY());
+//                    if ((float) Math.sqrt(Math.pow(spell.getX() - sStartX, 2) + Math.pow(spell.getY() - sStartY, 2)) >= sDistance) {
+//                        spell.setX(sEndX);
+//                        spell.setY(sEndY);
+//                        spellIsMoving = false;
+//                    }
+
             }
-
         }
     }
 
@@ -92,28 +98,26 @@ public class ControlProcessor implements IEntityProcessingService {
             endY = gameData.getMousePositionY() - (e.getHeight() / 2);
             if (startX == endX && startY == endY) {
                 e.setCharState(CharacterState.IDLE);
-            }
-            else {
-            angle = (float) Math.toDegrees(Math.atan2(endY - startY, endX - startX));
-
-            distance = (float) Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
-
-            directionX = (endX - startX) / distance;
-            directionY = (endY - startY) / distance;
-            e.setX(startX);
-            e.setY(startY);
-            e.setCharState(CharacterState.MOVING);
-            
-
-            if (angle > -45 && angle < 45) {
-                e.setMoveState(MovementState.RUNNINGRIGHT);
-            } else if (angle < 135 && angle > 45) {
-                e.setMoveState(MovementState.RUNNINGUP);
-            } else if (angle > -135 && angle < -45) {
-                e.setMoveState(MovementState.RUNNINGDOWN);
             } else {
-                e.setMoveState(MovementState.RUNNINGLEFT);
-            }
+                angle = (float) Math.toDegrees(Math.atan2(endY - startY, endX - startX));
+
+                distance = (float) Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+
+                directionX = (endX - startX) / distance;
+                directionY = (endY - startY) / distance;
+                e.setX(startX);
+                e.setY(startY);
+                e.setCharState(CharacterState.MOVING);
+
+                if (angle > -45 && angle < 45) {
+                    e.setMoveState(MovementState.RUNNINGRIGHT);
+                } else if (angle < 135 && angle > 45) {
+                    e.setMoveState(MovementState.RUNNINGUP);
+                } else if (angle > -135 && angle < -45) {
+                    e.setMoveState(MovementState.RUNNINGDOWN);
+                } else {
+                    e.setMoveState(MovementState.RUNNINGLEFT);
+                }
             }
         }
         if (e.getCharState().equals(CharacterState.MOVING)) {

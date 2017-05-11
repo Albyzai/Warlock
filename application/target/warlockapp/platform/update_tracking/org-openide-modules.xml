@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="org.openide.modules">
-<<<<<<< HEAD
-    <module_version install_time="1492765217018" last="true" origin="installer" specification_version="7.48.1">
-=======
-    <module_version install_time="1492761714667" last="true" origin="installer" specification_version="7.48.1">
->>>>>>> bdf4b56305cc05011e006c7eb7e3c08d18adc7e9
+    <module_version install_time="1494499281920" last="true" origin="installer" specification_version="7.48.1">
         <file crc="1391508081" name="config/ModuleAutoDeps/org-openide-modules.xml"/>
         <file crc="345659351" name="lib/locale/org-openide-modules_ja.jar"/>
         <file crc="815787015" name="lib/locale/org-openide-modules_pt_BR.jar"/>
